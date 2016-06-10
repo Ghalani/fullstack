@@ -1,0 +1,2 @@
+$("#form-cont").html("");
+$("#form-cont").append("<%= escape_javascript(render 'show', farm: @farm, teams: @teams).html_safe %>");

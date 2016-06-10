@@ -1,0 +1,18 @@
+<div id="farm-name-holder" class="row">
+	<div class="col-sm-9"><%= farm.name %></div>
+	<div class="col-sm-3"><%= farm.area %> acres</div>	
+</div>
+
+<%= link_to 'Creare Activity' %>
+<div id="team-cont row">
+	<% if teams.size > 0 %>
+			<% teams.each do |t| %>
+					<div class="col-md-4 col-sm-2 card">
+						<%= t.name %>
+					</div>
+			<% end %>
+	<% else %>
+		No teams assigned to this farm
+	<% end %>
+	
+</div>

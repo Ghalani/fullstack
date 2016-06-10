@@ -1,0 +1,18 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: mestpanapi_development
+  pool: 5
+  username: <%= ENV['MESTPANAPI_DB_USERNAME'] %>
+  password: <%= ENV['MESTPANAPI_DB_PASSWORD'] %>
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: mestpanapi_test
+  pool: 5
+  username: <%= ENV['MESTPANAPI_DB_USERNAME'] %>
+  password: <%= ENV['MESTPANAPI_DB_PASSWORD'] %>
+
+production:
+  database: <%= ENV['DATABASE_URL'] %>
