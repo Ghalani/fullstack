@@ -1,0 +1,24 @@
+<div id="team-cont">
+  <div class="btn" onclick="goBack()">
+    <i class="fa fa-chevron-left"></i> back
+  </div>
+  <div>
+    <%= @team.name %>
+  </div>
+  <div class="">
+    <% if @team.service_providers.size < 1 %>
+      <div>
+        <%= image_tag 'no_truck.png' %>
+      </div>
+      <div>This team is empty</div>
+    <% else %>
+    <% end %>
+    <div class="btn">Add members</div>
+  </div>
+  <script>
+    function goBack(){
+      $('#main-cont').show();
+      $('#team-cont').remove();
+    }
+  </script>
+</div>

@@ -1,5 +1,5 @@
 <div class="card w400">
-  <h1>Create New Farmer</h1>
+  <h1>New Farm</h1>
   <%= form_for @farm, remote: true do |f|%>
     <div class="form-group">
       <%= f.text_field :name, size: '80', class:"form-control", placeholder:"Name" %>
@@ -8,12 +8,15 @@
       <%= f.number_field :area, size: '80', class:"form-control", :step => 'any', placeholder:"Area (Acres)"%>
     </div>
     <div class="form-group">
+      <%= f.collection_select :region_id, @regions, :id,:name, include_blank: false, class:"form-control" %>
+    </div>
+    <div class="form-group">
       <%= f.number_field :lon, size: '80', class:"form-control", :step => 'any', placeholder:"latitutde"%>
       <%= f.number_field :lat, size: '80', class:"form-control", :step => 'any', placeholder:"longitude"%>
     </div>
+
     <div class="form-group">
       <%= f.submit 'Submit' , class:"btn btn-primary" %>
     </div>
   <% end %>
 </div>
-

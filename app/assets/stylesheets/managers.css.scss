@@ -1,10 +1,37 @@
 // Place all the styles related to the managers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+//*= require_tree ./gentelella
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+$sm_img: 150px;
+$mcr_img: 30px;
+
+body{
+	color: #73879C;
+	background: #2A3F54;
+	font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
+	font-size: 13px;
+	font-weight: 400;
+	line-height: 1.471;
+}
+
 #main-cont{
+	.circle{
+		border-radius: 50%;
+	}
+
+	.micro-img{
+		width: $mcr_img;
+		height: $mcr_img;
+	}
+
+	.small-img{
+		width: $sm_img;
+		height: $sm_img;
+	}
 	.card {
 	  padding:1.5rem;
 	  box-shadow:0 1px 2px #aaa;
@@ -60,5 +87,8 @@
 		color: #f5f5f5;
 		padding: 20px;
 	}
-}
 
+	.no-pad{
+		padding: 0px;
+	}
+}

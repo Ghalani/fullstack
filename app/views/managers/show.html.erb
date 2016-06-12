@@ -1,16 +1,23 @@
 <div id="main-cont">
-	<div class="row pad20">
+	<div class="row no-pad">
 		<div class="col-md-3 grey-back">
-			<div id="farm-list" class="card">
+      <div class="x_panel tile">
+        <div class="x_title">
+          <h2>Farms</h2>
+					<div class="clearfix"></div>
+        </div>
+        <div class="x_content">
 					<% @farms.each do |f| %>
 						<%= link_to f, remote: true do %>
 							<div class="list-item"><%= f.name %></div>
 						<% end %>
-					<% end %>	
+					<% end %>
 				<%= link_to "Add farm", new_farm_path, class: 'btn btn-primary', :remote => true %>
-			</div>
+
+        </div>
+      </div>
 		</div>
-		<div class="col-md-9">
+		<div class="col-md-9 no-pad">
 			<div id="map-view">
 				<iframe
 				  width="100%"
@@ -21,10 +28,7 @@
 				</iframe>
 			</div>
 			<div id="form-cont">
-				container
 			</div>
 		</div>
 	</div>
 </div>
-
-

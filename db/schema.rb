@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160610112709) do
+ActiveRecord::Schema.define(version: 20160612173114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,14 +50,6 @@ ActiveRecord::Schema.define(version: 20160610112709) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "assemblies_parts", id: false, force: :cascade do |t|
-    t.integer "team_id"
-    t.integer "service_providers_id"
-  end
-
-  add_index "assemblies_parts", ["service_providers_id"], name: "index_assemblies_parts_on_service_providers_id", using: :btree
-  add_index "assemblies_parts", ["team_id"], name: "index_assemblies_parts_on_team_id", using: :btree
 
   create_table "countries", force: :cascade do |t|
     t.string   "iso"
@@ -114,7 +106,10 @@ ActiveRecord::Schema.define(version: 20160610112709) do
     t.datetime "updated_at",      null: false
     t.decimal  "lat"
     t.decimal  "lon"
+    t.integer  "region_id"
   end
+
+  add_index "farms", ["region_id"], name: "index_farms_on_region_id", using: :btree
 
   create_table "item_sales", force: :cascade do |t|
     t.integer  "item_id"
@@ -190,7 +185,18 @@ ActiveRecord::Schema.define(version: 20160610112709) do
     t.boolean  "is_team_lead"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "region_id"
   end
+
+  add_index "service_providers", ["region_id"], name: "index_service_providers_on_region_id", using: :btree
+
+  create_table "service_providers_teams", id: false, force: :cascade do |t|
+    t.integer "team_id"
+    t.integer "service_provider_id"
+  end
+
+  add_index "service_providers_teams", ["service_provider_id"], name: "index_service_providers_teams_on_service_provider_id", using: :btree
+  add_index "service_providers_teams", ["team_id"], name: "index_service_providers_teams_on_team_id", using: :btree
 
   create_table "subscriptions", force: :cascade do |t|
     t.string   "email"
@@ -210,6 +216,7 @@ ActiveRecord::Schema.define(version: 20160610112709) do
     t.integer  "farm_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "name"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,18 +1,49 @@
 <div id="farm-name-holder" class="row">
 	<div class="col-sm-9"><%= farm.name %></div>
-	<div class="col-sm-3"><%= farm.area %> acres</div>	
+	<div class="col-sm-3"><%= farm.area %> acres</div>
 </div>
-
-<%= link_to 'Creare Activity' %>
+<hr>
 <div id="team-cont row">
-	<% if teams.size > 0 %>
-			<% teams.each do |t| %>
-					<div class="col-md-4 col-sm-2 card">
-						<%= t.name %>
+	<div id="team-holder" class="col-md-8">
+		<div id="team-list" class="row">
+				<% if teams.size > 0 %>
+					<% teams.each do |t| %>
+						<%= link_to farm_team_path(t.farm, t), remote: true do %>
+							<div class="col-md-4 col-sm-2 card row">
+								<div><%= t.name %></div>
+								<div><%= image_tag 'user.png', class: 'circle micro-img' %> | <%= t.service_providers.size.to_s %></div>
+							</div>
+						<% end %>
+					<% end %>
+				<% else %>
+					<span id="disclame">No teams assigned to this farm<span>
+				<% end %>
+		</div>
+		<%= link_to "Add team", new_farm_team_path(farm), class: 'btn btn-primary', :remote => true %>
+	</div>
+	<div class="col-md-4">
+		<div class="x_panel tile">
+			<div class="x_title">
+				<h2>Workers in <%= sps.first.region.name %> region</h2>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+				<div class="row">
+					<% sps.each do |s| %>
+					<div class="col-xs-6">
+						<div>
+							<%= image_tag 'user.png', class:'small-img' %>
+						</div>
+						<div>
+							<%= s.user.username %>
+						</div>
 					</div>
-			<% end %>
-	<% else %>
-		No teams assigned to this farm
-	<% end %>
-	
+					<% end %>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 </div>

@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
-  get 'farm/new'
+  # get 'teams/new'
+  #
+  # get 'teams/show'
+  #
+  # get 'farm/new'
 
   resources :managers
-  resources :farms
+  resources :farms do
+    resources :teams
+    
+  end
 
 	# namespace :api, defaults: {format: 'json'} do
  #    scope module: :v1, constraints: ApiConstraints.new(version: 1) do

@@ -33,3 +33,14 @@ end
     area: 'password'
   })
 end
+
+#Region.new(country_id: 81, name: "Tamale1", state: "Northern region")
+r_a = Region.first.id
+r_b = Region.last.id
+User.where(role: 'sp').each do |u|
+  ServiceProvider.create(
+    user_id: u.id,
+    is_team_lead: false,
+    region_id: rand(r_a..r_b)
+  )
+end

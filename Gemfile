@@ -27,6 +27,7 @@ gem 'active_model_serializers', '~> 0.8.1'
 gem 'pg'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap-sass', '~> 3.3.6'
+gem "font-awesome-rails"
 
 
 group :development, :test do
