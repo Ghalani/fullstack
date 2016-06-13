@@ -25,7 +25,7 @@ body{
 .overlay{
 	height: 0;
   width: 100%;
-	padding: 100px 10%;
+	//padding: 100px 10%;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -41,6 +41,15 @@ body{
 		right: 45px;
 		font-size: 60px !important;
 	}
+}
+
+.center-text{
+	text-align: center;
+}
+
+.half-div{
+	max-height: 400px;
+	overflow: scroll;
 }
 
 #main-holder{
