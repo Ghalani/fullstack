@@ -260,6 +260,11 @@
 
         <!-- page content -->
         <div id="main-holder" class="right_col" role="main">
+          <div id="myOverlay" class="overlay">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+              <i class="fa fa-remove"></i>
+            </a>
+          </div>
           <%= yield %>
         </div>
         <!-- /page content -->

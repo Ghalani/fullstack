@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   resources :managers
   resources :farms do
     resources :teams
-    
+  end
+
+  resources :region do
+    resources :service_providers
   end
 
 	# namespace :api, defaults: {format: 'json'} do

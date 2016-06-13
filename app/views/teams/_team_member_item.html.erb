@@ -1,6 +1,8 @@
 <div>
-  <%= image_tag 'user.png', class:'small-img' %>
+  <%= image_tag 'user.png', class:'small-img circle' %>
 </div>
 <div>
-  <%= sp.user.username %>
+  <%= link_to region_service_provider_path(sp.region, sp), remote: true do %>
+    <%= sp.user.username %>
+  <% end %>
 </div>

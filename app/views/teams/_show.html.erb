@@ -5,15 +5,35 @@
   <div>
     <%= @team.name %>
   </div>
-  <div class="">
-    <% if @team.service_providers.size < 1 %>
+  <div class="row">
+    <div class="col-md-8">
+      <% if @team.service_providers.size < 1 %>
       <div>
         <%= image_tag 'no_truck.png' %>
       </div>
       <div>This team is empty</div>
-    <% else %>
-    <% end %>
-    <div class="btn">Add members</div>
+      <% else %>
+      <% end %>
+      <div class="btn">Add members</div>
+    </div>
+    <div class="col-md-4">
+      <div class="x_panel tile">
+  			<div class="x_title">
+  				<h2>Available workers (<%= @team.farm.region.name %>)</h2>
+  				<div class="clearfix"></div>
+  			</div>
+  			<div class="x_content">
+  				<div class="row">
+            <% @av_sps.each do |avs| %>
+              <div class="col-md-4 col-sm-6">
+                <%= render 'team_member_item', sp: avs %>
+              </div>
+            <% end %>
+            List
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <script>
     function goBack(){

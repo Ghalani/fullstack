@@ -10,6 +10,8 @@ class TeamsController < ApplicationController
 
   def show
     @team = Team.find_by_id(params[:id])
+    @sps = @team.service_providers
+    @av_sps = ServiceProvider.includes(:teams).where( :teams => { :id => nil }, region: @team.farm.region_id )
     respond_to do |format|
       format.js
     end
