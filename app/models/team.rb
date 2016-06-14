@@ -5,4 +5,8 @@ class Team < ActiveRecord::Base
 
 	validates :name, presence: true
 	validates_uniqueness_of :name, scope: :farm_id
+
+	def add_sp(sp)
+		self.service_providers.push(sp)
+	end
 end

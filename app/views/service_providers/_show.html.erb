@@ -4,6 +4,9 @@
   </div>
 
   <script>
+    $("#myOverlay").on('click', function(){
+      closeNav();
+    });
     function closeNav() {
       document.getElementById("myOverlay").style.height = "0%";
       $("#mySPshow").remove();

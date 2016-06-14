@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     resources :teams
   end
 
+  post 'teams/:id/asp' => 'teams#add_service_provider'
+
   resources :region do
     resources :service_providers
   end

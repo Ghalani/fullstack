@@ -7,14 +7,22 @@
   </div>
   <div class="row">
     <div class="col-md-4">
-      <% if @team.service_providers.size < 1 %>
-      <div>
-        <%= image_tag 'no_truck.png' %>
+      <div class="x_panel tile">
+  			<div class="x_title">
+  				<h2>Team details</h2>
+  				<div class="clearfix"></div>
+  			</div>
+  			<div class="x_content">
+          <% if @team.service_providers.size < 1 %>
+            <div class="center-text">
+              <%= image_tag 'no_truck.png' %>
+            </div>
+            <div class="center-text"><h1>This team is empty</h1></div>
+          <% else %>
+          <% end %>
+          <div class="btn btn-primary">Add members</div>
+        </div>
       </div>
-      <div>This team is empty</div>
-      <% else %>
-      <% end %>
-      <div class="btn">Add members</div>
     </div>
     <div class="col-md-4">
       <div class="x_panel tile">
@@ -23,16 +31,22 @@
   				<div class="clearfix"></div>
   			</div>
   			<div class="x_content">
-  				<div class="half-div row">
+  				<div class="row half-div">
             <% @av_sps.each do |avs| %>
-              <div class="col-md-4 col-sm-6">
+              <div class="add_sp_stub col-md-4 col-sm-6" value=<%= avs.id %>>
                 <%= render 'team_member_item', sp: avs %>
               </div>
             <% end %>
           </div>
-          <div class="half-div">
-
-          </div>
+        </div>
+      </div>
+      <div class="x_panel tile">
+  			<div class="x_title">
+  				<h2>Team details</h2>
+  				<div class="clearfix"></div>
+  			</div>
+  			<div class="x_content half-div">
+  				Information about the team and the duty they are assigned
         </div>
       </div>
     </div>
@@ -49,9 +63,19 @@
     </div>
   </div>
   <script>
+    var isActive = false;
     function goBack(){
       $('#main-cont').show();
       $('#team-cont').remove();
+    }
+
+    $('.add_sp_stub').on('click', function(){
+      //console.log($(this).val());
+      console.log($(this).attr('value'));
+    });
+
+    function addSp(sp_id){
+
     }
   </script>
 </div>

@@ -22,6 +22,12 @@ body{
 	border-radius: 50%;
 }
 
+#mySPshow{
+	position: relative;
+	top: 200px;
+	margin: auto;
+	width: 500px;
+}
 .overlay{
 	height: 0;
   width: 100%;
@@ -49,7 +55,7 @@ body{
 
 .half-div{
 	max-height: 400px;
-	overflow: scroll;
+	overflow: overlay;
 }
 
 #main-holder{

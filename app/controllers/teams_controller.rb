@@ -28,6 +28,11 @@ class TeamsController < ApplicationController
     end
   end
 
+  def add_service_provider
+    @team = Team.find_by_id(params[:team_id])
+    @sp = ServiceProvider.find_by_id(params[:id])
+  end
+
   private
   def team_params
 	  params.require(:team).permit(:name, :farm_id)
