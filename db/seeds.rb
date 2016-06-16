@@ -26,13 +26,14 @@ activities.each do |name|
 	})
 end
 
-2.times do
-  Farm.create({
-    name: Faker::Internet.user_name,
-    coord: [Faker::Number.decimal(1, 6), Faker::Number.decimal(1, 6)],
-    area: 'password'
-  })
-end
+# 2.times do
+#   Farm.create({
+#     name: Faker::Internet.user_name,
+#     lon: Faker::Number.decimal(1, 6)
+#     lat: Faker::Number.decimal(1, 6),
+#     area: 'password'
+#   })
+# end
 
 #Region.new(country_id: 81, name: "Tamale1", state: "Northern region")
 r_a = Region.first.id
