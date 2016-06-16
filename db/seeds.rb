@@ -43,5 +43,5 @@ User.where(role: 'sp').each do |u|
     user_id: u.id,
     is_team_lead: false,
     region_id: rand(r_a..r_b)
-  )
+)
 end
