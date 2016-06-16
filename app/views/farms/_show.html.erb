@@ -9,9 +9,14 @@
 				<% if teams.size > 0 %>
 					<% teams.each do |t| %>
 						<%= link_to farm_team_path(t.farm, t), remote: true do %>
-							<div class="col-md-4 col-sm-2 card row">
-								<div><%= t.name %></div>
-								<div><%= image_tag 'user.png', class: 'circle micro-img' %> | <%= t.service_providers.size.to_s %></div>
+							<div class="x_panel tile">
+								<div class="x_title">
+									<h3><%= t.name %></h3>
+									<div class="clearfix"></div>
+								</div>
+								<div class="x_content half-div">
+									<%= image_tag 'user.png', class: 'circle micro-img' %> | <%= t.team_assignments.size.to_s %>
+								</div>
 							</div>
 						<% end %>
 					<% end %>
@@ -24,10 +29,10 @@
 	<div class="col-md-4">
 		<div class="x_panel tile">
 			<div class="x_title">
-				<h2>Workers in <%= sps.first.region.name %> region</h2>
+				<h2>Workers in <%= farm.region.name %> region</h2>
 				<div class="clearfix"></div>
 			</div>
-			<div class="x_content">
+			<div class="x_content half-div">
 				<div class="row">
 					<% sps.each do |s| %>
 					<div class="col-xs-6">

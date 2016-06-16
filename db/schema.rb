@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160612173114) do
+ActiveRecord::Schema.define(version: 20160615140309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -190,14 +190,6 @@ ActiveRecord::Schema.define(version: 20160612173114) do
 
   add_index "service_providers", ["region_id"], name: "index_service_providers_on_region_id", using: :btree
 
-  create_table "service_providers_teams", id: false, force: :cascade do |t|
-    t.integer "team_id"
-    t.integer "service_provider_id"
-  end
-
-  add_index "service_providers_teams", ["service_provider_id"], name: "index_service_providers_teams_on_service_provider_id", using: :btree
-  add_index "service_providers_teams", ["team_id"], name: "index_service_providers_teams_on_team_id", using: :btree
-
   create_table "subscriptions", force: :cascade do |t|
     t.string   "email"
     t.datetime "created_at", null: false
@@ -207,9 +199,24 @@ ActiveRecord::Schema.define(version: 20160612173114) do
   create_table "team_activities", force: :cascade do |t|
     t.integer  "activity_id"
     t.integer  "team_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.date     "start_date"
+    t.date     "end_date"
+    t.boolean  "is_done"
+    t.text     "comment"
+    t.integer  "team_leader_id"
   end
+
+  create_table "team_assignments", force: :cascade do |t|
+    t.integer  "team_id"
+    t.integer  "service_provider_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "team_assignments", ["service_provider_id"], name: "index_team_assignments_on_service_provider_id", using: :btree
+  add_index "team_assignments", ["team_id"], name: "index_team_assignments_on_team_id", using: :btree
 
   create_table "teams", force: :cascade do |t|
     t.integer  "area_planner_id"

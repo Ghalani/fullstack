@@ -1,14 +1,9 @@
 Rails.application.routes.draw do
-  # get 'teams/new'
-  #
-  # get 'teams/show'
-  #
-  # get 'farm/new'
-
   resources :managers
   resources :farms do
     resources :teams
   end
+
 
   post 'teams/:id/asp' => 'teams#add_service_provider'
 
@@ -27,8 +22,18 @@ Rails.application.routes.draw do
  	namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
       resources :farms
+      resources :teams
+      resources :team_assignments
     end
   end
+
+  scope 'dashboard' do
+    resources :farms
+  end
+
  	resources :farms
  	resources :area_planners
+  resources :teams do
+    resources :team_activities
+  end
 end

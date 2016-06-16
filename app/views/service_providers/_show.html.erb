@@ -1,6 +1,14 @@
 <div id="mySPshow">
   <div class="card">
-    <h1>Overlayed</h1>
+    <div class="center-text">
+      <%= image_tag 'user.png', class:'small-img circle' %>
+    </div>
+    <div class="center-text">
+      <%= @sp.user.username %>
+    </div>
+    <div class="center-text">
+      <%= @sp.user.phone %>
+    </div>
   </div>
 
   <script>

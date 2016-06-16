@@ -1,6 +1,7 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
-//console.log("dfdjhfdjhf");
+//= require bootstrap
+//= require manager/firebase
 
 /*function getIt(url){
 	$.ajax({
@@ -13,7 +14,7 @@
         return false
     })
 }
-  
+
 function postIt(url, payload){
 	$.ajax({
       type: "POST",

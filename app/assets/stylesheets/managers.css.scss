@@ -8,6 +8,9 @@
 
 $sm_img: 150px;
 $mcr_img: 30px;
+html, body, .container, .main_container, #main-holder{
+	height: 100%;
+}
 
 body{
 	color: #73879C;
@@ -28,6 +31,7 @@ body{
 	margin: auto;
 	width: 500px;
 }
+
 .overlay{
 	height: 0;
   width: 100%;
@@ -55,10 +59,32 @@ body{
 
 .half-div{
 	max-height: 400px;
-	overflow: overlay;
+  overflow-y: overlay;
+  overflow-x: hidden;
 }
 
 #main-holder{
+	#new-tac-tile{
+	  transition: 0.5s;
+	}
+
+	.add-sp-stub{
+		padding: 15px;
+	}
+	.add-but{
+		float: right;
+    font-size: 20px;
+    color: #bababa;
+    padding: 5px;
+	}
+
+	.list-item{
+		font-size: 15px;
+		padding: 10px;
+		a{
+			text-decoration: none;
+		}
+	}
 
 	.micro-img{
 		width: $mcr_img;
@@ -69,6 +95,7 @@ body{
 		width: $sm_img;
 		height: $sm_img;
 	}
+
 	.card {
 	  padding:1.5rem;
 	  box-shadow:0 1px 2px #aaa;
@@ -119,7 +146,7 @@ body{
 	}
 
 	#farm-name-holder{
-		background-color: #111;
+		background-color: rgb(42, 63, 84);
 		font-size: 30px;
 		color: #f5f5f5;
 		padding: 20px;

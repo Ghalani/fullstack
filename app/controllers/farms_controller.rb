@@ -1,4 +1,9 @@
 class FarmsController < ApplicationController
+	layout 'dashboard'
+	def index
+		@id = 1
+  	@farms = Farm.where(area_planner_id: @id);
+	end
 
 	def show
 		@farm = Farm.find_by_id(params[:id])

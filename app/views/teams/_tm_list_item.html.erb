@@ -1,0 +1,10 @@
+<div class="row list-item">
+  <div class="center-text col-xs-3">
+    <%= image_tag 'user.png', class:'micro-img circle' %>
+  </div>
+  <div class="col-xs-9">
+    <%= link_to region_service_provider_path(sp.region, sp), remote: true do %>
+    <%= sp.user.username %>
+    <% end %>
+  </div>
+</div>

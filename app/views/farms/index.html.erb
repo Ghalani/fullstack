@@ -1,0 +1,34 @@
+<div id="main-cont">
+	<div class="row no-pad">
+		<div class="col-md-3 grey-back">
+      <div class="x_panel tile">
+        <div class="x_title">
+          <h2>Farms</h2>
+					<div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+					<% @farms.each do |f| %>
+						<%= link_to f, remote: true do %>
+							<div class="list-item"><%= f.name %></div>
+						<% end %>
+					<% end %>
+				<%= link_to "Add farm", new_farm_path, class: 'btn btn-primary', :remote => true %>
+
+        </div>
+      </div>
+		</div>
+		<div class="col-md-9 no-pad">
+			<div id="map-view">
+				<iframe
+				  width="100%"
+				  height="450"
+				  frameborder="0" style="border:0"
+				  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAfI7ccY038uzZZGz_0o0a1Csta25ypKQ4
+				    &q=ghana" allowfullscreen>
+				</iframe>
+			</div>
+			<div id="form-cont">
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,5 +1,5 @@
 class FarmSerializer < ActiveModel::Serializer
   #has_one :region
   #has_many :farmers
-  attributes :id, :name, :coord, :area
+  attributes :id, :name, :lat, :lon, :area
 end
