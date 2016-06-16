@@ -63,7 +63,22 @@ body{
   overflow-x: hidden;
 }
 
+a:hover, a:focus{
+	text-decoration: none;
+}
+
+select{
+	padding: 10px;
+  font-size: 15px;
+}
 #main-holder{
+	.report-list-item{
+		padding: 5px 0px;
+		border-bottom: solid #ccc 1px;
+		margin: 0px 15px 0px 15px;
+		font-size: 15px;
+	}
+
 	#new-tac-tile{
 	  transition: 0.5s;
 	}
@@ -81,9 +96,6 @@ body{
 	.list-item{
 		font-size: 15px;
 		padding: 10px;
-		a{
-			text-decoration: none;
-		}
 	}
 
 	.micro-img{

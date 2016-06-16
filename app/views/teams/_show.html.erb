@@ -48,7 +48,6 @@
   				<div class="clearfix"></div>
   			</div>
   			<div id="rp_cont" class="x_content">
-          some analytic report or list
         </div>
       </div>
     </div>
@@ -82,12 +81,26 @@
                 <h3>Upcoming</h3>
                 <% if @upc_tact.size < 1 %>
                   No Upcoming Activities
+                <% else %>
+                  <% @upc_tact.each do |a| %>
+                    <div>
+                      <div><h4><%= a.activity.name %></h4></div>
+                      <div><%= a.comment %></div>
+                    </div>
+                  <% end %>
                 <% end %>
               </div>
               <div>
                 <h3>Old</h3>
                 <% if @old_tact.size < 1 %>
                   No old Activities
+                <% else %>
+                  <% @upc_tact.each do |a| %>
+                    <div>
+                      <div><h4><%= a.activity.name %></h4></div>
+                      <div><%= a.comment %></div>
+                    </div>
+                  <% end %>
                 <% end %>
               </div>
 
@@ -185,7 +198,7 @@
       });
 
       function appendReport(e){
-        var div1 = $('<div>', { class: 'row' });
+        var div1 = $('<div>', { class: 'row report-list-item' });
           var div1_1 = $('<div>', { class: 'col-xs-6' });
           var div1_2 = $('<div>', { class: 'col-xs-6' });
           div1_1.append(e.message);
