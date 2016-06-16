@@ -10,6 +10,16 @@ Rails.application.routes.draw do
   resources :region do
     resources :service_providers
   end
+  
+  scope 'dashboard' do
+    resources :farms
+  end
+
+  resources :farms
+  resources :area_planners
+  resources :teams do
+    resources :team_activities
+  end
 
 	# namespace :api, defaults: {format: 'json'} do
  #    scope module: :v1, constraints: ApiConstraints.new(version: 1) do
@@ -25,15 +35,5 @@ Rails.application.routes.draw do
       resources :teams
       resources :team_assignments
     end
-  end
-
-  scope 'dashboard' do
-    resources :farms
-  end
-
- 	resources :farms
- 	resources :area_planners
-  resources :teams do
-    resources :team_activities
   end
 end
