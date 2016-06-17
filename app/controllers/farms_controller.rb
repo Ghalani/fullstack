@@ -25,6 +25,7 @@ class FarmsController < ApplicationController
   def create
   	@farm = Farm.new(farm_params)
   	@farm.area_planner_id = 1
+		@farm.region_id = rand(1..2)
 	  respond_to do |format|
   		if @farm.save
 		    format.js
