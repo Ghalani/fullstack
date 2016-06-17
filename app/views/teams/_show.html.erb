@@ -199,14 +199,14 @@
       });
 
       function appendReport(e){
-        var div1 = $('<div>', { class: 'row report-list-item' });
-          var div1_1 = $('<div>', { class: 'col-xs-6' });
-          var div1_2 = $('<div>', { class: 'col-xs-6' });
+        var div1 = $('<div>', { class: 'row report-list-item no-marg' });
+          var div1_1 = $('<div>', { class: 'col-xs-6 no-pad rcell' });
+          var div1_2 = $('<div>', { class: 'col-xs-6 rcell' });
           div1_1.append(e.message);
           div1_2.append(e.datetime);
         div1.append(div1_1);
         div1.append(div1_2);
-        $("#rp_cont").append(div1);
+        $("#rp_cont").append(div1).show("slow");
       }
   </script>
 </div>

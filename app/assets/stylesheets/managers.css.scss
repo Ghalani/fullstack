@@ -77,6 +77,12 @@ select{
 		border-bottom: solid #ccc 1px;
 		margin: 0px 15px 0px 15px;
 		font-size: 15px;
+
+		.rcell{
+	    height: 30px;
+	    overflow-y: hidden;
+	    font-size: 25px;
+		}
 	}
 
 	#new-tac-tile{
@@ -105,7 +111,7 @@ select{
 
 	.small-img{
 		width: $sm_img;
-		height: $sm_img;
+		max-width: 100%;
 	}
 
 	.card {
@@ -166,5 +172,9 @@ select{
 
 	.no-pad{
 		padding: 0px;
+	}
+
+	.no-marg{
+		margin: 0px;
 	}
 }
