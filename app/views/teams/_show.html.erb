@@ -125,7 +125,7 @@
 
     function addSp(sp_id){
       console.log(sp_id);
-      $.post("http://localhost:3000/api/v1/team_assignments",
+      $.post("/api/v1/team_assignments",
         {
           "team_assignment": {
             "service_provider_id": sp_id,
