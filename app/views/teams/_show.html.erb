@@ -10,18 +10,18 @@
   				<div class="clearfix"></div>
   			</div>
   			<div class="x_content">
-          <% if @team.team_assignments.size < 1 %>
-            <div class="center-text">
-              <%= image_tag 'no_truck.png' %>
-            </div>
-            <div class="center-text"><h1>This team is empty</h1></div>
-          <% else %>
-            <div id="tm_mem_list">
-              <% @sps.each do |sp|%>
-                  <%= render 'tm_list_item', sp: sp %>
-              <% end %>
-            </div>
-          <% end %>
+          <div id="tm_mem_list">
+            <% if @team.team_assignments.size < 1 %>
+              <div id="no-sp" class="center-text">
+                <%= image_tag 'no_truck.png' %>
+              </div>
+              <div class="center-text"><h1>This team is empty</h1></div>
+            <% else %>
+                <% @sps.each do |sp|%>
+                    <%= render 'tm_list_item', sp: sp %>
+                <% end %>
+            <% end %>
+          </div>
           <div id="add-toggle-but" class="btn btn-primary" onclick="toggleEnable()">Add members</div>
         </div>
       </div>
@@ -137,6 +137,7 @@
           var data = data;
           if (status == "success") {
             $("#av_sp_item_"+sp_id).remove();
+            $("#no-sp").html("");
             $("#tm_mem_list").append(
             '<div class="row list-item">'
               +'<div class="center-text col-xs-3">'
