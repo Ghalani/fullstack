@@ -136,7 +136,7 @@ html,body{
   }
 
   #home{
-    background: #0d2c10 url('backtruck.png') no-repeat;
+    background: #0d2c10 image-url('backtruck.png') no-repeat;
     background-size:     cover;
     background-position: center center;
     #home-text1{
@@ -178,7 +178,7 @@ html,body{
 
   #subscribe-cont{
     color: $whitish;
-    background: #000 url('bg2.png');
+    background: #000 image-url('bg2.png');
 
     .rounded{
       padding: 10px;
