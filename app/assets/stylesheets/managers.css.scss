@@ -1,10 +1,4 @@
-// Place all the styles related to the managers controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
 //*= require_tree ./gentelella
-
-@import "bootstrap-sprockets";
-@import "bootstrap";
 
 $sm_img: 150px;
 $mcr_img: 30px;
@@ -12,7 +6,7 @@ html, body, .container, .main_container, #main-holder{
 	height: 100%;
 }
 
-body{
+#dashboard-body{
 	color: #73879C;
 	background: #2A3F54;
 	font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;

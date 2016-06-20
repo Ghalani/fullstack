@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root to: "home#index"
+
   resources :managers
   resources :farms do
     resources :teams
