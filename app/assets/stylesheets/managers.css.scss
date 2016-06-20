@@ -19,6 +19,13 @@ html, body, .container, .main_container, #main-holder{
 	border-radius: 50%;
 }
 
+#map-view{
+	height: 400px;
+	#map{
+		height: 100%;
+	}
+}
+
 #mySPshow{
 	position: relative;
 	top: 200px;

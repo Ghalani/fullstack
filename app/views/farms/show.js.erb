@@ -1,2 +1,3 @@
 $("#form-cont").html("");
 $("#form-cont").append("<%= escape_javascript(render 'show', farm: @farm, teams: @teams, sps: @sps).html_safe %>");
+updateMarker(<%= @farm.lat %>, <%= @farm.lon %>);
