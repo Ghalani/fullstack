@@ -1,19 +1,33 @@
 == README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
 * Ruby version
+
+Ruby 2.2.4
 
 * System dependencies
 
+Rails 4.2.5.1
+
+PostgreSQL
+
 * Configuration
+You'll need to set 2 environment variables
+
+MESTPANAPI_DB_USERNAME for use PG username
+
+MESTPANAPI_DB_PASSWORD for your PG password.
 
 * Database creation
+rake db:create
 
 * Database initialization
+rake db:migrate
+
+* To modify the home page
+
+You need to work with only 2 files:
+app/views/home/index.html.erb and
+
+app/assets/stylesheets/home.scss
 
 * How to run the test suite
 
