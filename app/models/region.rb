@@ -1,5 +1,7 @@
 class Region < ActiveRecord::Base
   belongs_to  :country
+	belongs_to  :organization
+  has_many    :farms
   #belongs_to  :organization
 
   validates :name, presence: true, uniqueness: true

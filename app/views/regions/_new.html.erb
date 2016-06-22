@@ -1,0 +1,35 @@
+<div id="myRGnew" class="center-float">
+  <div class="card">
+    <div id="new_rg_map" class="h200">
+
+    </div>
+    <div>
+      <input type="text" name="name" value="" placeholder="Search...">
+      <%= form_for [@region.organization, @region], remote: true do |t|%>
+        <div class="form-group">
+          <%= t.text_field :name, size: '80', class:"form-control", placeholder:"Name" %>
+        </div>
+        <div class="form-group">
+          <%= t.text_field :lat, size: '80', placeholder:"Lat", readonly: true %> |
+          <%= t.text_field :lon, size: '80', placeholder:"Lon", readonly: true %>
+        </div>
+        <div class="form-group">
+          <%= t.submit 'Submit' , class:"btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<script>
+  var map;
+  var infowindow;
+  var markers = [];
+  function initMap() {
+    infowindow = new google.maps.InfoWindow();
+    map = new google.maps.Map(document.getElementById('new_rg_map'), {
+      center: {lat: 5.5557, lng: -0.1963},
+      zoom: 8
+    });
+  }
+  initMap();
+</script>

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :organizations do
+    resources :regions
+  end
+
   root to: "home#index"
 
   resources :managers
@@ -9,11 +13,11 @@ Rails.application.routes.draw do
 
   post 'teams/:id/asp' => 'teams#add_service_provider'
 
-  resources :region do
+  resources :regions do
     resources :service_providers
   end
 
-  scope 'dashboard' do
+  scope 'admin' do
     resources :farms
   end
 
@@ -22,14 +26,6 @@ Rails.application.routes.draw do
     resources :team_activities
   end
 
-	# namespace :api, defaults: {format: 'json'} do
- #    scope module: :v1, constraints: ApiConstraints.new(version: 1) do
- #      resources :products
- #    end
- #    scope module: :v2, constraints: ApiConstraints.new(version: 2, default: true) do
- #      resources :products
- #    end
- #  end
  	namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
       resources :farms
@@ -37,4 +33,12 @@ Rails.application.routes.draw do
       resources :team_assignments
     end
   end
+  # namespace :api, defaults: {format: 'json'} do
+  #    scope module: :v1, constraints: ApiConstraints.new(version: 1) do
+  #      resources :products
+  #    end
+  #    scope module: :v2, constraints: ApiConstraints.new(version: 2, default: true) do
+  #      resources :products
+  #    end
+  #  end
 end

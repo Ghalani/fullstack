@@ -11,6 +11,7 @@ class FarmsController < ApplicationController
 		@sps = ServiceProvider.where(region_id: @farm.region_id)
 		respond_to do |format|
   		format.js
+			format.html
 	  end
 	end
 

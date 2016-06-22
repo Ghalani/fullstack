@@ -1,0 +1,14 @@
+<div>
+  Farms under <%= @region.name %>
+</div>
+<div class="row">
+  <% @farms.each do |f| %>
+    <div class="col-md-3 col-sm-4">
+      <%= link_to f do %>
+        <div class="card">
+          <%= f.name %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

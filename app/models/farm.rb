@@ -3,6 +3,7 @@
  	belongs_to :region
   has_many :teams
   belongs_to :area_planner
+	has_one :farmer
 
   validates :name, presence: true, uniqueness: true
 end

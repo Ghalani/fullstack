@@ -4,20 +4,10 @@
       <%= image_tag 'user.png', class:'small-img circle' %>
     </div>
     <div class="center-text">
-      <%= @sp.user.username %>
+      <%= @sp.name %>
     </div>
     <div class="center-text">
-      <%= @sp.user.phone %>
+      <%= @sp.phone %>
     </div>
   </div>
-
-  <script>
-    $("#myOverlay").on('click', function(){
-      closeNav();
-    });
-    function closeNav() {
-      document.getElementById("myOverlay").style.height = "0%";
-      $("#mySPshow").remove();
-    }
-  </script>
 </div>

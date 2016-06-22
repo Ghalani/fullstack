@@ -1,30 +1,30 @@
 require 'faker'
 
-User.create({
-  	email: Faker::Internet.email,
-    password: 'password',
-    phone: Faker::PhoneNumber.phone_number,
-    username: Faker::Internet.user_name,
-    role: 'ap'
-    })
-
-10.times do
-  User.create({
-  	email: Faker::Internet.email,
-    password: 'password',
-    phone: Faker::PhoneNumber.phone_number,
-    username: Faker::Internet.user_name,
-    role: 'sp'
-    })
-end
-
-activities = ["harvesting", "pruning", "weeding", "ploughing", "Spraying pesticide"]
-activities.each do |name|
-	Activity.create({
-		name: name,
-		description: Faker::Lorem.paragraph
-	})
-end
+# User.create({
+#   	email: Faker::Internet.email,
+#     password: 'password',
+#     phone: Faker::PhoneNumber.phone_number,
+#     username: Faker::Internet.user_name,
+#     role: 'ap'
+#     })
+#
+# 10.times do
+#   User.create({
+#   	email: Faker::Internet.email,
+#     password: 'password',
+#     phone: Faker::PhoneNumber.phone_number,
+#     username: Faker::Internet.user_name,
+#     role: 'sp'
+#     })
+# end
+#
+# activities = ["harvesting", "pruning", "weeding", "ploughing", "Spraying pesticide"]
+# activities.each do |name|
+# 	Activity.create({
+# 		name: name,
+# 		description: Faker::Lorem.paragraph
+# 	})
+# end
 
 # 2.times do
 #   Farm.create({
@@ -38,10 +38,10 @@ end
 #Region.new(country_id: 81, name: "Tamale1", state: "Northern region")
 r_a = Region.first.id
 r_b = Region.last.id
-User.where(role: 'sp').each do |u|
+12.times do
   ServiceProvider.create(
-    user_id: u.id,
-    is_team_lead: false,
-    region_id: rand(r_a..r_b)
-)
+    region_id: rand(r_a..r_b),
+    phone: Faker::PhoneNumber.phone_number,
+    name: Faker::Internet.user_name
+    )
 end
