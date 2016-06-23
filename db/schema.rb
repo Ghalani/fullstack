@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160615140309) do
+ActiveRecord::Schema.define(version: 20160622162715) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,9 +19,12 @@ ActiveRecord::Schema.define(version: 20160615140309) do
   create_table "activities", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "organization_id"
   end
+
+  add_index "activities", ["organization_id"], name: "index_activities_on_organization_id", using: :btree
 
   create_table "activity_reports", force: :cascade do |t|
     t.integer  "team_activity_id"
@@ -47,9 +50,12 @@ ActiveRecord::Schema.define(version: 20160615140309) do
 
   create_table "area_planners", force: :cascade do |t|
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "organization_id"
   end
+
+  add_index "area_planners", ["organization_id"], name: "index_area_planners_on_organization_id", using: :btree
 
   create_table "countries", force: :cascade do |t|
     t.string   "iso"
@@ -89,11 +95,11 @@ ActiveRecord::Schema.define(version: 20160615140309) do
   end
 
   create_table "farmers", force: :cascade do |t|
-    t.integer  "manager_id"
     t.integer  "farm_id"
-    t.string   "fname"
-    t.string   "lname"
+    t.string   "name"
     t.string   "phone"
+    t.string   "gender"
+    t.datetime "dob"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -137,7 +143,7 @@ ActiveRecord::Schema.define(version: 20160615140309) do
 
   create_table "organizations", force: :cascade do |t|
     t.string   "name"
-    t.integer  "user_id"
+    t.text     "bio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -171,6 +177,8 @@ ActiveRecord::Schema.define(version: 20160615140309) do
     t.string   "state"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.decimal  "lat"
+    t.decimal  "lon"
   end
 
   create_table "sales", force: :cascade do |t|
@@ -181,11 +189,12 @@ ActiveRecord::Schema.define(version: 20160615140309) do
   end
 
   create_table "service_providers", force: :cascade do |t|
-    t.integer  "user_id"
-    t.boolean  "is_team_lead"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer  "region_id"
+    t.string   "name"
+    t.string   "phone"
+    t.string   "gender"
   end
 
   add_index "service_providers", ["region_id"], name: "index_service_providers_on_region_id", using: :btree

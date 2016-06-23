@@ -7,10 +7,17 @@ class FarmsController < ApplicationController
 
 	def show
 		@farm = Farm.find_by_id(params[:id])
+		@farmer = @farm.farmer
+		@assps = []
 		@teams = @farm.teams
+		@teams.each do |t|
+			@assps += ServiceProvider.includes(:team_assignments).where( :team_assignments => { :team_id => t.id })
+		end
+
 		@sps = ServiceProvider.where(region_id: @farm.region_id)
 		respond_to do |format|
   		format.js
+			format.html
 	  end
 	end
 
