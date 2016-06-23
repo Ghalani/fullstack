@@ -1,11 +1,12 @@
 class OrganizationsController < ApplicationController
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
-  layout 'admin'
+  layout 'admin', only:[:show]
+  layout 'application', only:[:index]
 
   # GET /organizations
   # GET /organizations.json
   def index
-    @organizations = Organization.all
+    @organizations = current_user.organizations
   end
 
   # GET /organizations/1
@@ -21,6 +22,10 @@ class OrganizationsController < ApplicationController
 
   # GET /organizations/1/edit
   def edit
+  end
+
+  def farms
+    render 'farms'
   end
 
   # POST /organizations

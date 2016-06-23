@@ -1,0 +1,18 @@
+<div>
+  <div class="card">
+    <div>Organizations under you</div>
+    <div>
+      <% if @organizations %>
+        <% @organizations.each do |o| %>
+          <div>
+            <%= o.name %>
+          </div>
+        <% end %>
+      <% else %>
+        <div><h3>You have no Organization under you </h3></div>
+        <div>Create your first organization now </div>
+      <% end %>
+      <%= link_to 'Add', '#', class: 'btn btn-primary' %>
+    </div>
+  </div>
+</div>

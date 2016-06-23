@@ -1,0 +1,21 @@
+Index users
+<div class="row">
+  <div class="col-md-8">
+    <% if @asp %>
+      <% @asp.each do |a| %>
+        <div class="list-item">
+          <%= a.user.username %>
+        </div>
+      <% end %>
+    <% else %>
+      You have no managers in this organization
+    <% end %>
+  </div>
+  <div class="col-md-4">
+    <% @regions.each do |r| %>
+      <div class="list-item">
+        <%= r.name %>
+      </div>
+    <% end %>
+  </div>
+</div>

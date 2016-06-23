@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   before_save :encrypt_password
   # after_save :clear_password
 
-  #has_many  :organizations
+  has_many  :organizations
   #has_many  :managers
   has_many  :api_keys
   has_one :service_provider

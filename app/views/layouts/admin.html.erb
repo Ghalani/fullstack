@@ -12,7 +12,11 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
-
+  <% flash.each do |key, value| %>
+    <%= content_tag(:div, class: "alert alert-#{key}") do %>
+      <p><%= value %></p>
+    <% end %>
+  <% end %>
   <body id="dashboard-body" class="nav-md">
     <div class="container body">
       <div class="main_container">
@@ -51,16 +55,19 @@
                       <li><a href="index3.html">Dashboard3</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-edit"></i> Forms </a>
+                  <li><a><i class="fa fa-edit"></i> Farms </a>
 
                   </li>
-                  <li><a><i class="fa fa-desktop"></i> UI Elements </a>
+                  <li><a><i class="fa fa-desktop"></i> Users </a>
 
                   </li>
-                  <li><a><i class="fa fa-table"></i> Tables </a>
+                  <li><a><i class="fa fa-table"></i> Labour </a>
 
                   </li>
-                  <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation </a>
+                  <li><a><i class="fa fa-bar-chart-o"></i> Inventory </a>
+
+                  </li>
+                  <li><a><i class="fa fa-bar-chart-o"></i> Finance </a>
 
                   </li>
                 </ul>
@@ -82,7 +89,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <%= image_tag "img.jpg" %>Amanze Ogbonna
+                    <%= image_tag "img.jpg" %>Amanze Ogbonna | <%= current_user.username %>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -94,7 +101,7 @@
                       </a>
                     </li>
                     <li><a href="javascript:;">Help</a></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    <li><a href="/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
 

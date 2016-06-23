@@ -115,24 +115,6 @@ select{
 		max-width: 100%;
 	}
 
-	.card {
-	  padding:1.5rem;
-	  box-shadow:0 1px 2px #aaa;
-	  background:white;
-	  margin:0 1rem 1rem;
-	  border-radius:3px;
-	  user-select:none;
-	  animation:fly-in-from-left .5s 1s ease both;
-	  transform-origin:top left;
-	  transition: all 0.2s ease;
-	}
-
-	.card:hover{
-	  -webkit-box-shadow:0 12px 15px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-	  -moz-box-shadow:0 12px 15px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-	  box-shadow:0 12px 15px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-	}
-
 	.inactive{
 	  background: #666;
 	}
