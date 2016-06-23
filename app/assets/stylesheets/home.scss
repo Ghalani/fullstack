@@ -8,9 +8,18 @@ html,body{
   font-family: 'Roboto', sans-serif;
   color: $text-color;
 }
+.tcenter{ text-align: center }
 
 #landing-page{
   font-size: 15px;
+
+  .mid-ttext{
+    font-size: 20px
+  }
+
+  .big-icon{
+    font-size: 50px;
+  }
 
   #social-icons{
     i{
@@ -125,10 +134,6 @@ html,body{
 
   .mgb60{
     margin-bottom: 60px;
-  }
-
-  .tcenter{
-    text-align: center;
   }
 
   .accent{
