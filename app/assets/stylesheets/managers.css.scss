@@ -100,11 +100,6 @@ select{
     padding: 5px;
 	}
 
-	.list-item{
-		font-size: 15px;
-		padding: 10px;
-	}
-
 	.micro-img{
 		width: $mcr_img;
 		height: $mcr_img;
@@ -151,13 +146,5 @@ select{
 		font-size: 30px;
 		color: #f5f5f5;
 		padding: 20px;
-	}
-
-	.no-pad{
-		padding: 0px;
-	}
-
-	.no-marg{
-		margin: 0px;
 	}
 }

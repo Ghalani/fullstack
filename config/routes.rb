@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     #scope 'farms' do
       get 'farms' => 'organizations#farms'
       get 'users' => 'users#index'
+      get 'new_ap' => 'users#new_ap'
+      post "create_ap" => 'users#create_ap'
     #end
     resources :regions
   end

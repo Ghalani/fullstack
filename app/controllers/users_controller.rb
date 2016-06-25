@@ -2,13 +2,13 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
   # creating a user doesn't require you to have an access token
   #skip_before_filter :ensure_authenticated_user, :only => [:create]
-  before_action :set_organization, only: [:index]
+  before_action :set_organization, only: [:index, :new_ap, :create_ap]
 
   layout 'admin', only: [:index]
   #organization's user list
   def index
     #@users = User.all
-    @aps = AreaPlanner.where(organization_id: @organization.id)
+    @aps = @organization.area_planners
     @regions = @organization.regions
   end
 
@@ -18,6 +18,35 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+  end
+
+  def new_ap
+    @user = User.new
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def create_ap
+    @user = User.new(user_params)
+    @user.username = @user.fname+"."+@user.lname
+    respond_to do |format|
+      if @user.save
+        @ap = AreaPlanner.new(user_id: @user.id, organization_id: @organization.id)
+        if @ap.save
+          # => send mail to @user.email to change their password
+          format.js
+        else
+          @user.destroy
+          # => send message to front stating the issue
+          format.js{ render :new_ap_error}
+        end
+      else
+        # => send message to front stating the issue
+        # => User email probably exist or some fields were missing
+        format.js{ render :new_user_error}
+      end
+    end
   end
 
   def create
@@ -57,7 +86,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:email, :password, :phone)
+      params.require(:user).permit(:fname, :lname, :status, :email, :password, :phone)
     end
 
     def set_organization

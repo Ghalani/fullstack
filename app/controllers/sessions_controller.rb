@@ -8,8 +8,8 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       if user.organizations.first
-        @organization = user.organizations.first
-        redirect_to @organization, notice: 'Logged in'
+        #@organization = user.organizations.first
+        redirect_to "/organizations", notice: 'Logged in'
       else
         if user.area_planner
           redirect_to 'area_planners#index'

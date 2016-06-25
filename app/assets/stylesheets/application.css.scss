@@ -24,7 +24,8 @@
 
  .w200{ width: 200px; }
 
- .w300{ width: 300px; }
+.w300{ width: 300px; }
+.w500{ width: 500px; }
 
  .full-height{ height: 100% }
 
@@ -47,3 +48,28 @@
    -moz-box-shadow:0 12px 15px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
    box-shadow:0 12px 15px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
  }
+
+ .theme1{
+   background: #3F51B5;
+   padding-top: 200px;
+ }
+
+ .hcenter{
+   margin: auto;
+ }
+
+ .list-item, .list-item-head{
+   font-size: 15px;
+   padding: 10px;
+ }
+
+ .list-item-head{
+   background: #73879C;
+   color: #f5f5f5;
+ }
+
+ .max-800h{ max-width: 800px; }
+ .title1{ font-size: 40px; }
+ .no-pad{ padding: 0px; }
+ .no-marg{ margin: 0px; }
+ .ferror{ color: #ee1111; }
