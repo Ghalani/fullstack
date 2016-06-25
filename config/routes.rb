@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new'
   get 'logout' => 'sessions#destroy'
   resources :users
+  resources :account_activations, only: [:edit]
 
   resources :organizations do
     #scope 'farms' do

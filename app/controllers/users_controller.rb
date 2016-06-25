@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
   # creating a user doesn't require you to have an access token
-  #skip_before_filter :ensure_authenticated_user, :only => [:create]
+  skip_before_filter :ensure_authenticated_user, :only => [:new, :create, :edit]
   before_action :set_organization, only: [:index, :new_ap, :create_ap]
 
   layout 'admin', only: [:index]
@@ -35,6 +35,8 @@ class UsersController < ApplicationController
         @ap = AreaPlanner.new(user_id: @user.id, organization_id: @organization.id)
         if @ap.save
           # => send mail to @user.email to change their password
+          UserMailer.ap_account_activation(@user).deliver_now
+          flash[:info] = @user.fname+" "+@user.lname+" recieve an invite email soon"
           format.js
         else
           @user.destroy
@@ -54,18 +56,29 @@ class UsersController < ApplicationController
 
     if @user.save
       # => create new org
-      redirect_to 'organizations#new'
+      UserMailer.account_activation(@user).deliver_now
+      flash[:info] = "Please check your email to activate your account."
+      redirect_to "/organizations"
     else
       # => go back to signup form
       redirect_to :new
     end
   end
 
+  def edit
+    @user = User.last
+    render "account_activations/first_reset"
+  end
+
   def update
     @user = User.find(params[:id])
 
     if @user.update(user_params)
-      head :no_content
+      if params[:logout]
+        redirect_to "/logout"
+      else
+        head :no_content
+      end
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -77,6 +90,15 @@ class UsersController < ApplicationController
     @user.destroy
 
     head :no_content
+  end
+
+  def password_reset
+    @is_first = (@user.status == 'new')
+    if @is_first
+      render 'edit/new_password_reset'
+    else
+      #render
+    end
   end
 
   private
