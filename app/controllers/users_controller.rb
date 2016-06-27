@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
   # creating a user doesn't require you to have an access token
-  skip_before_filter :ensure_authenticated_user, :only => [:new, :create, :edit]
+  skip_before_filter :ensure_authenticated_user, :only => [:new, :create, :edit, :forgot_password, :reset_password]
   before_action :set_organization, only: [:index, :new_ap, :create_ap]
 
   layout 'admin', only: [:index]
@@ -66,8 +66,8 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.last
-    render "account_activations/first_reset"
+    # @user = User.last
+    # render "account_activations/first_reset"
   end
 
   def update
@@ -98,6 +98,23 @@ class UsersController < ApplicationController
       render 'edit/new_password_reset'
     else
       #render
+    end
+  end
+
+  def forgot_password
+    @user = User.new
+  end
+
+  def reset_password
+    @user = User.find_by_email(user_params[:email])
+    if @user
+      # => send email
+      #UserMailer.password_reset(@user).deliver_now
+      flash[:success] = "A password reset has been sent to your email."
+      redirect_to "/login"
+    else
+      flash[:info] = "This email doesn't exist on our database."
+      redirect_to "/accounts/forgot"
     end
   end
 

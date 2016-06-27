@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get 'logout' => 'sessions#destroy'
   resources :users
   resources :account_activations, only: [:edit]
+  get "accounts/forgot" => "users#forgot_password"
+  post "accounts/reset" => "users#reset_password"
 
   resources :organizations do
     #scope 'farms' do
