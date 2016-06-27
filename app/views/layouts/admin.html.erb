@@ -37,7 +37,7 @@
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>Amanze Ogbonna</h2>
+                <h2><%= current_user.fname %> <%= current_user.lname %></h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -58,8 +58,10 @@
                   <li><a><i class="fa fa-edit"></i> Farms </a>
 
                   </li>
-                  <li><a><i class="fa fa-desktop"></i> Users </a>
-
+                  <li>
+                    <%= link_to organization_users_path(@organization) do %>
+                      <i class="fa fa-desktop"></i> Users
+                    <% end %>
                   </li>
                   <li><a><i class="fa fa-table"></i> Labour </a>
 
@@ -89,7 +91,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <%= image_tag "img.jpg" %>Amanze Ogbonna | <%= current_user.username %>
+                    <%= image_tag "img.jpg" %><%= current_user.fname %> <%= current_user.lname %> | <%= current_user.username %>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -115,7 +117,7 @@
                       <a>
                         <span class="image"><%= image_tag "img.jpg", alt:"Profile Image" %></span>
                         <span>
-                          <span>Amanze Ogbonna</span>
+                          <span><%= current_user.fname %> <%= current_user.lname %></span>
                           <span class="time">3 mins ago</span>
                         </span>
                         <span class="message">
@@ -127,7 +129,7 @@
                       <a>
                         <span class="image"><%= image_tag "img.jpg", alt:"Profile Image" %></span>
                         <span>
-                          <span>Amanze Ogbonna</span>
+                          <span><%= current_user.fname %> <%= current_user.lname %></span>
                           <span class="time">3 mins ago</span>
                         </span>
                         <span class="message">
@@ -139,7 +141,7 @@
                       <a>
                         <span class="image"><%= image_tag "img.jpg", alt:"Profile Image" %></span>
                         <span>
-                          <span>Amanze Ogbonna</span>
+                          <span><%= current_user.fname %> <%= current_user.lname %></span>
                           <span class="time">3 mins ago</span>
                         </span>
                         <span class="message">
@@ -151,7 +153,7 @@
                       <a>
                         <span class="image"><%= image_tag "img.jpg", alt:"Profile Image" %></span>
                         <span>
-                          <span>Amanze Ogbonna</span>
+                          <span><%= current_user.fname %> <%= current_user.lname %></span>
                           <span class="time">3 mins ago</span>
                         </span>
                         <span class="message">
@@ -206,6 +208,10 @@
       function closeNav() {
         document.getElementById("myOverlay").style.height = "0%";
         $("#overlay_body").html("");
+      }
+
+      function displayError(msg){
+        $('form #err-msg').html("").append(msg);
       }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2NxLOf_zTbaq0pyoeRLfBFTX4Q55KWuo&q=ghana&callback=initMap" async defer></script>

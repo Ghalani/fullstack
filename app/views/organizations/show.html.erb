@@ -10,7 +10,7 @@
           <div class="clearfix"></div>
         </div>
 				<div class="x_content half-div">
-          <% if @regions.size > 1 %>
+          <% if @regions.size > 0 %>
             <% @regions.each do |r| %>
               <%= link_to r, remote: true do %>
                 <div class="list-item"><%= r.name %></div>

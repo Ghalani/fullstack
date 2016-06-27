@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
 
   root to: "home#index"
-  resources :managers, controller: "area_planners" do
+  resources :managers do
     resources :farms
   end
   resources :area_planners

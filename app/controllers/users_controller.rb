@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   def index
     #@users = User.all
     if is_admin?
-      @aps = @organization.area_planners
+      @aps = @organization.managers
       @regions = @organization.regions
       render "organizations/views/users"
     else

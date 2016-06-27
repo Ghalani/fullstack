@@ -10,7 +10,10 @@ class ApplicationController < ActionController::Base
 	# Returns 401 if the user isn't authorized
 	def ensure_authenticated_user
     #head :unauthorized unless current_user
-    redirect_to '/' unless current_user
+    unless current_user
+      redirect_to '/'
+      flash[:info] = "Please login again..."
+    end
   end
 
   # Returns 401 if the user isn't an admin
@@ -20,7 +23,7 @@ class ApplicationController < ActionController::Base
 
   def current_user
     return unless session[:user_id]
-    @current_user ||= User.find(session[:user_id])
+    @current_user ||= User.find_by_id(session[:user_id])
   end
 
   # Returns the user belonging to the access token

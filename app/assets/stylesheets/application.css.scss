@@ -39,7 +39,7 @@
   border-radius:3px;
   user-select:none;
   animation:fly-in-from-left .5s 1s ease both;
-  transform-origin:top left;
+  transform-origin: top left;
   transition: all 0.2s ease;
 }
 
@@ -73,19 +73,19 @@
 .no-pad{ padding: 0px; }
 .no-marg{ margin: 0px; }
 .ferror{ color: #ee1111; }
-.alert-success{
-  background: #07775a;
+.alert{
   z-index: 2;
-  color: #f5f5f5;
   margin: 0px;
   text-align: center;
   border-radius: 0;
+  border: none;
+
+}
+.alert-success{
+  background: #07775a;
+  color: #f5f5f5;
 }
 .alert-info{
   background: #2295cf;
-  z-index: 2;
   color: #f5f5f5;
-  margin: 0px;
-  text-align: center;
-  border-radius: 0;
 }

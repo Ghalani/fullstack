@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   #has_many  :managers
   has_many  :api_keys, :dependent => :destroy
   has_one :service_provider
-  has_one :area_planner, :dependent => :destroy
+  has_one :manager, :dependent => :destroy
 
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true

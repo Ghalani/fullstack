@@ -15,8 +15,24 @@ class RegionsController < ApplicationController
     end
   end
 
+  def create
+    @region = Region.new(region_params)
+    @region.organization_id = params[:organization_id]
+    if @region.save
+      redirect_to region.organization
+    else
+      respond_to do |format|
+        format.js{render "new_error"}
+      end
+    end
+  end
+
   private
     def set_region
       @region = Region.find(params[:id])
+    end
+
+    def region_params
+      params.require(:region).permit(:name, :lat, :lon)
     end
 end

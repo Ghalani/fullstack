@@ -1,4 +1,4 @@
-class AreaPlanner < ActiveRecord::Base
+class Manager < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :organization
 	has_many :teams
