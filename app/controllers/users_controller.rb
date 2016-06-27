@@ -8,8 +8,14 @@ class UsersController < ApplicationController
   #organization's user list
   def index
     #@users = User.all
-    @aps = @organization.area_planners
-    @regions = @organization.regions
+    if is_admin?
+      @aps = @organization.area_planners
+      @regions = @organization.regions
+      render "organizations/views/users"
+    else
+      flash[:info] = "You are not the Admin of this administration"
+      redirect_to "/"
+    end
   end
 
   def show
@@ -134,5 +140,9 @@ class UsersController < ApplicationController
       rescue
         redirect_to '/'
       end
+    end
+
+    def is_admin?
+      current_user.is_admin?(@organization.id)
     end
 end

@@ -47,5 +47,5 @@ class ApplicationController < ActionController::Base
 			nil
 		end
 	end
-  helper_method :current_user
+  helper_method :current_user, :is_admin?
 end

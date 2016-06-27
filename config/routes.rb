@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :organizations do
     #scope 'farms' do
-      get 'farms' => 'organizations#farms'
+      get 'farms' => 'farms#index'
       get 'users' => 'users#index'
       get 'new_ap' => 'users#new_ap'
       post "create_ap" => 'users#create_ap'
@@ -19,8 +19,11 @@ Rails.application.routes.draw do
   end
 
   root to: "home#index"
-
-  resources :managers
+  resources :managers, controller: "area_planners" do
+    resources :farms
+  end
+  resources :area_planners
+  #resources :managers
   resources :farms do
     resources :teams
   end
@@ -32,11 +35,10 @@ Rails.application.routes.draw do
     resources :service_providers
   end
 
-  scope 'admin' do
-    resources :farms
-  end
+  # scope 'admin' do
+  #   resources :farms
+  # end
 
-  resources :area_planners
   resources :teams do
     resources :team_activities
   end

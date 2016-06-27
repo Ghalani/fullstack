@@ -1,8 +1,10 @@
 class FarmsController < ApplicationController
 	layout 'dashboard'
 	def index
-		@id = 1
-  	@farms = Farm.where(area_planner_id: @id);
+		set_organization
+		if @organization && is_admin?
+      render "organizations/views/farms"
+    end
 	end
 
 	def show
@@ -45,5 +47,16 @@ class FarmsController < ApplicationController
   private
   def farm_params
 	  params.require(:farm).permit(:name, :area, :lat, :lon)
+	end
+
+	def set_organization
+		begin
+			@organization = Organization.find(params[:organization_id])
+		rescue
+		end
+	end
+
+	def is_admin?
+		current_user.is_admin?(@organization.id)
 	end
 end

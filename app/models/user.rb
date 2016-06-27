@@ -33,6 +33,11 @@ class User < ActiveRecord::Base
     self.encrypted_password == BCrypt::Engine.hash_secret(password, self.salt)
     #return true
   end
+
+  def is_admin?(organization_id)
+    Organization.find_by_id(organization_id).user_id == self.id
+  end
+
   # -------------
 
   def authenticated?(attribute, token)
