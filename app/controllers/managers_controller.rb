@@ -2,7 +2,7 @@ class ManagersController < ApplicationController
   before_action :set_manager, only:[:show]
   before_action :auth_manager, only:[:show]
 
-  layout 'dashboard'
+  layout 'admin'
   def show
     @farms = Farm.where(manager_id: @manager.id);
   end

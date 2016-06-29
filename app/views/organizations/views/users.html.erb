@@ -29,6 +29,9 @@ Index users
   <div class="col-md-4 x_panel tile">
     <div class="x_title">
 			<h2>Regions</h2>
+      <%= link_to new_organization_region_path(@organization), remote: true do %>
+        <i id="add-tac-but" class="fa fa-plus add-but"></i>
+      <% end %>
 			<div class="clearfix"></div>
 		</div>
     <% @regions.each do |r| %>

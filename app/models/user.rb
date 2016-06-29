@@ -34,8 +34,10 @@ class User < ActiveRecord::Base
     #return true
   end
 
-  def is_admin?(organization_id)
-    Organization.find_by_id(organization_id).user_id == self.id
+  def is_admin?(organization)
+    return false unless organization
+    #Organization.find_by_id(organization.id).user_id == self.id
+    organization.user_id == self.id
   end
 
   # -------------

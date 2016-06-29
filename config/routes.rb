@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'farmers/index'
+
+  get 'farmers/show'
+
+  get 'farmers/new'
+
   resources :sessions, only: [:new, :create, :delete]
   get 'signup' => 'users#new'
   get 'login' => 'sessions#new'
@@ -10,12 +16,22 @@ Rails.application.routes.draw do
 
   resources :organizations do
     #scope 'farms' do
-      get 'farms' => 'farms#index'
+      #get 'farms' => 'farms#index'
+      resources :farms, only:[:index, :show]
       get 'users' => 'users#index'
+      get 'labourers' => 'service_providers#index'
+      #get 'inventory' => 'service_providers#index'
+      #get 'finances' => 'service_providers#index'
       get 'new_ap' => 'users#new_ap'
       post "create_ap" => 'users#create_ap'
     #end
     resources :regions
+  end
+
+  resources :farms, only:[:index, :show, :new] do
+    resources :teams
+    resources :farmers
+    get "assign_farmer" => "farmers#assign_farmer"
   end
 
   root to: "home#index"
@@ -24,9 +40,6 @@ Rails.application.routes.draw do
   end
   resources :area_planners
   #resources :managers
-  resources :farms do
-    resources :teams
-  end
 
 
   post 'teams/:id/asp' => 'teams#add_service_provider'

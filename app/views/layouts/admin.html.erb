@@ -45,136 +45,23 @@
             <br />
 
             <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <div class="menu_section">
-                <ul class="nav side-menu">
-                  <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="index.html">Dashboard</a></li>
-                      <li><a href="index2.html">Dashboard2</a></li>
-                      <li><a href="index3.html">Dashboard3</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-edit"></i> Farms </a>
-
-                  </li>
-                  <li>
-                    <%= link_to organization_users_path(@organization) do %>
-                      <i class="fa fa-desktop"></i> Users
-                    <% end %>
-                  </li>
-                  <li><a><i class="fa fa-table"></i> Labour </a>
-
-                  </li>
-                  <li><a><i class="fa fa-bar-chart-o"></i> Inventory </a>
-
-                  </li>
-                  <li><a><i class="fa fa-bar-chart-o"></i> Finance </a>
-
-                  </li>
-                </ul>
-              </div>
-            </div>
+            <% if current_user.is_admin?(@organization) %>
+              <%= render partial:"layouts/org/sidebar_menu" %>
+            <% else %>
+              <%= render partial:"layouts/manager/sidebar_menu" %>
+            <% end %>
             <!-- /sidebar menu -->
 
           </div>
         </div>
 
         <!-- top navigation -->
-        <div class="top_nav">
-          <div class="nav_menu">
-            <nav>
-              <div class="nav toggle">
-                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-              </div>
+          <% if current_user.is_admin?(@organization) %>
+            <%= render partial:"layouts/org/top_nav" %>
+          <% else %>
+            <%= render partial:"layouts/manager/top_nav" %>
+          <% end %>
 
-              <ul class="nav navbar-nav navbar-right">
-                <li class="">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <%= image_tag "img.jpg" %><%= current_user.fname %> <%= current_user.lname %> | <%= current_user.username %>
-                    <span class=" fa fa-angle-down"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> Profile</a></li>
-                    <li>
-                      <a href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
-                      </a>
-                    </li>
-                    <li><a href="javascript:;">Help</a></li>
-                    <li><a href="/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
-                  </ul>
-                </li>
-
-                <li role="presentation" class="dropdown">
-                  <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green">6</span>
-                  </a>
-                  <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                    <li>
-                      <a>
-                        <span class="image"><%= image_tag "img.jpg", alt:"Profile Image" %></span>
-                        <span>
-                          <span><%= current_user.fname %> <%= current_user.lname %></span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><%= image_tag "img.jpg", alt:"Profile Image" %></span>
-                        <span>
-                          <span><%= current_user.fname %> <%= current_user.lname %></span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><%= image_tag "img.jpg", alt:"Profile Image" %></span>
-                        <span>
-                          <span><%= current_user.fname %> <%= current_user.lname %></span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><%= image_tag "img.jpg", alt:"Profile Image" %></span>
-                        <span>
-                          <span><%= current_user.fname %> <%= current_user.lname %></span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="text-center">
-                        <a>
-                          <strong>See All Alerts</strong>
-                          <i class="fa fa-angle-right"></i>
-                        </a>
-                      </div>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
         <!-- /top navigation -->
 
         <!-- page content -->
@@ -214,6 +101,22 @@
         $('form #err-msg').html("").append(msg);
       }
     </script>
+
+    <script>
+      var map;
+      var infowindow;
+      var markers = [];
+      function initMap() {
+        if (Boolean($("#map"))){
+          infowindow = new google.maps.InfoWindow();
+          map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 5.5557, lng: -0.1963},
+            zoom: 8
+          });
+        }
+      }
+    </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2NxLOf_zTbaq0pyoeRLfBFTX4Q55KWuo&q=ghana&callback=initMap" async defer></script>
+
   </body>
 </html>

@@ -143,6 +143,6 @@ class UsersController < ApplicationController
     end
 
     def is_admin?
-      current_user.is_admin?(@organization.id)
+      current_user.is_admin?(@organization)
     end
 end

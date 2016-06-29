@@ -4,11 +4,16 @@ class Manager < ActiveRecord::Base
 	has_many :teams
 	has_many :farms
 
-	def sp_num
+	def get_sp
 		tm_sps = self.teams.collect{|t|
 			t.team_assignments.collect{|ta|
 				ta.service_provider
 				}
-			}.flatten.uniq.size
+			}.flatten.uniq
 	end
+
+	def sp_num
+		get_sp.size
+	end
+
 end

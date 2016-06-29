@@ -1,0 +1,11 @@
+<div>
+  <%= form_for [@farm, @farmer], remote: true do |f|%>
+    <div class="form-group">
+      <%= f.text_field :name, size: '80', class:"form-control", placeholder:"Name" %>
+    </div>
+    <div id="err-msg"></div>
+    <div class="form-group">
+      <%= f.submit 'Submit' , class:"btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
