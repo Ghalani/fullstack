@@ -62,42 +62,6 @@ ActiveRecord::Schema.define(version: 20160615140309) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "drivers", force: :cascade do |t|
-    t.integer  "manager_id"
-    t.string   "fname"
-    t.string   "lname"
-    t.string   "phone"
-    t.string   "country"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "farm_pickups", force: :cascade do |t|
-    t.integer  "farmer_id"
-    t.integer  "pickup_id"
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "farmer_messages", force: :cascade do |t|
-    t.integer  "manager_id"
-    t.integer  "farmer_id"
-    t.text     "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "farmers", force: :cascade do |t|
-    t.integer  "manager_id"
-    t.integer  "farm_id"
-    t.string   "fname"
-    t.string   "lname"
-    t.string   "phone"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "farms", force: :cascade do |t|
     t.integer  "area_planner_id"
     t.string   "name"
@@ -111,59 +75,6 @@ ActiveRecord::Schema.define(version: 20160615140309) do
 
   add_index "farms", ["region_id"], name: "index_farms_on_region_id", using: :btree
 
-  create_table "item_sales", force: :cascade do |t|
-    t.integer  "item_id"
-    t.integer  "sale_id"
-    t.integer  "quantity"
-    t.decimal  "weight"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "items", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "managers", force: :cascade do |t|
-    t.integer  "organization_id"
-    t.integer  "user_id"
-    t.integer  "region_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
-  create_table "organizations", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "packages", force: :cascade do |t|
-    t.integer  "farm_pickup_id"
-    t.integer  "item_id"
-    t.integer  "quantity"
-    t.decimal  "mass"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
-  create_table "pickups", force: :cascade do |t|
-    t.integer  "driver_id"
-    t.integer  "manager_id"
-    t.string   "title"
-    t.text     "description"
-    t.decimal  "start_coord",        default: [],              array: true
-    t.decimal  "end_coord",          default: [],              array: true
-    t.integer  "start_date_time"
-    t.integer  "delivery_date_time"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-  end
-
   create_table "regions", force: :cascade do |t|
     t.integer  "country_id"
     t.integer  "organization_id"
@@ -171,13 +82,6 @@ ActiveRecord::Schema.define(version: 20160615140309) do
     t.string   "state"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-  end
-
-  create_table "sales", force: :cascade do |t|
-    t.integer  "orgranization_id"
-    t.decimal  "revenue"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
   end
 
   create_table "service_providers", force: :cascade do |t|
@@ -189,12 +93,6 @@ ActiveRecord::Schema.define(version: 20160615140309) do
   end
 
   add_index "service_providers", ["region_id"], name: "index_service_providers_on_region_id", using: :btree
-
-  create_table "subscriptions", force: :cascade do |t|
-    t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "team_activities", force: :cascade do |t|
     t.integer  "activity_id"
