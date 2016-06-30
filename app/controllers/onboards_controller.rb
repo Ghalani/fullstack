@@ -9,9 +9,8 @@ class OnboardsController < ApplicationController
         flash[:info] = "Thank you for requesting a demo"
         redirect_to "/"
       else
-        respond_to do |format|
-          format.js
-        end
+        flash[:notice] = @onboard.errors.full_messages.to_sentence
+        redirect_to "/"
       end
   end
 

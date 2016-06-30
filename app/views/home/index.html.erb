@@ -27,11 +27,12 @@
       <div id="home-text1" class="marg-bottom">
         Ghalani Farm Management System
       </div>
-      <div id="home-text2" class="marg-bottom">
+      <div id="home-text2" class="marg-bottom rbt">
         Use Software to Increase Farm Yield
       </div>
-      <div data-role="main" class="ui-content">
-    <a class="modalButton btn btn-primary btn-lg " data-toggle="modal" data-target="#myModal">Request a Demo</a>
+      <div data-role="main" class="ui-content rbt">
+        <a class="modalButton btn btn-primary btn-lg rounded" data-toggle="modal" data-target="#myModal">Request a Demo</a>
+      </div
     </div>
   </section>
 
@@ -40,7 +41,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 text-center aboutSection" >
         <h1 class="main-title">About</h1>
-        <p class="text">
+        <p class="text rbt">
           Ghalani is a mobile and web-based farm management system designed to aid large scale farmers and aggregators to increase production. <br>
           Our farm management software helps you to organize, manage and monitor crops, farmers,  inventory and finances.<br>
           We focus on coordinating all activities that improve farming methods and creates high yields.</p>
@@ -55,7 +56,7 @@
        <div class="row">
        <div class="col-lg-12" id="details">
         <h1 class="main-title">Services</h1><br>
-        <div class="col-md-4 col-xs-12 row">
+        <div class="col-md-4 col-xs-12 row rbt">
         <div class="icon text-center"><i class="fa fa-users fa-4x"></i></div>
           <h2 class="text-center">Crop & Farmer Management</h2>
           <p class="content text-center">Access to Farmer and Crop Profiles<br>
@@ -77,7 +78,7 @@
         <div class="col-md-4 col-xs-12 row">
         <div class="icon text-center"><i class="fa fa-credit-card fa-4x"></i></div>
           <h2 class="text-center">Financial Management</h2>
-          <p class="content text-center">Make financial projections based on data<br>
+          <p class="content text-center ">Make financial projections based on data<br>
                                     Know Financial Records<br>
                                     Plan Strategically<br>
                                     Monitor Cash Inflows and Outflows<br></p>
@@ -100,7 +101,7 @@
             <div class="icon text-center" id="iconStyle"><i class="fa fa-area-chart fa-4x"></i></div>
             <div class="info">
               <h2 class="text-center">Project</h2>
-              <p class="content text-center">Detailed farm records for yield projections and strategies</p>
+              <p class="content text-center rbt">Detailed farm records for yield projections and strategies</p>
             </div>
           </div>
         </div>
@@ -110,7 +111,7 @@
             <div class="icon text-center" id="iconStyle"><i class="fa fa-compass fa-4x"></i></div>
             <div class="info">
               <h2 class="text-center">Track</h2>
-              <p class="content text-center">Efficient tracking of assets and inventory on the go.</p>
+              <p class="content text-center rbt">Efficient tracking of assets and inventory on the go.</p>
             </div>
           </div>
         </div>
@@ -120,7 +121,7 @@
            <div class="icon text-center" id="iconStyle"><i class="fa fa-envira fa-4x"></i></div>
             <div class="info">
               <h2 class="text-center">Yield</h2>
-              <p class="content text-center">Increase farm yield via accurate farm data and reports</p>
+              <p class="content text-center rbt">Increase farm yield via accurate farm data and reports</p>
             </div>
           </div>
         </div>
@@ -130,7 +131,7 @@
             <div class="icon text-center" id="iconStyle"><i class="fa fa-male fa-4x"></i></div>
             <div class="info">
               <h2 class="text-center">Profile</h2>
-              <p class="content text-center">Access to farmer profiles, field profiles and labourer daily activities</p>
+              <p class="content text-center rbt">Access to farmer profiles, field profiles and labourer daily activities</p>
             </div>
           </div>
         </div>
@@ -144,18 +145,16 @@
       <div class="container guide">
         <div class="w576 hcenter">
           <div class="big-text marg-bottom">Subscribe to our newsletter!</div>
-          <div class="w800">
-            <form class="" action="index.html" method="post" action="createSubscription"}}>
+          <div class="w800 rbt">
               <div class="row form-group">
                 <div class="col-sm-8 ">
-                  <input class="rounded" type="email" placeholder="Enter your email address"/>
+                  <input id="sub_text1" class="rounded" type="email" placeholder="Enter your email address"/>
                 </div>
                 <div class="col-sm-4">
-                  <button class="rounded" type="submit">SUBSCRIBE NOW</button>
+                  <button id="sub_but1" class="rounded" data-toggle="modal" data-target="#myModal">SUBSCRIBE NOW</button>
                 </div>
               </div>
               <span class="help-block"></span>
-            </form>
           </div>
         </div>
       </div>
@@ -164,7 +163,7 @@
       <div class="big-text tcenter marg-bottom">
         Contact Us
       </div>
-      <div class="w576 hcenter marg-bottom">
+      <div class="w576 hcenter marg-bottom rbt">
         We would like to hear from you. Send us an email on
       </div>
       <div class="tcenter big-text accent">
@@ -186,29 +185,37 @@
   </section>
 
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document" id="modalForm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h4 class="modal-title" id="myModalLabel">Request A Demo</h4>
-      </div>
-      <div class="modal-body">
-        <%= form_for @onboard do |f| %>
-          <div >
-            <%= f.text_field :name, class:"rounded", required: true, placeholder:"Enter your name" %>
-          </div>
-          <div>
-            <%= f.email_field :email, class:"rounded", required: true, placeholder:"Enter your email" %>
-          </div>
-          <div>
-            <%= f.submit "submit", class:"modalButton btn btn-primary" %>
-          </div>
-        <% end %>
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" id="modalForm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">Request A Demo</h4>
+        </div>
+        <div class="modal-body rbt">
+          <%= form_for @onboard do |f| %>
+            <div >
+              <%= f.text_field :name, class:"form-control", required: true, placeholder:"Enter your name" %>
+              <br>
+            </div>
+            <div>
+              <%= f.email_field :email, id:"sub_email", class:"form-control", required: true, placeholder:"Enter your email" %>
+              <br>
+            </div>
+            <div>
+              <%= f.submit "submit", class:"modalButton btn btn-primary rounded" %>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
 </div>
-</div>
+<script>
+  $("#sub_but1").on('click', function(){
+    console.log($("#sub_text1").val());
+    $("#sub_email").val($("#sub_text1").val());
+  })
+</script>
