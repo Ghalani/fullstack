@@ -232,7 +232,11 @@ html,body{
     box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 2px 2px;
     border-radius: 2px;
   }
-  
+
+  .rbt{
+    font-family: 'Roboto', sans-serif;
+  }
+
   #subscribe-cont{
     color: $whitish;
     background: #000 image-url('sub.png') no-repeat;
@@ -241,6 +245,7 @@ html,body{
 
     input{
       width: 100%;
+      color: #333;
     }
 
     button{
