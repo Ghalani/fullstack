@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Admin | Ghalani</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <% flash.each do |key, value| %>
+    <%= content_tag(:div, class: "alert alert-#{key}") do %>
+      <p><%= value %></p>
+    <% end %>
+  <% end %>
+  <body id="dashboard-body" class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="index.html" class="site_title">
+                <%= image_tag "logo.png", height: '35px' %> <span>Ghalani</span>
+              </a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <!-- menu profile quick info -->
+            <div class="profile">
+              <div class="profile_pic">
+                <%= image_tag "img.jpg", alt: "...", class:"img-circle profile_img" %>
+              </div>
+              <div class="profile_info">
+                <span>Welcome,</span>
+                <h2><%= current_user.fname %> <%= current_user.lname %></h2>
+              </div>
+            </div>
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+            <% if current_user.is_admin?(@organization) %>
+              <%= render partial:"layouts/org/sidebar_menu" %>
+            <% else %>
+              <%= render partial:"layouts/manager/sidebar_menu" %>
+            <% end %>
+            <!-- /sidebar menu -->
+
+          </div>
+        </div>
+
+        <!-- top navigation -->
+          <% if current_user.is_admin?(@organization) %>
+            <%= render partial:"layouts/org/top_nav" %>
+          <% else %>
+            <%= render partial:"layouts/manager/top_nav" %>
+          <% end %>
+
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div id="main-holder" class="right_col" role="main">
+          <div id="myOverlay" class="overlay">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+              <i class="fa fa-remove"></i>
+            </a>
+            <div id="overlay_body">
+
+            </div>
+          </div>
+          <%= yield %>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            Ghalani Admin panel
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+    <script>
+      $("a .closebtn").on('click', function(){
+        closeNav();
+      });
+      function closeNav() {
+        document.getElementById("myOverlay").style.height = "0%";
+        $("#overlay_body").html("");
+      }
+
+      function displayError(msg){
+        $('form #err-msg').html("").append(msg);
+      }
+    </script>
+
+    <script>
+      var map;
+      var infowindow;
+      var markers = [];
+      function initMap() {
+        if (Boolean($("#map"))){
+          infowindow = new google.maps.InfoWindow();
+          map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 5.5557, lng: -0.1963},
+            zoom: 8
+          });
+        }
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2NxLOf_zTbaq0pyoeRLfBFTX4Q55KWuo&q=ghana&callback=initMap" async defer></script>
+
+  </body>
+</html>

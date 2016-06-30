@@ -14,7 +14,9 @@ html,body{
 #landing-page{
   font-size: 16px;
   font-family: 'El Messiri', sans-serif;
-
+  p, ol, ul, td {
+    font-family: inherit;
+  }
   .mid-ttext{
     font-size: 20px
   }
@@ -45,6 +47,7 @@ html,body{
   .row{
     margin: 0;
   }
+
   .aboutSection{
     margin-top: 100px;
   }
@@ -167,22 +170,24 @@ html,body{
   }
 
   .text{
-  font-size: 20px;
-  color: #003C1E;
+    font-size: 20px;
+    color: #003C1E;
+    line-height: 30px;
   }
 
   .content{
     font-size: 17px;
+    line-height: 25px;
   }
 
   #services{
     background: image-url('farm4.png') no-repeat;
     background-size: cover;
     background-position: center center;
-    
+
   }
   #details{
-   color: #ffffff; 
+   color: #ffffff;
    margin-top: 60px;
 
   }

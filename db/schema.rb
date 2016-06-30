@@ -11,17 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160615140309) do
+ActiveRecord::Schema.define(version: 20160627153659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "activities", force: :cascade do |t|
+    t.integer  "organization_id"
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
+
+  add_index "activities", ["organization_id"], name: "index_activities_on_organization_id", using: :btree
 
   create_table "activity_reports", force: :cascade do |t|
     t.integer  "team_activity_id"
@@ -45,12 +48,6 @@ ActiveRecord::Schema.define(version: 20160615140309) do
   add_index "api_keys", ["access_token"], name: "index_api_keys_on_access_token", unique: true, using: :btree
   add_index "api_keys", ["user_id"], name: "index_api_keys_on_user_id", using: :btree
 
-  create_table "area_planners", force: :cascade do |t|
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "countries", force: :cascade do |t|
     t.string   "iso"
     t.string   "name"
@@ -62,34 +59,76 @@ ActiveRecord::Schema.define(version: 20160615140309) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "farms", force: :cascade do |t|
-    t.integer  "area_planner_id"
+  create_table "farmers", force: :cascade do |t|
+    t.integer  "farm_id"
     t.string   "name"
-    t.float    "area"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.decimal  "lat"
-    t.decimal  "lon"
-    t.integer  "region_id"
+    t.string   "phone"
+    t.string   "gender"
+    t.datetime "dob"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "farms", ["region_id"], name: "index_farms_on_region_id", using: :btree
+  create_table "farms", force: :cascade do |t|
+    t.integer  "region_id"
+    t.integer  "manager_id"
+    t.string   "name"
+    t.decimal  "lat"
+    t.decimal  "lon"
+    t.float    "area"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "managers", force: :cascade do |t|
+    t.integer  "organization_id"
+    t.integer  "user_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "managers", ["organization_id"], name: "index_managers_on_organization_id", using: :btree
+
+  create_table "organizations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.text     "bio"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "country_id"
+  end
+
+  add_index "organizations", ["user_id"], name: "index_organizations_on_user_id", using: :btree
+>>>>>>> area_planner_to_manager
 
   create_table "regions", force: :cascade do |t|
     t.integer  "country_id"
     t.integer  "organization_id"
     t.string   "name"
     t.string   "state"
+    t.decimal  "lat"
+    t.decimal  "lon"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
+<<<<<<< HEAD
+=======
+  add_index "regions", ["country_id"], name: "index_regions_on_country_id", using: :btree
+  add_index "regions", ["organization_id"], name: "index_regions_on_organization_id", using: :btree
+
+>>>>>>> area_planner_to_manager
   create_table "service_providers", force: :cascade do |t|
-    t.integer  "user_id"
-    t.boolean  "is_team_lead"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
     t.integer  "region_id"
+<<<<<<< HEAD
+=======
+    t.string   "fname"
+    t.string   "lname"
+    t.string   "phone"
+    t.string   "gender"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+>>>>>>> area_planner_to_manager
   end
 
   add_index "service_providers", ["region_id"], name: "index_service_providers_on_region_id", using: :btree
@@ -97,13 +136,13 @@ ActiveRecord::Schema.define(version: 20160615140309) do
   create_table "team_activities", force: :cascade do |t|
     t.integer  "activity_id"
     t.integer  "team_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.integer  "team_leader_id"
     t.date     "start_date"
     t.date     "end_date"
     t.boolean  "is_done"
     t.text     "comment"
-    t.integer  "team_leader_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "team_assignments", force: :cascade do |t|
@@ -117,23 +156,29 @@ ActiveRecord::Schema.define(version: 20160615140309) do
   add_index "team_assignments", ["team_id"], name: "index_team_assignments_on_team_id", using: :btree
 
   create_table "teams", force: :cascade do |t|
-    t.integer  "area_planner_id"
+    t.integer  "manager_id"
     t.integer  "farm_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
     t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "email"
+    t.string   "username"
+    t.string   "fname"
+    t.string   "lname"
     t.string   "password"
     t.string   "phone"
-    t.string   "username"
     t.string   "role"
     t.string   "salt"
     t.string   "encrypted_password"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.string   "status",             default: "active"
+    t.string   "activation_digest"
+    t.boolean  "activated"
+    t.datetime "activated_at"
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
 end

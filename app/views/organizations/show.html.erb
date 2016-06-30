@@ -1,0 +1,41 @@
+<%= render 'top_stats' %>
+<hr>
+<p id="notice"><%= notice %></p>
+<div class="row full-height">
+  <div class="col-sm-3 full-height bd-right">
+    <div id="rg_list">
+      <div class="x_panel tile">
+				<div class="x_title">
+          <h2>Regions</h2>
+          <div class="clearfix"></div>
+        </div>
+				<div class="x_content half-div">
+          <% if @regions.size > 0 %>
+            <% @regions.each do |r| %>
+              <%= link_to r, remote: true do %>
+                <div class="list-item"><%= r.name %></div>
+              <% end %>
+            <% end %>
+          <% else %>
+            <h3>No region exist in this organization</h3>
+            <h4>you can add one by pressing "Add region"</h4>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="desc_text">
+      djfkdjfkdjf id fi dfidfbvidfiefvi fiv efiveifv eiveio efi ewirjeijv eirjeir eirerieri eriei ei
+    </div>
+    <%= link_to 'Add region', new_organization_region_path(@organization), class:'btn btn-primary', remote: true %>
+  </div>
+  <div class="col-sm-9">
+    <div id="map" class="h300">
+    </div>
+    <div id="ext-holder">
+      <h3>Please select a region to view the farms under it</h3>
+    </div>
+  </div>
+</div>
+
+<%= link_to 'Edit', edit_organization_path(@organization) %> |
+<%= link_to 'Back', organizations_path %>

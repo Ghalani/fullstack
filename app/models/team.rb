@@ -1,5 +1,5 @@
 class Team < ActiveRecord::Base
-	belongs_to 	:area_planner
+	belongs_to 	:manager
 	belongs_to 	:farm
 	has_many		:team_assignments
 

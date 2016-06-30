@@ -2,6 +2,7 @@
 // All this logic will automatically be available in application.js.
 
 //= require manager/firebase
+//= require gentelella/custom.min
 
 /*function getIt(url){
 	$.ajax({

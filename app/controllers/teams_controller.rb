@@ -25,7 +25,7 @@ class TeamsController < ApplicationController
   def create
     @team = Team.new(team_params)
     @team.farm_id = params[:farm_id]
-    @team.area_planner_id = 1
+    @team.manager_id = 1
     if @team.save
       respond_to do |f|
         f.js

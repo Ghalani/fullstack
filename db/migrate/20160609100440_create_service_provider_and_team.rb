@@ -1,20 +1,19 @@
 class CreateServiceProviderAndTeam < ActiveRecord::Migration
   def change
     create_table :teams do |t|
-      t.references :area_planner
+      t.references :manager
       t.references :farm
+      t.string      :name
       t.timestamps null: false
     end
 
     create_table :service_providers do |t|
-      t.references :user
-      t.boolean :is_team_lead
+      t.references  :region, index: true
+      t.string  :fname
+      t.string  :lname
+      t.string  :phone
+      t.string  :gender
       t.timestamps null: false
-    end
-
-    create_table :assemblies_parts, id: false do |t|
-      t.belongs_to :team, index: true
-      t.belongs_to :service_providers, index: true
     end
   end
 end

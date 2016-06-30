@@ -1,0 +1,10 @@
+Labourers
+<% if @sps.size < 1 %>
+  <div>This Organization (<%= @organization.name %>) has no labourers</div>
+<% else %>
+  <% @sps.each do |sp| %>
+  <div class="list-item">
+    <%= sp.name %>
+  </div>
+  <% end %>
+<% end %>

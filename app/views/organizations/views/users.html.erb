@@ -1,0 +1,43 @@
+Index users
+<div class="max-800h hcenter title1">
+  User List
+  <%= link_to organization_new_ap_path(@organization), remote: true do %>
+    <i id="add-tac-but" class="fa fa-plus add-but"></i>
+  <% end %>
+</div>
+<div class="row max-800h hcenter">
+  <div class="col-md-8 x_panel tile no-pad">
+    <div class="list-item-head row">
+      <div class="col-sm-6">Name</div>
+      <div class="col-sm-3">Farms</div>
+      <div class="col-sm-3">Labourers</div>
+    </div>
+    <% if @aps %>
+      <% @aps.each do |a| %>
+        <div class="list-item no-pad">
+          <div class="col-sm-6"><%= a.user.username %></div>
+          <div class="col-sm-3"><%= a.farms.size %></div>
+          <div class="col-sm-3"><%= a.sp_num.to_s %></div>
+
+        </div>
+      <% end %>
+    <% else %>
+      You have no managers in this organization
+    <% end %>
+  </div>
+
+  <div class="col-md-4 x_panel tile">
+    <div class="x_title">
+			<h2>Regions</h2>
+      <%= link_to new_organization_region_path(@organization), remote: true do %>
+        <i id="add-tac-but" class="fa fa-plus add-but"></i>
+      <% end %>
+			<div class="clearfix"></div>
+		</div>
+    <% @regions.each do |r| %>
+      <div class="list-item">
+        <%= r.name %>
+      </div>
+    <% end %>
+  </div>
+</div>
