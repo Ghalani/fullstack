@@ -1,4 +1,4 @@
-Rails.application.routes.draw do
+  Rails.application.routes.draw do
   get 'farmers/index'
 
   get 'farmers/show'
@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       #get 'finances' => 'service_providers#index'
       get 'new_ap' => 'users#new_ap'
       post "create_ap" => 'users#create_ap'
+      resources :teams, only:[:new]
     #end
     resources :regions
   end
@@ -46,6 +47,7 @@ Rails.application.routes.draw do
 
   resources :regions do
     resources :service_providers
+    get 'show_labour' => "regions#show_labour"
   end
 
   # scope 'admin' do

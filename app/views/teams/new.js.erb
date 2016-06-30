@@ -1,3 +1,5 @@
 
-$("#team-list").hide();
-$("#team-holder").append("<%= escape_javascript(render partial:'new').html_safe %>");
+//$("#team-list").hide();
+//$("#team-holder").append("<%= escape_javascript(render partial:'new').html_safe %>");
+$("#myOverlay #overlay_body").append("<%= escape_javascript(render partial:'new').html_safe %>");
+document.getElementById("myOverlay").style.height = "100%";

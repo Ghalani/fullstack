@@ -5,7 +5,15 @@ class ServiceProvidersController < ApplicationController
   def index
     if is_admin?
       @sps = @organization.service_providers
+      @regions = @organization.regions
+      # => @teams = select a region to show a team
       render "organizations/views/labourers"
+    elsif (Manager.where(user_id: current_user.id)) #is a manager
+      @manager = Manager.find_by_id(params[:manager_id])
+      #@regions = Manager.regions
+    else
+      flash[:info] = "You are not an admin"
+      redirect_to "/"
     end
   end
 
@@ -17,6 +25,8 @@ class ServiceProvidersController < ApplicationController
   end
 
   def new
+    @region = Region.find(params[:region_id])
+    @sp = ServiceProvider.new(region_id: @region.id)
   end
 
   private

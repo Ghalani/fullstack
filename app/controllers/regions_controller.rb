@@ -1,5 +1,6 @@
 class RegionsController < ApplicationController
-  before_action :set_region, only: [:show, :edit, :update, :destroy]
+  before_action :set_region, except: [:new, :create, :show_labour]
+
   def new
     @region = Region.new
     @region.organization_id = params[:organization_id]
@@ -12,6 +13,16 @@ class RegionsController < ApplicationController
     @farms = @region.farms
     respond_to do |format|
       format.js
+    end
+  end
+
+  def show_labour
+    @region = Region.find(params[:region_id])
+    @sps = @region.service_providers
+    @teams = @sps.collect{|s| s.team_assignments.collect{|ta| ta.team}}.flatten.uniq
+    #@regions = @sps.first.region.organization.regions ||= []
+    respond_to do |format|
+      format.js {render 'regions/js/show_labour'}
     end
   end
 
