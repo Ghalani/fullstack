@@ -1,4 +1,10 @@
 <%= form_for(@organization) do |f| %>
+  <div>
+    <%= f.text_field :name, placeholder: 'Organization name' %>
+  </div>
+  <div class="form-group">
+    <%= f.collection_select :country_id, @countries, :id,:name, include_blank: false, class:"form-control" %>
+  </div>
   <% if @organization.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@organization.errors.count, "error") %> prohibited this organization from being saved:</h2>

@@ -1,0 +1,20 @@
+<div class="full-height theme1 ">
+  <div class="hcenter w500 twhite"><h2>Organizations under you</h2></div>
+  <div class="card hcenter w500">
+    <div>
+      <% if @organizations %>
+        <% @organizations.each do |o| %>
+          <%= link_to o do %>
+            <div class="list-item">
+              <h3><%= o.name %></h3>
+            </div>
+          <% end %>
+        <% end %>
+      <% else %>
+        <div><h3>You have no Organization under you </h3></div>
+        <div>Create your first organization now </div>
+      <% end %>
+      <%= link_to 'Add', new_organization_path, class: 'btn btn-primary' %>
+    </div>
+  </div>
+</div>

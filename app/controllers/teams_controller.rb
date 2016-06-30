@@ -1,8 +1,16 @@
 class TeamsController < ApplicationController
+  before_action :set_organization, only:[:new]
   def new
     @team = Team.new
-    @farm = Farm.find_by_id(params[:farm_id])
-    @team.farm = @farm
+    # @farm = Farm.find_by_id(params[:farm_id])
+    # @team.farm = @farm
+
+    if(@organization)
+      @manager = Manager.where(user_id: @organization.user_id, organization_id: @organization.id).first
+    else
+      @manager = Manager.find(params[:manager_id])
+    end
+    @team.manager = @manager if @manager
   	respond_to do |format|
 	    format.js
 	  end
@@ -25,7 +33,7 @@ class TeamsController < ApplicationController
   def create
     @team = Team.new(team_params)
     @team.farm_id = params[:farm_id]
-    @team.area_planner_id = 1
+    @team.manager_id = 1
     if @team.save
       respond_to do |f|
         f.js
@@ -46,6 +54,10 @@ class TeamsController < ApplicationController
   end
 
   private
+  def set_organization
+    @organization = Organization.find(params[:organization_id])
+  end
+
   def team_params
 	  params.require(:team).permit(:name, :farm_id)
 	end

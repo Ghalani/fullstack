@@ -1,31 +1,63 @@
-Rails.application.routes.draw do
+  Rails.application.routes.draw do
+  get 'farmers/index'
+
+  get 'farmers/show'
+
+  get 'farmers/new'
+
+  resources :sessions, only: [:new, :create, :delete]
+  get 'signup' => 'users#new'
+  get 'login' => 'sessions#new'
+  get 'logout' => 'sessions#destroy'
+  resources :users
+  resources :account_activations, only: [:edit]
+  get "accounts/forgot" => "users#forgot_password"
+  post "accounts/reset" => "users#reset_password"
+
   resources :organizations do
+    #scope 'farms' do
+      #get 'farms' => 'farms#index'
+      resources :farms, only:[:index, :show]
+      get 'users' => 'users#index'
+      get 'labourers' => 'service_providers#index'
+      #get 'inventory' => 'service_providers#index'
+      #get 'finances' => 'service_providers#index'
+      get 'new_ap' => 'users#new_ap'
+      post "create_ap" => 'users#create_ap'
+      resources :teams, only:[:new]
+    #end
     resources :regions
   end
 
-  root to: "home#index"
-
-  resources :managers
-  resources :farms do
+  resources :farms, only:[:index, :show, :new] do
     resources :teams
+    resources :farmers
+    get "assign_farmer" => "farmers#assign_farmer"
   end
+
+  root to: "home#index"
+  resources :managers do
+    resources :farms
+  end
+  resources :area_planners
+  #resources :managers
 
 
   post 'teams/:id/asp' => 'teams#add_service_provider'
 
   resources :regions do
     resources :service_providers
+    get 'show_labour' => "regions#show_labour"
   end
 
-  scope 'admin' do
-    resources :farms
-  end
+  # scope 'admin' do
+  #   resources :farms
+  # end
 
-  resources :area_planners
   resources :teams do
     resources :team_activities
   end
-
+  resources :onboards, only:[:create]
  	namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
       resources :farms

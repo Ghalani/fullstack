@@ -1,0 +1,14 @@
+Welcome to Ghalani.
+Please type in your new password
+<%= form_for @user do |u|%>
+  <%= hidden_field "logout", "true" %>
+  <div class="form-group">
+    <%= u.password_field :password, placeholder: 'new password', id:'psw1' %>
+  </div>
+  <div class="form-group">
+    <%= u.password_field :password_confirmation, placeholder: 'confirm password', id:'pwd2' %>
+  </div>
+  <div class="form-group">
+    <%= u.submit 'Submit' %>
+  </div>
+<% end %>

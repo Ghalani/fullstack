@@ -1,0 +1,56 @@
+<div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="x_panel tile">
+				<div class="x_title">
+          <h2>Teams</h2>
+          <%= link_to new_organization_team_path(@region.organization), remote: true do %>
+            <i id="add-tac-but" class="fa fa-plus add-but"></i>
+          <% end %>
+          <div class="clearfix"></div>
+        </div>
+				<div class="x_content half-div">
+          <% if @region %>
+            <% if @teams && (@teams.size > 0) %>
+              <% @teams.each do |t| %>
+                <div class="list-item">
+                  <%= t.name %>
+                </div>
+              <% end %>
+            <% else %>
+              You have no teams in (<%= @region.name %>)
+            <% end %>
+          <% else %>
+            <h2>Select a region to view the teams there</h2>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-8">
+      <div class="x_panel tile">
+				<div class="x_title">
+          <h2>Labourers</h2>
+          <% if @region %>
+            <%= link_to  new_region_service_provider_path(@region), remote: true do %>
+              <i id="add-tac-but" class="fa fa-plus add-but"></i>
+            <% end %>
+          <% end %>
+          <div class="clearfix"></div>
+        </div>
+				<div class="x_content half-div">
+          <% if @sps.size < 1 %>
+            <div>This Organization has no labourers</div>
+          <% else %>
+            <% @sps.each do |sp| %>
+            <div class="list-item">
+              <%= sp.fname %> <%= sp.lname %>
+            </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -13,19 +13,79 @@
  *= require_tree .
  *= require_self
  */
- @import "bootstrap-sprockets";
- @import "bootstrap";
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
- @import "font-awesome";
+@import "font-awesome";
 
- .h200{	height: 200px; }
+.h200{	height: 200px; }
 
- .h300{ height: 300px; }
+.h300{ height: 300px; }
 
- .w200{ width: 200px; }
+.w200{ width: 200px; }
 
- .w300{ width: 300px; }
+.w300{ width: 300px; }
+.w500{ width: 500px; }
 
- .full-height{ height: 100% }
+.full-height{ height: 100% }
 
- .bd-right{ border-right: #ddd solid 1px; }
+.bd-right{ border-right: #ddd solid 1px; }
+
+.card {
+  padding:1.5rem;
+  box-shadow:0 1px 2px #aaa;
+  background:white;
+  margin:0 1rem 1rem;
+  border-radius:3px;
+  user-select:none;
+  animation:fly-in-from-left .5s 1s ease both;
+  transform-origin: top left;
+  transition: all 0.2s ease;
+}
+
+.card:hover{
+  -webkit-box-shadow:0 12px 15px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+  -moz-box-shadow:0 12px 15px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+  box-shadow:0 12px 15px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.theme1{
+  background: #3F51B5;
+  padding-top: 200px;
+}
+
+.hcenter{
+  margin: auto;
+}
+
+.list-item, .list-item-head{
+  font-size: 15px;
+  padding: 10px;
+}
+
+.list-item-head{
+  background: #73879C;
+  color: #f5f5f5;
+}
+
+.max-800h{ max-width: 800px; }
+.title1{ font-size: 40px; }
+.no-pad{ padding: 0px; }
+.no-marg{ margin: 0px; }
+.ferror{ color: #ee1111; }
+.alert{
+  z-index: 2;
+  margin: 0px;
+  text-align: center;
+  border-radius: 0;
+  border: none;
+
+}
+.alert-success{
+  background: #07775a;
+  color: #f5f5f5;
+}
+.alert-info{
+  background: #2295cf;
+  color: #f5f5f5;
+}

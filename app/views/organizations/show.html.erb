@@ -1,10 +1,8 @@
+<%= render 'top_stats' %>
+<hr>
 <p id="notice"><%= notice %></p>
 <div class="row full-height">
   <div class="col-sm-3 full-height bd-right">
-    <div class="a_title">
-      <h2>Regions</h2>
-      <hr>
-    </div>
     <div id="rg_list">
       <div class="x_panel tile">
 				<div class="x_title">
@@ -12,7 +10,7 @@
           <div class="clearfix"></div>
         </div>
 				<div class="x_content half-div">
-          <% if @regions.size > 1 %>
+          <% if @regions.size > 0 %>
             <% @regions.each do |r| %>
               <%= link_to r, remote: true do %>
                 <div class="list-item"><%= r.name %></div>
@@ -41,15 +39,3 @@
 
 <%= link_to 'Edit', edit_organization_path(@organization) %> |
 <%= link_to 'Back', organizations_path %>
-<script>
-  var map;
-  var infowindow;
-  var markers = [];
-  function initMap() {
-    infowindow = new google.maps.InfoWindow();
-    map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: 5.5557, lng: -0.1963},
-      zoom: 8
-    });
-  }
-</script>

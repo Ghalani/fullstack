@@ -3,14 +3,17 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   #protect_from_forgery with: :exception
   protect_from_forgery with: :null_session
+  before_filter :ensure_authenticated_user
 
-  #before_filter :ensure_authenticated_user
 
-	protected
-
+	private
 	# Returns 401 if the user isn't authorized
 	def ensure_authenticated_user
-    head :unauthorized unless current_user
+    #head :unauthorized unless current_user
+    unless current_user
+      redirect_to '/'
+      flash[:info] = "Please login again..."
+    end
   end
 
   # Returns 401 if the user isn't an admin
@@ -18,8 +21,13 @@ class ApplicationController < ActionController::Base
     head :unauthorized unless current_user.admin
   end
 
-	# Returns the user belonging to the access token
   def current_user
+    return unless session[:user_id]
+    @current_user ||= User.find_by_id(session[:user_id])
+  end
+
+  # Returns the user belonging to the access token
+  def current_user_api
     api_key = ApiKey.where(access_token: token).first
 
     if api_key && !api_key.is_expired? && !api_key.is_locked
@@ -42,4 +50,5 @@ class ApplicationController < ActionController::Base
 			nil
 		end
 	end
+  helper_method :current_user, :is_admin?
 end

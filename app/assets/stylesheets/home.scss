@@ -1,3 +1,4 @@
+
 $primary-bg-color: #4caf50;
 $whitish: #f5f5f5;
 $text-color: #5f6061;
@@ -5,14 +6,17 @@ $white: #fff;
 
 html,body{
   //background: url('img/bg.png') $background-color;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Lato', sans-serif;
   color: $text-color;
 }
 .tcenter{ text-align: center }
 
 #landing-page{
-  font-size: 15px;
-
+  font-size: 16px;
+  font-family: 'El Messiri', sans-serif;
+  p, ol, ul, td {
+    font-family: inherit;
+  }
   .mid-ttext{
     font-size: 20px
   }
@@ -44,18 +48,22 @@ html,body{
     margin: 0;
   }
 
+  .aboutSection{
+    margin-top: 100px;
+  }
   .hcenter{
     margin: auto;
   }
 
   .pad-tb{
     padding: 50px 0;
+
   }
   hr{
     margin: 50px 0 50px 0;
   }
   section{
-    min-height: 600px;
+    min-height: 500px;
   }
   .guide{
     max-width: 1000px;
@@ -72,7 +80,9 @@ html,body{
         width: 40px;
       }
     }
-    .navbar-header{
+    .navbar
+
+    -header{
       background: none;
     }
     .navbar-brand {
@@ -91,12 +101,6 @@ html,body{
       background: none;
     }
   }
-
-  .but{
-    border-radius: 2px;
-    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1);
-    border: none;
-  }
   .bg-white{
     background: $whitish;
     color: $primary-bg-color;
@@ -108,6 +112,7 @@ html,body{
 
   .parent {
     position: relative;
+    min-height: 700px;
   }
   .child-center {
     // position: absolute;
@@ -141,20 +146,60 @@ html,body{
   }
 
   #home{
-    background: #0d2c10 image-url('backtruck.png') no-repeat;
+    background: #0d2c10 image-url('farm1.png') no-repeat;
     background-size:     cover;
     background-position: center center;
     #home-text1{
       font-size: 54px;
       color: #e5e5e5;
+      margin-top: 120px;
     }
     #home-text2{
       font-size: 20px;
       color: #e5e5e5;
     }
   }
+  .main-title{
+  font-size: 54px;
+  text-align: center;
+  }
 
-  #contact{
+  .h2{
+   font-size:30px;
+   text-align: center;
+  }
+
+  .text{
+    font-size: 20px;
+    color: #003C1E;
+    line-height: 30px;
+  }
+
+  .content{
+    font-size: 17px;
+    line-height: 25px;
+  }
+
+  #services{
+    background: image-url('farm4.png') no-repeat;
+    background-size: cover;
+    background-position: center center;
+
+  }
+  #details{
+   color: #ffffff;
+   margin-top: 60px;
+
+  }
+  #perks{
+    margin-top: 60px;
+  }
+
+  #iconStyle{
+    color: #003C1E;
+  }
+  #contaimage
+  ct{
     .tuck-up{
       margin-top: -200px;
       //background: $white;
@@ -181,16 +226,18 @@ html,body{
     }
   }
 
+  .rounded{
+    padding: 10px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 2px 2px;
+    border-radius: 2px;
+  }
+  
   #subscribe-cont{
     color: $whitish;
-    background: #000 image-url('bg2.png');
+    background: #000 image-url('sub.png') no-repeat;
+    background-size: cover;
 
-    .rounded{
-      padding: 10px;
-      border: none;
-      box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 2px 2px;
-      border-radius: 2px;
-    }
 
     input{
       width: 100%;
@@ -200,6 +247,13 @@ html,body{
       background: #00c853;
     }
   }
+}
+.modalButton {
+    background-color: #00c853 !important;
+    border-color: #00c853 !important;
+  }
+#modalForm{
+  margin-top: 200px;
 }
 
 .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12{
