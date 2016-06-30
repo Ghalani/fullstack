@@ -57,7 +57,7 @@
   resources :teams do
     resources :team_activities
   end
-
+  resources :onboards, only:[:create]
  	namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
       resources :farms

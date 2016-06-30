@@ -9,7 +9,12 @@
   <%= favicon_link_tag 'favicon.ico' %>
 
 </head>
-  <body>
+  <body>  
+    <% flash.each do |key, value| %>
+      <%= content_tag(:div, class: "alert alert-#{key}") do %>
+        <p><%= value %></p>
+      <% end %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

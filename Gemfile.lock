@@ -141,6 +141,7 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    slack-notifier (1.5.1)
     sprockets (3.6.0)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -184,6 +185,7 @@ DEPENDENCIES
   rails_12factor
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  slack-notifier
   turbolinks
   tzinfo-data
   uglifier (>= 1.3.0)

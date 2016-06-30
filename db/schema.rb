@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160627153659) do
+ActiveRecord::Schema.define(version: 20160630162151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,13 @@ ActiveRecord::Schema.define(version: 20160627153659) do
 
   add_index "managers", ["organization_id"], name: "index_managers_on_organization_id", using: :btree
 
+  create_table "onboards", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "organizations", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "name"
@@ -99,7 +106,6 @@ ActiveRecord::Schema.define(version: 20160627153659) do
   end
 
   add_index "organizations", ["user_id"], name: "index_organizations_on_user_id", using: :btree
->>>>>>> area_planner_to_manager
 
   create_table "regions", force: :cascade do |t|
     t.integer  "country_id"
@@ -112,23 +118,17 @@ ActiveRecord::Schema.define(version: 20160627153659) do
     t.datetime "updated_at",      null: false
   end
 
-<<<<<<< HEAD
-=======
   add_index "regions", ["country_id"], name: "index_regions_on_country_id", using: :btree
   add_index "regions", ["organization_id"], name: "index_regions_on_organization_id", using: :btree
 
->>>>>>> area_planner_to_manager
   create_table "service_providers", force: :cascade do |t|
     t.integer  "region_id"
-<<<<<<< HEAD
-=======
     t.string   "fname"
     t.string   "lname"
     t.string   "phone"
     t.string   "gender"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
->>>>>>> area_planner_to_manager
   end
 
   add_index "service_providers", ["region_id"], name: "index_service_providers_on_region_id", using: :btree

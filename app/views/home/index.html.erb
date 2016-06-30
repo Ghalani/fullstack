@@ -185,7 +185,7 @@
     </div>
   </section>
 
-</div>
+
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document" id="modalForm">
     <div class="modal-content">
@@ -196,21 +196,19 @@
         <h4 class="modal-title" id="myModalLabel">Request A Demo</h4>
       </div>
       <div class="modal-body">
-        <form action="form-data" class="form-widget">
-        <input type="hidden" name="to" value="info@ghalani.com">
-        <div class="row gt10">
-          <div class="col-md-4">
-            <input class="form-control" required data-label="Name" data-msg="Please enter name." type="text" name="name" placeholder="Enter your name">
+        <%= form_for @onboard do |f| %>
+          <div >
+            <%= f.text_field :name, class:"rounded", required: true, placeholder:"Enter your name" %>
           </div>
-          <div class="col-md-4">
-            <input class="form-control" required data-label="Email" data-msg="Please enter email." type="email" name="email" placeholder="Enter your email">
+          <div>
+            <%= f.email_field :email, class:"rounded", required: true, placeholder:"Enter your email" %>
           </div>
-        </div>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="modalButton btn btn-primary">Save changes</button>
+          <div>
+            <%= f.submit "submit", class:"modalButton btn btn-primary" %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
+</div>
 </div>
