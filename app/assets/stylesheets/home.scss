@@ -237,6 +237,10 @@ html,body{
     font-family: 'Roboto', sans-serif;
   }
 
+  a:hover{
+    background: none;
+  }
+
   #subscribe-cont{
     color: $whitish;
     background: #000 image-url('sub.png') no-repeat;
