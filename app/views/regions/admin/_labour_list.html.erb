@@ -4,8 +4,10 @@
       <div class="x_panel tile">
 				<div class="x_title">
           <h2>Teams</h2>
-          <%= link_to new_organization_team_path(@region.organization), remote: true do %>
-            <i id="add-tac-but" class="fa fa-plus add-but"></i>
+          <% if @region %>
+            <%= link_to new_organization_team_path(@region.organization), remote: true do %>
+              <i id="add-tac-but" class="fa fa-plus add-but"></i>
+            <% end %>
           <% end %>
           <div class="clearfix"></div>
         </div>
