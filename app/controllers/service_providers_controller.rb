@@ -29,14 +29,30 @@ class ServiceProvidersController < ApplicationController
     @sp = ServiceProvider.new(region_id: @region.id)
   end
 
-  private
-  def set_organization
-    begin
-      @organization = Organization.find(params[:organization_id])
-    rescue
+  def create
+    @sp = ServiceProvider.new(service_provider_param)
+    @sp.region = Region.find(params[:region_id])
+    respond_to do |format|
+      if @sp.save
+        format.js
+      else
+        format.js{render "form_error"}
+      end
     end
   end
-  def is_admin?
-    current_user.is_admin?(@organization)
-  end
+
+  private
+    def set_organization
+      begin
+        @organization = Organization.find(params[:organization_id])
+      rescue
+      end
+    end
+    def is_admin?
+      current_user.is_admin?(@organization)
+    end
+
+    def service_provider_param
+      params.require(:service_provider).permit(:fname, :lname, :phone, :gender)
+    end
 end

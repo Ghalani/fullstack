@@ -1,4 +1,7 @@
-$("#team-list").show();
-$("#new-team").remove();
-$("#disclaim").remove();
-$("#team-list").append("<div><%= @team.name %></div>")
+// $("#team-list").show();
+// $("#new-team").remove();
+// $("#disclaim").remove();
+// $("#team-list").append("<div><%= @team.name %></div>")
+closeNav();
+// $("#team-list").append('<%= link_to @team do %><div><%= @team.name %></div><% end %>');
+$("#team-list").append("<%= escape_javascript(render partial: 'regions/admin/team_list_item', locals: {t: @team}).html_safe %>");

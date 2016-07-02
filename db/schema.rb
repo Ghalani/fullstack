@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160630162151) do
+ActiveRecord::Schema.define(version: 20160702154430) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,13 +60,14 @@ ActiveRecord::Schema.define(version: 20160630162151) do
   end
 
   create_table "farmers", force: :cascade do |t|
-    t.integer  "farm_id"
-    t.string   "name"
     t.string   "phone"
     t.string   "gender"
     t.datetime "dob"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "region_id"
+    t.string   "fname"
+    t.string   "lname"
   end
 
   create_table "farms", force: :cascade do |t|
@@ -78,6 +79,12 @@ ActiveRecord::Schema.define(version: 20160630162151) do
     t.float    "area"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "farmer_id"
+  end
+
+  create_table "farms_teams", id: false, force: :cascade do |t|
+    t.integer "farm_id"
+    t.integer "team_id"
   end
 
   create_table "managers", force: :cascade do |t|
@@ -157,10 +164,10 @@ ActiveRecord::Schema.define(version: 20160630162151) do
 
   create_table "teams", force: :cascade do |t|
     t.integer  "manager_id"
-    t.integer  "farm_id"
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "region_id"
   end
 
   create_table "users", force: :cascade do |t|

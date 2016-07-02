@@ -38,6 +38,7 @@
   root to: "home#index"
   resources :managers do
     resources :farms
+    resources :teams
   end
   resources :area_planners
   #resources :managers

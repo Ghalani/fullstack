@@ -1,20 +1,15 @@
 <div id="new-team">
   <div><h2>New team</h2></div>
   <div class="card w400 center-float">
-    <%= form_for [@farm, @team], remote: true do |t|%>
+    <%= form_for [@manager, @team], remote: true do |t|%>
       <div class="form-group">
         <%= t.text_field :name, size: '80', class:"form-control", placeholder:"Name" %>
       </div>
       <div class="form-group">
         <%= t.submit 'Submit' , class:"btn btn-primary" %>
       </div>
+      <%= t.hidden_field :region_id, value: @region.id %>
     <% end %>
-    <span class="btn btn-danger" onclick="closeDiv()">Cancel</span>
+    <span class="btn btn-danger" onclick="closeNav()">Cancel</span>
   </div>
-  <script>
-    function closeDiv(){
-      $("#team-list").show();
-      $("#new-team").remove();
-    }
-  </script>
 </div>

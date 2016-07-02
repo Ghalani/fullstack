@@ -5,19 +5,17 @@
 				<div class="x_title">
           <h2>Teams</h2>
           <% if @region %>
-            <%= link_to new_organization_team_path(@region.organization), remote: true do %>
+            <%= link_to new_organization_team_path(@region.organization, region: @region.id), remote: true do %>
               <i id="add-tac-but" class="fa fa-plus add-but"></i>
             <% end %>
           <% end %>
           <div class="clearfix"></div>
         </div>
-				<div class="x_content half-div">
+				<div id="team-list" class="x_content half-div">
           <% if @region %>
             <% if @teams && (@teams.size > 0) %>
               <% @teams.each do |t| %>
-                <div class="list-item">
-                  <%= t.name %>
-                </div>
+                <%= render partial: 'regions/admin/team_list_item', locals: {t: t} %>
               <% end %>
             <% else %>
               You have no teams in (<%= @region.name %>)
@@ -40,14 +38,12 @@
           <% end %>
           <div class="clearfix"></div>
         </div>
-				<div class="x_content half-div">
+				<div id="labourer-list" class="x_content half-div">
           <% if @sps.size < 1 %>
             <div>This Organization has no labourers</div>
           <% else %>
             <% @sps.each do |sp| %>
-            <div class="list-item">
-              <%= sp.fname %> <%= sp.lname %>
-            </div>
+              <%= render partial: 'regions/admin/sp_list_item', locals: {sp: sp} %>
             <% end %>
           <% end %>
         </div>

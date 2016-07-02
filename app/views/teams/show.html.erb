@@ -1,0 +1,212 @@
+<div id="team-cont">
+  <div class="btn" onclick="goBack()">
+    <i class="fa fa-chevron-left"></i> back
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="x_panel tile">
+  			<div class="x_title">
+  				<h2><%= @team.name %></h2>
+  				<div class="clearfix"></div>
+  			</div>
+  			<div class="x_content">
+          <div id="tm_mem_list">
+            <% if @team.team_assignments.size < 1 %>
+              <div id="no-sp" class="center-text">
+                <%= image_tag 'no_truck.png' %>
+              </div>
+              <div class="center-text"><h1>This team is empty</h1></div>
+            <% else %>
+                <% @sps.each do |sp|%>
+                    <%= render 'tm_list_item', sp: sp %>
+                <% end %>
+            <% end %>
+          </div>
+          <div id="add-toggle-but" class="btn btn-primary" onclick="toggleEnable()">Add members</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="x_panel tile">
+  			<div class="x_title">
+  				<h2>Available workers (<%= @team.region.name %>)</h2>
+  				<div class="clearfix"></div>
+  			</div>
+  			<div class="x_content">
+  				<div class="row half-div">
+            <% @av_sps.each do |avs| %>
+              <div id="av_sp_item_<%= avs.id %>"class="add-sp-stub col-md-4 col-sm-6" value=<%= avs.id %>>
+                <%= render 'team_member_item', sp: avs %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="x_panel tile">
+  			<div class="x_title">
+  				<h2>Team leader report</h2>
+  				<div class="clearfix"></div>
+  			</div>
+  			<div id="rp_cont" class="x_content">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div id="new-tac-tile" class="x_panel tile" hidden></div>
+      <div class="x_panel tile">
+  			<div class="x_title">
+  				<h2>Team details</h2>
+          <i id="add-tac-but" class="fa fa-plus add-but"></i>
+  				<div class="clearfix"></div>
+  			</div>
+  			<div class="x_content half-div">
+  				Information about the team and the duty they are assigned
+          <div>
+            <div class="">
+              Assign Activity to team and the due date
+              <div>
+                <h3>On-going</h3>
+                <% if @act_tact.size < 1 %>
+                  No On-going Activities
+                <% else %>
+                  <% @act_tact.each do |a| %>
+                    <div>
+                      <div><h4><%= a.activity.name %></h4></div>
+                      <div><%= a.comment %></div>
+                    </div>
+                  <%end%>
+                <% end %>
+              </div>
+              <div>
+                <h3>Upcoming</h3>
+                <% if @upc_tact.size < 1 %>
+                  No Upcoming Activities
+                <% else %>
+                  <% @upc_tact.each do |a| %>
+                    <div>
+                      <div><h4><%= a.activity.name %></h4></div>
+                      <div><%= a.comment %></div>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+              <div>
+                <h3>Old</h3>
+                <% if @old_tact.size < 1 %>
+                  No old Activities
+                <% else %>
+                  <% @upc_tact.each do |a| %>
+                    <div>
+                      <div><h4><%= a.activity.name %></h4></div>
+                      <div><%= a.comment %></div>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    var isActive = false;
+
+    function goBack() {
+      window.history.back();
+    }
+
+    $('.add-sp-stub').on('click', function(){
+      if (isActive) {
+        addSp($(this).attr('value'));
+      }
+    });
+
+    function addSp(sp_id){
+      console.log(sp_id);
+      $.post("/api/v1/team_assignments",
+        {
+          "team_assignment": {
+            "service_provider_id": sp_id,
+            "team_id": "<%= @team.id %>"
+          }
+        },
+        function(data, status){
+          //alert("Data: " + data + "\nStatus: " + status);
+          var data = data;
+          var spdata = data.team_assignment.service_provider;
+          if (status == "success") {
+            $("#av_sp_item_"+sp_id).remove();
+            $("#no-sp").html("");
+            $("#tm_mem_list").append(
+            '<div class="row list-item">'
+              +'<div class="center-text col-xs-3">'
+                +'<%= image_tag "user.png", class:"micro-img circle"%>'
+              +'</div>'
+              +'<div class="col-xs-9">'
+                +'<a href="#">'+spdata.fname+" "+spdata.lname
+                +'</a>'
+              +'</div>'
+            +'</div>');
+          }
+        });
+    }
+
+    function toggleEnable() {
+      if (isActive){
+        $("#add-toggle-but").removeClass("btn-danger");
+        $("#add-toggle-but").addClass("btn-primary");
+        $("#add-toggle-but").html("ADD MEMBERS");
+        isActive = false;
+      }else{
+        $("#add-toggle-but").removeClass("btn-primary");
+        $("#add-toggle-but").addClass("btn-danger");
+        $("#add-toggle-but").html("DONE");
+        isActive = true;
+      }
+    }
+
+    $("#add-tac-but").on("click", function(){
+      console.log("clicked");
+      $("#new-tac-tile").html("");
+      $("#new-tac-tile").show();
+      $("#new-tac-tile").append('<%= escape_javascript(render partial:"new_team_activity").html_safe %>');
+    });
+
+    // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyC2NxLOf_zTbaq0pyoeRLfBFTX4Q55KWuo",
+        authDomain: "ghalanireport.firebaseapp.com",
+        databaseURL: "https://ghalanireport.firebaseio.com",
+        storageBucket: "",
+      };
+      firebase.initializeApp(config);
+      var commentsRef = firebase.database().ref('team_activities/1/reports');
+      // commentsRef.once('value').then(function(snapshot) {
+      //   console.log("Snapshot: "+ JSON.stringify(snapshot.val() +" : "+ snapshot.val()[1].message));
+      //   snapshot.val().forEach(function(e){
+      //     if(Boolean(e)){
+      //       appendReport(e)
+      //     }
+      //   })
+      // });
+      commentsRef.on('child_added', function(data) {
+          console.log("child added: "+ JSON.stringify(data.val()));
+
+          appendReport(data.val());
+        //addCommentElement(postElement, data.key, data.val().text, data.val().author);
+      });
+
+      function appendReport(e){
+        var div1 = $('<div>', { class: 'row report-list-item no-marg' });
+          var div1_1 = $('<div>', { class: 'col-xs-6 no-pad rcell' });
+          var div1_2 = $('<div>', { class: 'col-xs-6 rcell' });
+          div1_1.append(e.message);
+          div1_2.append(e.datetime);
+        div1.append(div1_1);
+        div1.append(div1_2);
+        $("#rp_cont").append(div1).show("slow");
+      }
+  </script>
+</div>
