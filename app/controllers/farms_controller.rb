@@ -17,9 +17,12 @@ class FarmsController < ApplicationController
 		@farmer = @farm.farmer
 		@assps = []
 		@teams = @farm.teams
-		@teams.each do |t|
-			@assps += ServiceProvider.includes(:team_assignments).where( :team_assignments => { :team_id => t.id })
-		end
+		# @assps += ServiceProvider.includes(:team_assignments).where( :team_assignments => { :team_id => t.id })
+		@assps = @teams.collect{|t|
+			t.team_assignments.collect{|ta|
+				ta.service_provider
+			}
+		}.flatten.uniq
 		@sps = ServiceProvider.where(region_id: @farm.region_id)
 		if @organization && is_admin?
 			render "organizations/views/farms/show"
@@ -52,9 +55,20 @@ class FarmsController < ApplicationController
   	end
   end
 
+	def update
+		@farm = Farm.find(params[:id])
+	  respond_to do |format|
+  		if @farm.update_attributes(farm_params)
+		    format.js
+		  else
+		  	format.js{render "error"}
+		  end
+  	end
+	end
+
   private
   def farm_params
-	  params.require(:farm).permit(:name, :area, :lat, :lon, :region_id)
+	  params.require(:farm).permit(:name, :area, :lat, :lon, :region_id, :farmer_id)
 	end
 
 	def set_organization

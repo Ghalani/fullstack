@@ -6,10 +6,10 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <link href="https://fonts.googleapis.com/css?family=El+Messiri|Lato:300" rel="stylesheet">
-  <%= favicon_link_tag 'favicon.ico' %>
+  <%= render partial: 'layouts/favicon' %>
 
 </head>
-  <body>  
+  <body>
     <% flash.each do |key, value| %>
       <%= content_tag(:div, class: "alert alert-#{key}") do %>
         <p><%= value %></p>

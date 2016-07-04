@@ -1,4 +1,4 @@
 class ServiceProviderSerializer < ActiveModel::Serializer
   has_one :user
-  attributes :id
+  attributes :id, :fname, :lname
 end

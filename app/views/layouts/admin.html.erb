@@ -10,7 +10,9 @@
     <title>Admin | Ghalani</title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= render partial: 'layouts/favicon' %>
     <%= csrf_meta_tags %>
+
   </head>
   <% flash.each do |key, value| %>
     <%= content_tag(:div, class: "alert alert-#{key}") do %>
@@ -100,23 +102,10 @@
       function displayError(msg){
         $('form #err-msg').html("").append(msg);
       }
-    </script>
 
-    <script>
-      var map;
-      var infowindow;
-      var markers = [];
-      function initMap() {
-        if (Boolean($("#map"))){
-          infowindow = new google.maps.InfoWindow();
-          map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 5.5557, lng: -0.1963},
-            zoom: 8
-          });
-        }
+      function reload(){
+        location.reload();
       }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2NxLOf_zTbaq0pyoeRLfBFTX4Q55KWuo&q=ghana&callback=initMap" async defer></script>
-
   </body>
 </html>

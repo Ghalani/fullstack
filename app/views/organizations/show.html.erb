@@ -39,3 +39,19 @@
 
 <%= link_to 'Edit', edit_organization_path(@organization) %> |
 <%= link_to 'Back', organizations_path %>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2NxLOf_zTbaq0pyoeRLfBFTX4Q55KWuo&q=ghana&callback=initMap" async defer></script>
+<script>
+  var map;
+  var infowindow;
+  var markers = [];
+  function initMap() {
+    if (Boolean($("#map"))){
+      infowindow = new google.maps.InfoWindow();
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 5.5557, lng: -0.1963},
+        zoom: 8
+      });
+    }
+  }
+</script>

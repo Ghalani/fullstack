@@ -1,0 +1,53 @@
+<div class="w700 center-float">
+  <div class="card row">
+    <div class="col-md-6">
+      <h3>Available farms</h3>
+      <% if @remaining_farms.size > 0 %>
+        <% @remaining_farms.each do |rf| %>
+        <div id="rf-<%= rf.id %>" class="list-item" onclick="addFarm(<%= rf.id %>)">
+          <%= rf.name %>
+        </div>
+        <% end %>
+      <% else %>
+        <h3>No farms available</h3>
+      <% end %>
+    </div>
+    <div class="col-md-6">
+      <h3>Farms assigned to team</h3>
+      <% if @farms.size > 0 %>
+        <div id="f-list">
+          <% @farms.each do |f| %>
+          <div id="f-<%= f.id %>" class="list-item">
+            <%= f.name %>
+          </div>
+          <% end %>
+        </div>
+      <% else %>
+        <div id="f-zero">
+          <h3>No farms available</h3>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  function addFarm(fm_id){
+    console.log(fm_id);
+    $.post("/api/v1/teams/"+<%= @team.id %>+"/add_farm",
+      {
+        "farm_id": fm_id
+      },
+      function(data, status){
+        var data = data;
+        var farmData = data.farm;
+        if (status == "success") {
+          lItem.append(""+farmData.name);
+          // var lItem = $('<div>', { class: 'list-item', id="f-"+farmData.id });
+          // console.log("SUCCESS");
+          // $("#rf-"+fm_id).remove("slow");
+          // $("f-list").append(lItem);
+        }
+      });
+  }
+</script>

@@ -4,10 +4,16 @@
       <%= image_tag 'user.png', class:'small-img circle' %>
     </div>
     <div class="center-text">
-      <%= @sp.name %>
+      <%= @sp.fname+" "+@sp.lname %>
     </div>
     <div class="center-text">
-      <%= @sp.phone %>
+      <i class="fa fa-phone"></i> <%= @sp.phone %>
+    </div>
+    <div class="center-text">
+      Gender: <%= @sp.gender %>
+    </div>
+    <div class="center-text">
+      Region: <%= @sp.region.name %>
     </div>
   </div>
 </div>

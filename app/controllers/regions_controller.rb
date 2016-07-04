@@ -19,7 +19,7 @@ class RegionsController < ApplicationController
   def show_labour
     @region = Region.find(params[:region_id])
     @sps = @region.service_providers
-    @teams = @sps.collect{|s| s.team_assignments.collect{|ta| ta.team}}.flatten.uniq
+    @teams = @region.teams
     #@regions = @sps.first.region.organization.regions ||= []
     respond_to do |format|
       format.js {render 'regions/js/show_labour'}

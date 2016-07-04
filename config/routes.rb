@@ -38,6 +38,9 @@
   root to: "home#index"
   resources :managers do
     resources :farms
+    resources :teams do
+      get 'assign_farms' => 'teams#assign_farms'
+    end
   end
   resources :area_planners
   #resources :managers
@@ -61,7 +64,9 @@
  	namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
       resources :farms
-      resources :teams
+      resources :teams do
+        post "add_farm" => "teams#add_farm"
+      end
       resources :team_assignments
     end
   end

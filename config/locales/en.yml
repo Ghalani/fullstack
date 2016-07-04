@@ -20,4 +20,19 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      farmer:
+        fname: "First name"
+        lname: "Last name"
+        fname: "Phone number"
+    errors:
+      models:
+        farmer:
+          attributes:
+            fname:
+              blank: "is required"
+            lname:
+              blank: "is required"
+            phone:
+              blank: "is required"
