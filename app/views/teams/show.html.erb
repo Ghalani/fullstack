@@ -25,6 +25,36 @@
           <div id="add-toggle-but" class="btn btn-primary" onclick="toggleEnable()">Add members</div>
         </div>
       </div>
+      <div class="x_panel tile">
+  			<div class="x_title">
+  				<h2>Assigned farms</h2>
+          <%= link_to  manager_team_assign_farms_path(@manager, @team), remote: true do %>
+            <i class="fa fa-plus add-but"></i>
+          <% end %>
+  				<div class="clearfix"></div>
+  			</div>
+  			<div class="x_content">
+          <% if @farms.size < 1 %>
+            <div id="no-sp" class="center-text">
+              <h3>No farms assigned</h3>
+            </div>
+          <% else %>
+              <% @farms.each do |fm|%>
+                  <div class="list-item">
+                    <%= fm.name %>
+                  </div>
+              <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="x_panel tile">
+  			<div class="x_title">
+  				<h2>Remaining farms</h2>
+  				<div class="clearfix"></div>
+  			</div>
+  			<div class="x_content">
+        </div>
+      </div>
     </div>
     <div class="col-md-4">
       <div class="x_panel tile">

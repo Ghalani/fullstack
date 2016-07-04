@@ -24,6 +24,7 @@ class FarmersController < ApplicationController
     @farm = Farm.find(params[:farm_id])
     @farmers = @farm.region.farmers # => for existing farmers
     @farmer = Farmer.new
+    @manager = current_user.manager
     respond_to do |format|
       format.js
     end

@@ -22,8 +22,10 @@ class TeamsController < ApplicationController
   end
 
   def show
+    @manager = Manager.find(params[:manager_id])
     @team = Team.find_by_id(params[:id])
     @farms = @team.farms
+    @remaining_farms = @team.region.farms - @farms
     #@sps = @team.team_assignments.service_providers
     @sps = ServiceProvider.includes(:team_assignments).where( :team_assignments => { :team_id => @team.id })
     @av_sps = ServiceProvider.includes(:team_assignments).where( :team_assignments => { :id => nil }, region: @team.region_id )
@@ -46,6 +48,15 @@ class TeamsController < ApplicationController
       respond_to do |f|
         f.js
       end
+    end
+  end
+
+  def assign_farms
+    @team = Team.find(params[:team_id])
+    @farms = @team.farms
+    @remaining_farms = @team.region.farms - @farms
+    respond_to do |format|
+      format.js
     end
   end
 

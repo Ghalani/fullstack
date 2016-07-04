@@ -1,8 +1,8 @@
-<%= form_for @farm do |f| %>
+<%= form_for [@manager, @farm], remote: true do |f| %>
   <div class="form-group">
-    <%= f.collection_select :farmer_id, @farmers, :id,:name, include_blank: true  %>
+    <%= f.collection_select :farmer_id, @farmers, :id, :fl_name, include_blank: true  %>
   </div>
   <div class="form-group">
-    <% f.submit "select" %>
+    <%= f.submit "select" %>
   </div>
 <% end %>

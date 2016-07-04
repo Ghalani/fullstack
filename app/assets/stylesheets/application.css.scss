@@ -62,6 +62,10 @@
 .list-item, .list-item-head{
   font-size: 15px;
   padding: 10px;
+  &:hover{
+    background: #eee;
+    cursor: pointer;
+  }
 }
 
 .list-item-head{
