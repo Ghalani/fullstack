@@ -1,5 +1,6 @@
 class FarmsController < ApplicationController
-	before_action :set_organization
+	before_action :set_organization, only:[:index, :show]
+	before_action :set_manager, except:[:show, :index]
 	layout 'admin'
 	def index
 		if @organization && is_admin?
@@ -14,7 +15,6 @@ class FarmsController < ApplicationController
 
 	def show
 		@farm = Farm.find_by_id(params[:id])
-		@farmer = @farm.farmer
 		@assps = []
 		@teams = @farm.teams
 		# @assps += ServiceProvider.includes(:team_assignments).where( :team_assignments => { :team_id => t.id })
@@ -25,8 +25,10 @@ class FarmsController < ApplicationController
 		}.flatten.uniq
 		@sps = ServiceProvider.where(region_id: @farm.region_id)
 		if @organization && is_admin?
-			render "organizations/views/farms/show"
+			@manager = Manager.where(user_id: @organization.user_id, organization_id: @organization.id).first
+			@is_org = true
 		else
+			set_manager
 			respond_to do |format|
 	  		format.js
 				format.html
@@ -66,6 +68,15 @@ class FarmsController < ApplicationController
   	end
 	end
 
+	def assign_team
+    @farm = Farm.find(params[:farm_id])
+    @teams = @farm.teams
+    @remaining_teams = @farm.region.teams - @teams
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
   def farm_params
 	  params.require(:farm).permit(:name, :area, :lat, :lon, :region_id, :farmer_id)
@@ -74,6 +85,13 @@ class FarmsController < ApplicationController
 	def set_organization
 		begin
 			@organization = Organization.find(params[:organization_id])
+		rescue
+		end
+	end
+
+	def set_manager
+		begin
+			@manager = Manager.find(params[:manager_id])
 		rescue
 		end
 	end

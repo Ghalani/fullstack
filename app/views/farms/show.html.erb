@@ -1,1 +1,106 @@
-Farm#show
+<% @farmer = Farmer.new if @farmer %>
+<div><h2><%= @farm.name %> | Farm Dashboard</h2></div>
+<div class="row">
+  <div class="col-md-3">
+    <div class="card w200">
+      Stat 1
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card w200">
+      Stat 2
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card w200">
+      Stat 3
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card w200">
+      Stat 4
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <div class="x_panel tile">
+      <div class="x_title">
+        <h2><small>Labourers</small></h2>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content half-div">
+        <% if @assps.size > 0 %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Fullname</th>
+              <th>Phone</th>
+              <th>Gender</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <% @assps.each do |ss| %>
+            <tr>
+              <td><%= ss.fl_name %></td>
+              <td><%= ss.phone %></td>
+              <td><%= ss.gender %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <% else %>
+          <h2>This farms has no labourer assigned to it</h2>
+        <% end %>
+      </div>
+    </div>
+    <div class="x_panel tile">
+      <div class="x_title">
+        <h2><small>Assigned teams</small></h2>
+        <ul class="nav navbar-right panel_toolbox">
+          <li>
+            <%= link_to manager_farm_assign_teams_path(@manager, @farm), remote: true do %>
+              <i class="fa fa-plus"></i>
+            <% end %>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content half-div">
+        <% if @teams.size > 0 %>
+          <% @teams.each do |t| %>
+            <div class="list-item">
+              <%= t.name %>
+            </div>
+          <% end %>
+        <% else %>
+          This farm has no team assigned to it
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+
+    <div class="x_panel tile">
+      <div class="x_title">
+        <h3>Farmer details</h3>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content half-div">
+        <% if @farm.farmer %>
+          <h2><%= @farm.farmer.fname %></h2>
+          <h2><%= @farm.farmer.lname %></h2>
+          <h2><%= @farm.farmer.phone %></h2>
+          <h2><%= @farm.farmer.gender %></h2>
+        <% else %>
+          <h2>This farm has no farmer</h2>
+          <%= link_to 'Add',  farm_assign_farmer_path(@farm), class:'btn btn-primary', remote: true %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

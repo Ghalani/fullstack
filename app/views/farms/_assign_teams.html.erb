@@ -1,0 +1,49 @@
+<div class="w700 center-float">
+  <div class="card row">
+    <div class="col-md-6">
+      <h3>Available teams</h3>
+      <% if @remaining_teams && @remaining_teams.size > 0 %>
+        <% @remaining_teams.each do |rt| %>
+        <div id="rt-<%= rt.id %>" class="list-item" onclick="addTeam(<%= rt.id %>)">
+          <%= rt.name %>
+        </div>
+        <% end %>
+      <% else %>
+        <h3>No teams available</h3>
+      <% end %>
+    </div>
+    <div class="col-md-6">
+      <h3>Teams assigned to farm</h3>
+      <% if @teams && @teams.size > 0 %>
+        <div id="t-list">
+          <% @teams.each do |t| %>
+          <div id="t-<%= t.id %>" class="list-item">
+            <%= f.name %>
+          </div>
+          <% end %>
+        </div>
+      <% else %>
+        <div id="t-zero">
+          <h3>No teams available</h3>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  function addTeam(fm_id){
+    console.log(fm_id);
+    $.post("/api/v1/farms/"+<%= @farm.id %>+"/add_team",
+      {
+        "team_id": fm_id
+      },
+      function(data, status){
+        var data = data;
+        var teamData = data.team;
+        if (status == "success") {
+          lItem.append(""+teamData.name);
+        }
+      });
+  }
+</script>
