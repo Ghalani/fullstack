@@ -3,4 +3,8 @@ class ServiceProvider < ActiveRecord::Base
 	has_many 		:activity_report
 	has_many		:team_assignments
 	belongs_to 	:region
+
+	def fl_name
+		"#{self.fname} #{self.lname}"
+	end
 end

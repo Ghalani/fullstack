@@ -37,7 +37,9 @@
 
   root to: "home#index"
   resources :managers do
-    resources :farms
+    resources :farms do
+      get 'assign_teams' => 'farms#assign_teams'
+    end
     resources :teams do
       get 'assign_farms' => 'teams#assign_farms'
     end

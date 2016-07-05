@@ -35,8 +35,12 @@ module Api
         if @team
           @farm = Farm.find_by(id: params[:farm_id])
           if @farm
-            @team.farms << @farm
-            render json: @farm, status: :created
+            begin
+              @team.farms << @farm
+              render json: @farm, status: :created
+            rescue
+              render json: {error:"duplicate"}, status: :created 
+            end
           else
             render json: {error: "farm not found"}, status: :not_found
           end
