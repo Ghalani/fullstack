@@ -65,7 +65,9 @@
   resources :onboards, only:[:create]
  	namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
-      resources :farms
+      resources :farms do
+        post "add_team" => "farms#add_team"
+      end
       resources :teams do
         post "add_farm" => "teams#add_farm"
       end

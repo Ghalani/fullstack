@@ -1,49 +1,65 @@
 <div class="w700 center-float">
   <div class="card row">
+    <i class="add-but fa fa-close" onclick="closeNav()"></i>
     <div class="col-md-6">
       <h3>Available teams</h3>
-      <% if @remaining_teams && @remaining_teams.size > 0 %>
-        <% @remaining_teams.each do |rt| %>
-        <div id="rt-<%= rt.id %>" class="list-item" onclick="addTeam(<%= rt.id %>)">
-          <%= rt.name %>
-        </div>
+      <div id="rm-teams">
+        <% if @remaining_teams && @remaining_teams.size > 0 %>
+          <% @remaining_teams.each do |rt| %>
+            <div id="rt-<%= rt.id %>" class="list-item" onclick="addTeam(<%= rt.id %>)">
+              <%= rt.name %>
+            </div>
+          <% end %>
+        <% else %>
+          <h3>No teams available</h3>
         <% end %>
-      <% else %>
-        <h3>No teams available</h3>
-      <% end %>
+      </div>
     </div>
     <div class="col-md-6">
       <h3>Teams assigned to farm</h3>
-      <% if @teams && @teams.size > 0 %>
-        <div id="t-list">
-          <% @teams.each do |t| %>
-          <div id="t-<%= t.id %>" class="list-item">
-            <%= f.name %>
+      <div id="t-list">
+        <% if @teams && @teams.size > 0 %>
+            <% @teams.each do |t| %>
+            <div id="t-<%= t.id %>" class="list-item">
+              <%= t.name %>
+            </div>
+            <% end %>
+        <% else %>
+          <div id="zero-tm">
+            <h3>No teams available</h3>
           </div>
-          <% end %>
-        </div>
-      <% else %>
-        <div id="t-zero">
-          <h3>No teams available</h3>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
+    <div id="err-msg"></div>
   </div>
 </div>
 
 <script>
-  function addTeam(fm_id){
-    console.log(fm_id);
-    $.post("/api/v1/farms/"+<%= @farm.id %>+"/add_team",
+  function addTeam(tm_id){
+    console.log(tm_id);
+    $.post("/api/v1/farms/<%= @farm.id %>"+"/add_team",
       {
-        "team_id": fm_id
-      },
-      function(data, status){
-        var data = data;
+        "team_id": tm_id
+      })
+      .done(function(data){
+        zeroState();
         var teamData = data.team;
-        if (status == "success") {
-          lItem.append(""+teamData.name);
-        }
+        $("#rt-"+teamData.id).remove();
+        var lItem = $("<div>", { class:"list-item", id:"t-"+teamData.id });
+        lItem.append(""+teamData.name);
+        $("#t-list").append(lItem);
+      }).fail(function(data){
+        console.log("DATA: "+JSON.stringify(data));
+        displayError(data.responseJSON.error);
       });
+  }
+
+  function zeroState(){
+    if (Boolean($('#t-list').html())) {
+      $("#zero-tm").remove();
+    }else{
+      $("#zero-tm").append("<h3>No teams available</h3>");
+    }
   }
 </script>

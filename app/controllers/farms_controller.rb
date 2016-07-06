@@ -68,11 +68,12 @@ class FarmsController < ApplicationController
   	end
 	end
 
-	def assign_team
+	def assign_teams
     @farm = Farm.find(params[:farm_id])
     @teams = @farm.teams
     @remaining_teams = @farm.region.teams - @teams
     respond_to do |format|
+			puts "#"*100; puts @farm.name
       format.js
     end
   end
