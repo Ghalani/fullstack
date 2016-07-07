@@ -64,10 +64,12 @@ class UsersController < ApplicationController
       # => create new org
       UserMailer.account_activation(@user).deliver_now
       flash[:info] = "Please check your email to activate your account."
-      redirect_to "/organizations"
+      #redirect_to "/organizations"
+      redirect_to "/"
     else
       # => go back to signup form
-      redirect_to :new
+      flash[:error] = @user.errors.full_messages.to_sentence
+      redirect_to "/signup"
     end
   end
 
