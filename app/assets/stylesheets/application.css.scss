@@ -97,3 +97,11 @@
 }
 
 #err-msg{ color: red; font-size: 30px;}
+
+.field{
+  textarea{
+    width: 100%;
+    min-height: 200px;
+    font-size: 20px;
+  }
+}

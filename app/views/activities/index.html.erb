@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Activities</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @activities.each do |activity| %>
+      <tr>
+        <td><%= activity.name %></td>
+        <td><%= activity.description %></td>
+        <td><%= link_to 'Show', [@organization, activity] %></td>
+        <td><%= link_to 'Edit', edit_organization_activity_path(@organization, activity) %></td>
+        <td><%= link_to 'Destroy', [@organization, activity], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<div class="row">
+  <% @activities.each do |activity| %>
+    <div class="col-xs-3">
+      <div class="x_panel tile">
+        <div class="x_title">
+          <%= link_to [@organization, activity] do %>
+            <h2><%= activity.name %></h2>
+          <% end %>
+          <ul class="nav navbar-right panel_toolbox">
+            <li>
+              <%= link_to edit_organization_activity_path(@organization, activity) do %>
+                <i class="fa fa-pencil"></i>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to [@organization, activity], method: :delete, data: { confirm: 'Are you sure?' } do %>
+                <i class="fa fa-close"></i>
+              <% end %>
+            </li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <%= activity.description %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to 'New Activity', new_organization_activity_path(@organization) %>

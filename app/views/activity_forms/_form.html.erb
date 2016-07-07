@@ -1,0 +1,29 @@
+<%= form_for [@activity, @activity_form] do |f| %>
+  <% if @activity_form.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@activity_form.errors.count, "error") %> prohibited this activity_form from being saved:</h2>
+
+      <ul>
+      <% @activity_form.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.fields_for :fields do |builder| %>
+      <%= render "field_fields", f: builder %>
+    <% end %>
+  </div>
+  <div class="field">
+    <%= link_to_add_fields "Add Field", f, :fields %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

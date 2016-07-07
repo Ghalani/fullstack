@@ -1,9 +1,10 @@
 class CreateActivities < ActiveRecord::Migration
   def change
+    drop_table :activities
     create_table :activities do |t|
-      t.references  :organization, index: true
       t.string :name
-      t.text    :description
+      t.text :description
+
       t.timestamps null: false
     end
   end
