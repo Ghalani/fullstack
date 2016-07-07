@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @activity_form.name %>
+</p>
+<% @activity_form.fields.each do |field| %>
+  <%= render "activity_forms/fields/#{field.field_type}", field: field %>
+<% end %>
+
+<%= link_to 'Edit', edit_activity_activity_form_path(@activity, @activity_form) %> |
+<%= link_to 'Back', activity_activity_forms_path(@activity) %>
