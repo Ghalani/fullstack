@@ -1,8 +1,8 @@
   Rails.application.routes.draw do
-  resources :activities do
-    resources :activity_forms
-  end
-  
+  # resources :activities do
+  #   resources :activity_forms
+  # end
+
   get 'farmers/index'
 
   get 'farmers/show'
@@ -31,6 +31,7 @@
       resources :teams, only:[:new]
     #end
     resources :regions
+    resources :activities
   end
 
   resources :farms, only:[:index, :show, :new] do

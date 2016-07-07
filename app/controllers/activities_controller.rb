@@ -1,5 +1,7 @@
 class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
+  before_action :set_organization
+  layout "admin"
 
   # GET /activities
   # GET /activities.json
@@ -25,10 +27,11 @@ class ActivitiesController < ApplicationController
   # POST /activities.json
   def create
     @activity = Activity.new(activity_params)
+    @activity.organization = @organization
 
     respond_to do |format|
       if @activity.save
-        format.html { redirect_to @activity, notice: 'Activity was successfully created.' }
+        format.html { redirect_to [@organization, @activity], notice: 'Activity was successfully created.' }
         format.json { render :show, status: :created, location: @activity }
       else
         format.html { render :new }
@@ -42,7 +45,7 @@ class ActivitiesController < ApplicationController
   def update
     respond_to do |format|
       if @activity.update(activity_params)
-        format.html { redirect_to @activity, notice: 'Activity was successfully updated.' }
+        format.html { redirect_to [@organization, @activity], notice: 'Activity was successfully updated.' }
         format.json { render :show, status: :ok, location: @activity }
       else
         format.html { render :edit }
@@ -67,8 +70,12 @@ class ActivitiesController < ApplicationController
       @activity = Activity.find(params[:id])
     end
 
+    def set_organization
+      @organization = Organization.find(params[:organization_id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def activity_params
-      params.require(:activity).permit(:name, :description)
+      params.require(:activity).permit(:name, :description, fields_attributes:[:id, :field_type, :name, :required, :_destroy])
     end
 end

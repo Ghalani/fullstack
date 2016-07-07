@@ -1,0 +1,9 @@
+<div class="field">
+  <% if defined? f %>
+    <%= f.check_box :name %><br />
+    <%= f.label field.name %>
+  <% else %>
+    <%= check_box_tag :name %><br />
+    <%= label_tag field.name %>
+  <% end %>
+</div>

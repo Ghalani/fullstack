@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160706174537) do
+ActiveRecord::Schema.define(version: 20160707193228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,20 +19,19 @@ ActiveRecord::Schema.define(version: 20160706174537) do
   create_table "activities", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "organization_id"
   end
 
   create_table "activity_form_fields", force: :cascade do |t|
     t.string   "name"
     t.string   "field_type"
     t.boolean  "required"
-    t.integer  "activity_form_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "activity_id"
   end
-
-  add_index "activity_form_fields", ["activity_form_id"], name: "index_activity_form_fields_on_activity_form_id", using: :btree
 
   create_table "activity_forms", force: :cascade do |t|
     t.string   "name"
@@ -205,5 +204,4 @@ ActiveRecord::Schema.define(version: 20160706174537) do
     t.datetime "updated_at",                            null: false
   end
 
-  add_foreign_key "activity_form_fields", "activity_forms"
 end

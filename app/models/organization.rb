@@ -1,11 +1,12 @@
 class Organization < ActiveRecord::Base
   after_create :create_root_manager
 
-  has_many :activities
-  has_many :managers
-  has_many :regions
-  belongs_to :user
-  belongs_to :country
+  has_many    :activities
+  has_many    :managers
+  has_many    :regions
+  belongs_to  :user
+  belongs_to  :country
+  has_many    :activities
 
   def farms
     farms = []

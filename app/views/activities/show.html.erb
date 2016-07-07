@@ -1,14 +1,38 @@
 <p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-8">
+    <div class="x_panel tile">
+			<div class="x_title">
+				<h2>Activity details</h2>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+        <p>
+          <strong>Name:</strong>
+          <%= @activity.name %>
+        </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @activity.name %>
-</p>
+        <p>
+          <strong>Description:</strong>
+          <%= @activity.description %>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="x_panel tile">
+			<div class="x_title">
+				<h2>Form</h2>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+        <% @activity.fields.each do |field| %>
+          <%= render "activities/fields/#{field.field_type}", field: field %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @activity.description %>
-</p>
-
-<%= link_to 'Edit', edit_activity_path(@activity) %> |
-<%= link_to 'Back', activities_path %>
+<%= link_to 'Edit', edit_organization_activity_path(@organization, @activity) %> |
+<%= link_to 'Back', organization_activities_path(@organization) %>
