@@ -29,10 +29,10 @@ class TeamsController < ApplicationController
     #@sps = @team.team_assignments.service_providers
     @sps = ServiceProvider.includes(:team_assignments).where( :team_assignments => { :team_id => @team.id })
     @av_sps = ServiceProvider.includes(:team_assignments).where( :team_assignments => { :id => nil }, region: @team.region_id )
-    @activities = Activity.all
     @upc_tact = TeamActivity.where("start_date > ?", Time.now)
     @act_tact = TeamActivity.where("(start_date <= ?) AND (end_date > ?)", Time.now, Time.now)
     @old_tact = TeamActivity.where("end_date < ?", Time.now)
+    # @activities = Activity.all
     respond_to do |format|
       format.js   # => preview
       format.html # => fullview
@@ -69,6 +69,15 @@ class TeamsController < ApplicationController
       else
         f.js{render 'error'}
       end
+    end
+  end
+
+  def new_team_lead
+    @team = Team.find(params[:team_id])
+    @leader = @team.leader
+    @sps = ServiceProvider.includes(:team_assignments).where( :team_assignments => { :team_id => @team.id })
+    respond_to do |format|
+      format.js
     end
   end
 

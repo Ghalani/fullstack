@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160707193228) do
+ActiveRecord::Schema.define(version: 20160712101559) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -150,8 +150,10 @@ ActiveRecord::Schema.define(version: 20160707193228) do
     t.string   "lname"
     t.string   "phone"
     t.string   "gender"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "salt"
+    t.string   "encrypted_password"
   end
 
   add_index "service_providers", ["region_id"], name: "index_service_providers_on_region_id", using: :btree
@@ -166,6 +168,7 @@ ActiveRecord::Schema.define(version: 20160707193228) do
     t.text     "comment"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.integer  "farm_id"
   end
 
   create_table "team_assignments", force: :cascade do |t|
@@ -184,6 +187,7 @@ ActiveRecord::Schema.define(version: 20160707193228) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "region_id"
+    t.integer  "leader_id"
   end
 
   create_table "users", force: :cascade do |t|

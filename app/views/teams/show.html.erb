@@ -10,6 +10,19 @@
   				<div class="clearfix"></div>
   			</div>
   			<div class="x_content">
+          <div>
+            <% if @leader %>
+              Show leader
+            <% else %>
+              <div>
+                Add a team lead
+              </div>
+              <div>
+                <%= link_to "Add", manager_team_new_team_lead_path(@manager, @team), class:"btn btn-primary", remote: true %>
+              </div>
+            <% end %>
+          </div>
+          <hr>
           <div id="tm_mem_list">
             <% if @team.team_assignments.size < 1 %>
               <div id="no-sp" class="center-text">
@@ -86,7 +99,9 @@
       <div class="x_panel tile">
   			<div class="x_title">
   				<h2>Team details</h2>
-          <i id="add-tac-but" class="fa fa-plus add-but"></i>
+          <%= link_to new_region_team_activity_path(@team.region), remote: true do %>
+            <i id="add-tac-but" class="fa fa-plus add-but"></i>
+          <% end %>
   				<div class="clearfix"></div>
   			</div>
   			<div class="x_content half-div">
@@ -197,12 +212,7 @@
       }
     }
 
-    $("#add-tac-but").on("click", function(){
-      console.log("clicked");
-      $("#new-tac-tile").html("");
-      $("#new-tac-tile").show();
-      $("#new-tac-tile").append('<%= escape_javascript(render partial:"new_team_activity").html_safe %>');
-    });
+
 
     // Initialize Firebase
       var config = {

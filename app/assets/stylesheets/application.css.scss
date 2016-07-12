@@ -15,6 +15,7 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import 'bootstrap-datetimepicker';
 
 @import "font-awesome";
 
@@ -98,7 +99,7 @@
 
 #err-msg{ color: red; font-size: 30px;}
 
-.field{
+.field, .form-group{
   textarea{
     width: 100%;
     min-height: 200px;
@@ -106,4 +107,16 @@
     border-radius: 2px;
     border-color: #f3f3f3;
   }
+
+  select{
+    width: 100%;
+    border: none;
+    border-radius: 2px;
+    border: 1px solid #f3f3f3;
+    &:hover{
+      border: 1px solid #3F51B5;
+    }
+  }
 }
+
+a:visited { color: none; }

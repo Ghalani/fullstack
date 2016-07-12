@@ -20,13 +20,11 @@
                     <%= render 'tm_list_item', sp: sp %>
                 <% end %>
             <% end %>
-            <div id="add-toggle-but" class="btn btn-primary" onclick="toggleEnable()">Add members</div>
           </div>
           <div class="col-md-4">
+            <h3><small>Assigned farms</small></h3>
             <% if @farms && @farms.size > 0 %>
-            dkfdjfhdjfhdj
               <% @farms.each do |f| %>
-              dfhdhfjdfh
                 <div class="list-item">
                   <%= f.name %>
                 </div>

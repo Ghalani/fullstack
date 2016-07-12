@@ -98,6 +98,14 @@
         document.getElementById("myOverlay").style.height = "0%";
         $("#overlay_body").html("");
       }
+      function addNav(html) {
+        document.getElementById("myOverlay").style.height = "100%";
+        $("#overlay_body").html("").append(html);
+      }
+      // $("#overlay_body > div").on('click',function(e){
+      //   console.log('dfjdfhjdfhjdf');e.stopPropagation();
+      // });
+      //$("#myOverlay").on('click',function(){console.log('CLICKED')});
 
       function displayError(msg){
         $('#err-msg').html("").append(msg);

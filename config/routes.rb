@@ -1,4 +1,4 @@
-  Rails.application.routes.draw do
+Rails.application.routes.draw do
   # resources :activities do
   #   resources :activity_forms
   # end
@@ -47,6 +47,7 @@
     end
     resources :teams do
       get 'assign_farms' => 'teams#assign_farms'
+      get 'new_team_lead' => 'teams#new_team_lead'
     end
   end
   resources :area_planners
@@ -64,9 +65,10 @@
   #   resources :farms
   # end
 
-  resources :teams do
+  resources :regions do
     resources :team_activities
   end
+
   resources :onboards, only:[:create]
  	namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
