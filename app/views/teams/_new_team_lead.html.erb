@@ -1,5 +1,23 @@
-<div class="w700 card hcenter">
-  <h2><small>New team lead</small></h2>
-  <div class="row">
-  </div>
+<div class="w500 card hcenter">
+  <h2><small>Select a team lead</small></h2>
+  <%= form_for [@manager, @team], remote: true do |t| %>
+    <div class="row">
+      <%= t.hidden_field :leader_id, id: "ntl_#{@team.id}" %>
+      <% @sps.each do |sp|%>
+        <div onclick="setLead(<%= sp.id %>)">
+          <%= render 'tm_list_item', sp: sp %>
+        </div>
+      <% end %>
+    </div>
+    <div id="err-msg"></div>
+    <hr>
+    <div class="form-group">
+      <%= t.submit "submit" %>
+    </div>
+  <% end %>
 </div>
+<script>
+  function setLead(id){
+    $("#ntl_<%= @team.id %>").attr("value", id);
+  }
+</script>

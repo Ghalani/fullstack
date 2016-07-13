@@ -24,6 +24,7 @@ class TeamsController < ApplicationController
   def show
     @manager = Manager.find(params[:manager_id])
     @team = Team.find_by_id(params[:id])
+    @leader = @team.leader
     @farms = @team.farms
     @remaining_farms = @team.region.farms - @farms
     #@sps = @team.team_assignments.service_providers
@@ -72,8 +73,23 @@ class TeamsController < ApplicationController
     end
   end
 
+  def update
+    @team = Team.find_by_id(params[:id])
+    respond_to do |format|
+      if @team.update(team_params)
+        # refresh page
+        format.js
+      else
+        # => send error msg
+        format.js{render 'error'}
+      end
+    end
+
+  end
+
   def new_team_lead
     @team = Team.find(params[:team_id])
+    @manager = Manager.find(params[:manager_id])
     @leader = @team.leader
     @sps = ServiceProvider.includes(:team_assignments).where( :team_assignments => { :team_id => @team.id })
     respond_to do |format|
@@ -87,6 +103,6 @@ class TeamsController < ApplicationController
   end
 
   def team_params
-	  params.require(:team).permit(:name, :region_id, :manager_id)
+	  params.require(:team).permit(:name, :region_id, :manager_id, :leader_id)
 	end
 end

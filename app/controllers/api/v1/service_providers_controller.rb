@@ -45,7 +45,6 @@ module Api
       # DELETE /service_providers/1.json
       def destroy
         @service_provider.destroy
-
         head :no_content
       end
 

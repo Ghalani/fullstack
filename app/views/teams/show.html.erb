@@ -11,8 +11,29 @@
   			</div>
   			<div class="x_content">
           <div>
+            <h3><small>Team leader</small></h3>
             <% if @leader %>
-              Show leader
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="center-text">
+                    <%= image_tag 'user.png', class:'small-img circle' %>
+                  </div>
+                </div>
+                <div class="col-sm-8">
+                  <div>
+                    <%= @leader.fname+" "+@leader.lname %>
+                  </div>
+                  <div>
+                    <i class="fa fa-phone"></i> <%= @leader.phone %>
+                  </div>
+                  <div>
+                    Gender: <%= @leader.gender %>
+                  </div>
+                  <div>
+                    Region: <%= @leader.region.name %>
+                  </div>
+                </div>
+              </div>
             <% else %>
               <div>
                 Add a team lead

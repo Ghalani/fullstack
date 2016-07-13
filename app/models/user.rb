@@ -8,8 +8,8 @@ class User < ActiveRecord::Base
   has_many  :organizations, :dependent => :destroy
   #has_many  :managers
   has_many  :api_keys, :dependent => :destroy
-  has_one :service_provider
-  has_one :manager, :dependent => :destroy
+  has_one   :service_provider
+  has_one   :manager, :dependent => :destroy
 
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true
