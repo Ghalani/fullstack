@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
 
 
 	private
+
 	# Returns 401 if the user isn't authorized
 	def ensure_authenticated_user
     #head :unauthorized unless current_user

@@ -1,5 +1,7 @@
 class OrganizationsController < ApplicationController
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
+  before_action :owner_confirm
+
   layout 'admin', only:[:show]
 
   # GET /organizations
@@ -79,5 +81,12 @@ class OrganizationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def organization_params
       params.require(:organization).permit(:name, :country_id)
+    end
+
+    def confirm_owner
+      if current_user != @organization.user
+        flash[:info] = "You are not authorized to see this organization"
+        redirect_to "/"
+      end
     end
 end

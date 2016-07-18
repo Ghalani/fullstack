@@ -6,12 +6,17 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
-      if user.role == "admin"
-        #@organization = user.organizations.first
-        redirect_to "/organizations", notice: 'Logged in'
+      if user.activated
+        session[:user_id] = user.id
+        if user.role == "admin"
+          #@organization = user.organizations.first
+          redirect_to "/organizations", notice: 'Logged in'
+        else
+          redirect_to manager_path(user)
+        end
       else
-        redirect_to manager_path(user)
+        flash[:info] = "Check your email and activate your account"
+        redirect_to "/"
       end
     else
       render :new
