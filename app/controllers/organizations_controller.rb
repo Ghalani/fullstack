@@ -87,7 +87,7 @@ class OrganizationsController < ApplicationController
     end
 
     def is_confirm_owner?
-      current_user != @organization.user
+      current_user == @organization.user
     end
 
     def unauth
