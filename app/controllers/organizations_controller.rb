@@ -1,6 +1,6 @@
 class OrganizationsController < ApplicationController
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
-  before_action :owner_confirm
+  before_action :confirm_owner
 
   layout 'admin', only:[:show]
 
