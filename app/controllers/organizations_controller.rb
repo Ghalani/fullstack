@@ -1,6 +1,5 @@
 class OrganizationsController < ApplicationController
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
-  before_action :confirm_owner
 
   layout 'admin', only:[:show]
 
@@ -13,7 +12,11 @@ class OrganizationsController < ApplicationController
   # GET /organizations/1
   # GET /organizations/1.json
   def show
-    @regions = @organization.regions
+    if is_confirm_owner?
+      @regions = @organization.regions
+    else
+      unauth
+    end
   end
 
   # GET /organizations/new
@@ -84,9 +87,11 @@ class OrganizationsController < ApplicationController
     end
 
     def confirm_owner
-      if current_user != @organization.user
-        flash[:info] = "You are not authorized to see this organization"
-        redirect_to "/"
-      end
+      current_user != @organization.user
+    end
+
+    def unauth
+      flash[:info] = "You are not authorized to see this organization"
+      redirect_to "/"
     end
 end
