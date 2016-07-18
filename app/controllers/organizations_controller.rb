@@ -86,7 +86,7 @@ class OrganizationsController < ApplicationController
       params.require(:organization).permit(:name, :country_id)
     end
 
-    def confirm_owner
+    def is_confirm_owner?
       current_user != @organization.user
     end
 
