@@ -2,6 +2,7 @@ module Api
   module V1
     class ServiceProvidersController < ApplicationController
       before_action :set_service_provider, only: [:show, :update, :destroy]
+      skip_before_filter :ensure_authenticated_user, only:[:get_teams]
 
       # GET /service_providers
       # GET /service_providers.json
@@ -46,6 +47,18 @@ module Api
       def destroy
         @service_provider.destroy
         head :no_content
+      end
+
+      def get_teams
+        # => get the teams where sp is a team-leader
+        @sp = ServiceProvider.find(params[:service_provider_id])
+        @teams = Team.where(leader_id: @sp.id)
+        if @sp.access_token == params[:access_token]
+          render json: @teams
+        else
+          # => sp need to login again
+          render json: {error: "Please login again"}
+        end
       end
 
       private

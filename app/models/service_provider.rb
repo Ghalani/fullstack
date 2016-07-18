@@ -14,7 +14,7 @@ class ServiceProvider < ActiveRecord::Base
     end while self.class.exists?(access_token: access_token)
   end
 
-	def encrypt_pin
+	def encrypt_pin pin
     if pin.present?
       self.salt = BCrypt::Engine.generate_salt
       self.encrypted_pin= BCrypt::Engine.hash_secret(pin, salt)

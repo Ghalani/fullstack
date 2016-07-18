@@ -79,6 +79,7 @@ Rails.application.routes.draw do
         post "add_farm" => "teams#add_farm"
       end
       resources :team_assignments
+      resources :sp_sessions
     end
   end
   # namespace :api, defaults: {format: 'json'} do

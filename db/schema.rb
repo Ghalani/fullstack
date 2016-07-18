@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160712101559) do
+ActiveRecord::Schema.define(version: 20160713135217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -150,10 +150,11 @@ ActiveRecord::Schema.define(version: 20160712101559) do
     t.string   "lname"
     t.string   "phone"
     t.string   "gender"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.string   "salt"
-    t.string   "encrypted_password"
+    t.string   "encrypted_pin"
+    t.string   "access_token"
   end
 
   add_index "service_providers", ["region_id"], name: "index_service_providers_on_region_id", using: :btree
