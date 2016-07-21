@@ -80,6 +80,11 @@ Rails.application.routes.draw do
       end
       resources :team_assignments
       resources :sp_sessions
+      resources :service_providers do
+        get "team_act" => "service_providers#get_team_activities"
+      end
+      resources :teams
+      resources :team_activity_reports
     end
   end
   # namespace :api, defaults: {format: 'json'} do

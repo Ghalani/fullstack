@@ -11,6 +11,7 @@ module Api
           if @sp.save
             # => send sms and generate pin
             puts "#"*100; puts pin
+            TwilioSmsService.new.send(@sp.formated_numb, "From Ghalani, Enter #{pin} on the OTP field to sign-in ")
             render json: {message: "SMS sent", pin: pin}, status: 200
           end
         else
@@ -24,7 +25,7 @@ module Api
           # => receive code and generate access_token
           @sp.generate_access_token
           @sp.save
-          render json: { profile: {phone: @sp.phone, access_token: @sp.access_token}, message: "success"}, status: :created
+          render json: { profile: {id: @sp.id, phone: @sp.phone, access_token: @sp.access_token}, message: "success"}, status: :created
         else
           render json: { error: "Could not authenticate properly." }
         end

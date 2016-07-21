@@ -3,6 +3,7 @@ class ServiceProvider < ActiveRecord::Base
 	has_many 		:activity_report
 	has_many		:team_assignments
 	belongs_to 	:region
+	has_many :team_activity_reports
 
 	def fl_name
 		"#{self.fname} #{self.lname}"
@@ -24,4 +25,8 @@ class ServiceProvider < ActiveRecord::Base
   def authenticate(pin)
     self.encrypted_pin == BCrypt::Engine.hash_secret(pin, self.salt)
   end
+
+	def formated_numb
+		"+#{self.region.country.phonecode}#{self.phone}"
+	end
 end

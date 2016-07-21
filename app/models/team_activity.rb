@@ -1,7 +1,8 @@
 class TeamActivity < ActiveRecord::Base
 	belongs_to :activity
 	belongs_to :team
-	has_many :activity_reports
+	belongs_to :farm
+	has_many :team_activity_reports
 
 	validates :activity_id, presence: true
 	validates :team_id, presence: true

@@ -2,7 +2,7 @@ module Api
   module V1
     class ServiceProvidersController < ApplicationController
       before_action :set_service_provider, only: [:show, :update, :destroy]
-      skip_before_filter :ensure_authenticated_user, only:[:get_teams]
+      skip_before_filter :ensure_authenticated_user, only:[:get_team_activities, :show]
 
       # GET /service_providers
       # GET /service_providers.json
@@ -15,7 +15,16 @@ module Api
       # GET /service_providers/1
       # GET /service_providers/1.json
       def show
-        render json: @service_provider
+        if params[:access_token]
+          if @service_provider.access_token == params[:access_token]
+            render json: @service_provider
+          else
+            # => sp need to login again
+            render json: {error: "Invalid Key: Please login again"}
+          end
+        else
+          render json: {error: "Unauthorized: API key needed"}
+        end
       end
 
       # POST /service_providers
@@ -42,24 +51,34 @@ module Api
         end
       end
 
-      # DELETE /service_providers/1
-      # DELETE /service_providers/1.json
+
       def destroy
         @service_provider.destroy
         head :no_content
       end
 
-      def get_teams
-        # => get the teams where sp is a team-leader
+      def get_team_activities
         @sp = ServiceProvider.find(params[:service_provider_id])
-        @teams = Team.where(leader_id: @sp.id)
         if @sp.access_token == params[:access_token]
-          render json: @teams
+          # host/service_provider/[service_provider_id]/team_act?access_token=2345678&team=1
+          @team = Team.find(params[:team])
+          @team_acts = TeamActivity.where(team_id: @team.id).where("end_date >= ?", Time.now)
+          render json: @team_acts
         else
-          # => sp need to login again
-          render json: {error: "Please login again"}
+          render json: { error: "Unauthorized, your API key is invalid"}
         end
       end
+      # def get_teams
+      #   # => get the teams where sp is a team-leader
+      #   @sp = ServiceProvider.find(params[:service_provider_id])
+      #   @teams = Team.where(leader_id: @sp.id)
+      #   if @sp.access_token == params[:access_token]
+      #     render json: @teams
+      #   else
+      #     # => sp need to login again
+      #     render json: {error: "Please login again"}
+      #   end
+      # end
 
       private
 

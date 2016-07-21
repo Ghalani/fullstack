@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160713135217) do
+ActiveRecord::Schema.define(version: 20160720152607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,15 +38,6 @@ ActiveRecord::Schema.define(version: 20160713135217) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "activity_id"
-  end
-
-  create_table "activity_reports", force: :cascade do |t|
-    t.integer  "team_activity_id"
-    t.integer  "service_provider_id"
-    t.text     "report"
-    t.boolean  "is_confirmed"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
   end
 
   create_table "api_keys", force: :cascade do |t|
@@ -170,6 +161,16 @@ ActiveRecord::Schema.define(version: 20160713135217) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "farm_id"
+  end
+
+  create_table "team_activity_reports", force: :cascade do |t|
+    t.integer  "team_activity_id"
+    t.integer  "service_provider_id"
+    t.json     "report"
+    t.datetime "datetime"
+    t.boolean  "is_confirmed"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   create_table "team_assignments", force: :cascade do |t|

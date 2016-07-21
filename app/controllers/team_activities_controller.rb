@@ -16,6 +16,8 @@ class TeamActivitiesController < ApplicationController
     respond_to do |format|
       if @team_activity.save
         # refresh
+        @sp = @team_activity.team.leader
+        TwilioSmsService.new.send(@sp.formated_numb, "Hey #{@sp.fl_name}, your team (#{@team_activity.team.name}) has a new task, Login to the Ghalani app and get the details")
         flash[:success] = "Team activity created"
         format.js
       else

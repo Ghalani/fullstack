@@ -2,6 +2,7 @@ module Api
   module V1
     class TeamsController < ApplicationController
       before_action :set_team, only: [:show, :update, :destroy]
+      skip_before_filter :ensure_authenticated_user, only:[:show]
 
       # GET /teams
       # GET /teams.json
@@ -15,7 +16,14 @@ module Api
       # GET /teams/1
       # GET /teams/1.json
       def show
-        render json: @team
+        @team = Team.find(params[:id])
+        @sp = @team.leader
+        if @sp.access_token == params[:access_token]
+          # host/api/v1/teams/[id]?access_token=2345678
+          render json: @team
+        else
+          render json: { error: "Unauthorized, your API key is invalid"}
+        end
       end
 
       # POST /teams
@@ -39,7 +47,7 @@ module Api
               @team.farms << @farm
               render json: @farm, status: :created
             rescue
-              render json: {error:"duplicate"}, status: :created 
+              render json: {error:"duplicate"}, status: :created
             end
           else
             render json: {error: "farm not found"}, status: :not_found

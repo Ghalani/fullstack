@@ -17,4 +17,5 @@ class Team < ActiveRecord::Base
 	def leader
 		ServiceProvider.find_by_id(self.leader_id)
 	end
+
 end
