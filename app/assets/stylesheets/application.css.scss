@@ -23,6 +23,8 @@
 
 .h300{ height: 300px; }
 
+.w50{ width: 50px; }
+.w100{ width: 100px; }
 .w200{ width: 200px; }
 
 .w300{ width: 300px; }
@@ -120,3 +122,20 @@
 }
 
 a:visited { color: none; }
+
+.form-horizontal .checkbox, .form-horizontal .checkbox-inline, .form-horizontal .radio, .form-horizontal .radio-inline {
+    padding-top: 7px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.checkbox input[type="checkbox"] {
+    cursor: pointer;
+    opacity: 0.5;
+    z-index: 1;
+    outline: none !important;
+}
+
+.form-group {
+  min-height: 35px;
+}

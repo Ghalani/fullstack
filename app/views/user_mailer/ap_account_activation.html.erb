@@ -1,9 +1,12 @@
+Ghalani: Verify Account
 <h1>Welcome</h1>
 
 <p>Hi <%= @user.fname %> <%= @user.lname %>,</p>
 
 <p>
-Welcome to the Sample App! Click on the link below to activate your account and reset your password:
+Welcome to Ghalani!
+You have been invited to be a Manager under ???
+Click on the link below to activate your account and reset your password:
 </p>
 
 <%= link_to "Activate", edit_account_activation_url(@user.activation_token,

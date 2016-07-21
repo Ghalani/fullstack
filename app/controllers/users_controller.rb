@@ -85,7 +85,7 @@ class UsersController < ApplicationController
       if params[:logout]
         redirect_to "/logout"
       else
-        head :no_content
+        redirect_to "/login"
       end
     else
       render json: @user.errors, status: :unprocessable_entity
@@ -100,31 +100,14 @@ class UsersController < ApplicationController
     head :no_content
   end
 
-  def password_reset
-    @is_first = (@user.status == 'new')
-    if @is_first
-      render 'edit/new_password_reset'
-    else
-      #render
-    end
-  end
-
-  def forgot_password
-    @user = User.new
-  end
-
-  def reset_password
-    @user = User.find_by_email(user_params[:email])
-    if @user
-      # => send email
-      #UserMailer.password_reset(@user).deliver_now
-      flash[:success] = "A password reset has been sent to your email."
-      redirect_to "/login"
-    else
-      flash[:info] = "This email doesn't exist on our database."
-      redirect_to "/accounts/forgot"
-    end
-  end
+  # def password_reset
+  #   @is_first = (@user.status == 'new')
+  #   if @is_first
+  #     render 'edit/new_password_reset'
+  #   else
+  #     #render
+  #   end
+  # end
 
   private
 

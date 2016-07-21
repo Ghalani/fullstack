@@ -13,10 +13,10 @@ Rails.application.routes.draw do
   get 'signup' => 'users#new'
   get 'login' => 'sessions#new'
   get 'logout' => 'sessions#destroy'
+  get "reset" => "account_activations#new"
+  resources :account_activations, only: [:edit, :create]
+  #post "accounts/reset" => "users#reset_password"
   resources :users
-  resources :account_activations, only: [:edit]
-  get "accounts/forgot" => "users#forgot_password"
-  post "accounts/reset" => "users#reset_password"
 
   resources :organizations do
     #scope 'farms' do

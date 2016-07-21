@@ -1,6 +1,9 @@
 class SessionsController < ApplicationController
   skip_before_filter :ensure_authenticated_user
   def new
+    if current_user
+      flash[:info] = "You are already logged in as #{current_user.email}"
+    end
   end
 
   def create
@@ -12,10 +15,11 @@ class SessionsController < ApplicationController
           #@organization = user.organizations.first
           redirect_to "/organizations", notice: 'Logged in'
         else
+          # => to be tested
           redirect_to manager_path(user)
         end
       else
-        flash[:info] = "Check your email and activate your account"
+        flash[:info] = "Check your email and verify your account"
         redirect_to "/"
       end
     else
