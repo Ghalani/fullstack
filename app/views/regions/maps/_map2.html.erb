@@ -8,6 +8,7 @@
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
 var markers = [];
+var circles = [];
 function initAutocomplete() {
   var map2 = new google.maps.Map(document.getElementById('new_rg_map'), {
     center: {lat: 5.5557, lng: -0.1963},
@@ -97,18 +98,24 @@ function initAutocomplete() {
       draggable: true,
       editable: true
     });
-
+    $("#new_rg_rad").val(100);
+    google.maps.event.addListener(radius, 'radius_changed', function () {
+      $("#new_rg_rad").val(radius.getRadius());
+    });
     // Center of map
     //map2.panTo(new google.maps.LatLng(latitude,longitude));
     markers.push(marker);
+    circles.push(radius);
   });
 }
 
 function clearOverlays() {
   for (var i = 0; i < markers.length; i++ ) {
     markers[i].setMap(null);
+    circles[i].setMap(null);
   }
   markers.length = 0;
+  circles.length = 0;
 }
 
 initAutocomplete();

@@ -26,14 +26,14 @@
   <div class="col-md-6">
     <div class="portlet">
       <div class="portlet-heading bg-inverse">
-          <h3 class="portlet-title">Labour in region</h3>
+          <h3 class="portlet-title">Labourers in region</h3>
           <div class="portlet-widgets"></div>
           <div class="clearfix"></div>
       </div>
       <div class="pad15">
         <% if @sps && @sps.size > 0 %>
           <% @sps.each do |sp| %>
-            <%= link_to  '#', remote: true do %>
+            <%= link_to '#', remote: true do %>
               <div class="list-item">
                 <%= sp.fl_name %>
               </div>
@@ -42,7 +42,7 @@
         <% else %>
           <h3>This region (<%= @region.name %>) has no Labourer</h3><br>
         <% end %>
-        <%= link_to 'Add', '#', class:"btn btn-primary" %>
+        <%= link_to 'Add', new_region_service_provider_path(@region), class:"btn btn-primary", remote:true %>
       </div>
     </div>
 

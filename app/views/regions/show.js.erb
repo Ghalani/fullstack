@@ -1,1 +1,2 @@
 $("#ext-holder").html("").append("<%= escape_javascript(render partial:'show').html_safe %>");
+updateMarker(<%= @region.lat %>, <%= @region.lon %>);

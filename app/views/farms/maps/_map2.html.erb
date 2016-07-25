@@ -1,5 +1,6 @@
 <script>
 var markers = [];
+var rgMarkers = []
 var map2;
 function initAutocomplete() {
   map2 = new google.maps.Map(document.getElementById('new_fm_map'), {
@@ -9,66 +10,10 @@ function initAutocomplete() {
   });
   // Add pins to all region points
   <% @regions.each do |r| %>
-    createMarker("<%= r.name %>", <%= r.lat %>, <%= r.lon %>);
+    createMarker("<%= r.id %>","<%= r.name %>", <%= r.lat %>, <%= r.lon %>, <%= r.radius %>);
   <% end %>
+  updateFocus(rgMarkers[<%= @regions.first.id %>]);
 
-  // Create the search box and link it to the UI element.
-  var input = document.getElementById('pac-input');
-  var searchBox = new google.maps.places.SearchBox(input);
-  map2.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-  // Bias the SearchBox results towards current map's viewport.
-  map2.addListener('bounds_changed', function() {
-    searchBox.setBounds(map2.getBounds());
-  });
-
-  // Listen for the event fired when the user selects a prediction and retrieve
-  // more details for that place.
-  searchBox.addListener('places_changed', function() {
-    var places = searchBox.getPlaces();
-
-    if (places.length == 0) {
-      return;
-    }
-
-    // Clear out the old markers.
-    markers.forEach(function(marker) {
-      marker.setMap(null);
-    });
-    markers = [];
-
-    // For each place, get the icon, name and location.
-    var bounds = new google.maps.LatLngBounds();
-    places.forEach(function(place) {
-      if (!place.geometry) {
-        console.log("Returned place contains no geometry");
-        return;
-      }
-      var icon = {
-        url: place.icon,
-        size: new google.maps.Size(71, 71),
-        origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(17, 34),
-        scaledSize: new google.maps.Size(25, 25)
-      };
-
-      // Create a marker for each place.
-      markers.push(new google.maps.Marker({
-        map: map,
-        icon: icon,
-        title: place.name,
-        position: place.geometry.location
-      }));
-
-      if (place.geometry.viewport) {
-        // Only geocodes have viewport.
-        bounds.union(place.geometry.viewport);
-      } else {
-        bounds.extend(place.geometry.location);
-      }
-    });
-    map2.fitBounds(bounds);
-  });
 
   google.maps.event.addListener(map2, "click", function (event) {
     clearOverlays();
@@ -83,17 +28,17 @@ function initAutocomplete() {
     $("#new_fm_lat").val(lat);
     $("#new_fm_lon").val(lon);
 
-    radius = new google.maps.Circle({map: map2,
-      radius: 100,
-      center: event.latLng,
-      fillColor: '#777',
-      fillOpacity: 0.1,
-      strokeColor: '#AA0000',
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
-      draggable: true,
-      editable: true
-    });
+    // radius = new google.maps.Circle({map: map2,
+    //   radius: 100,
+    //   center: event.latLng,
+    //   fillColor: '#777',
+    //   fillOpacity: 0.1,
+    //   strokeColor: '#AA0000',
+    //   strokeOpacity: 0.8,
+    //   strokeWeight: 2,
+    //   draggable: true,
+    //   editable: true
+    // });
 
     // Center of map
     //map2.panTo(new google.maps.LatLng(latitude,longitude));
@@ -108,19 +53,43 @@ function clearOverlays() {
   markers.length = 0;
 }
 
-function createMarker(name, lat, lon) {
+function createMarker(id, name, lat, lon, rad) {
   var point = new google.maps.LatLng(lat, lon);
   var marker = new google.maps.Marker({
     map: map2,
     position: point
   });
-  var content = '<strong>' + name + '</strong><br>' + lat +", "+ lon + '<br>';
-  google.maps.event.addListener(marker, 'click', function() {
-    infowindow.setContent(content);
-    infowindow.open(map, marker);
+  // var content = '<strong>' + name + '</strong><br>' + lat +", "+ lon + '<br>';
+  // google.maps.event.addListener(marker, 'click', function() {
+  //   infowindow.setContent(content);
+  //   infowindow.open(map, marker);
+  // });
+  //rgMarkers[lat+lon] = marker;
+  rgMarkers[id] = marker;
+  radius = new google.maps.Circle({map: map2,
+    radius: rad,
+    center: new google.maps.LatLng(lat, lon),
+    fillColor: '#777',
+    fillOpacity: 0.1,
+    strokeColor: '#0000AA',
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    clickable: false
   });
-  markers[lat+lon] = marker;
 }
+
+function updateFocus(marker){
+  map2.setCenter(marker.position);
+  map2.setZoom(15);
+  //google.maps.event.trigger(markers[lat+lon], 'click');
+}
+
+$( "#farm_region_id" ).change(function() {
+  marker = rgMarkers[$(this).val()];
+  // map2.setCenter(marker.position);
+  // map2.setZoom(15);
+  updateFocus(marker);
+});
 
 initAutocomplete();
 </script>

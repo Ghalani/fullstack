@@ -6,11 +6,22 @@
       <%= form_for [@region.organization, @region], remote: true do |t|%>
       <%= t.hidden_field :country_id, value: @region.organization.country_id %>
         <div class="form-group">
-          <%= t.text_field :name, size: '80', class:"form-control", placeholder:"Region name" %>
+          <%= t.text_field :name, size: '80', class:"form-control", placeholder:"Region name", required:true %>
         </div>
         <div class="form-group">
-          <%= t.text_field :lat, id:"new_reg_lat", size: '80', placeholder:"Lat", readonly: true %> |
-          <%= t.text_field :lon, id:"new_reg_lon", size: '80', placeholder:"Lon", readonly: true %>
+          Geo-coordinates:
+          <div class="row">
+            <div class="col-sm-6">
+              <%= t.number_field :lat, class:"form-control", id:"new_reg_lat", size: '80', placeholder:"Lat", readonly: true, required:true %>
+            </div>
+            <div class="col-sm-6">
+              <%= t.number_field :lon, class:"form-control", id:"new_reg_lon", size: '80', placeholder:"Lon", readonly: true, required:true %>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          Radius (meters):
+          <%= t.number_field :radius, class:"form-control", id:"new_rg_rad", placeholder:"Radius (meters)", required:true %>
         </div>
         <div id="err-msg"></div>
         <div class="form-group">
