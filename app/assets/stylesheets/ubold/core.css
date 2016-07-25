@@ -1,0 +1,36 @@
+.bg-custom {
+  background-color: #5fbeaa !important;
+}
+.bg-primary {
+  background-color: #5d9cec !important;
+}
+.bg-success {
+  background-color: #81c868 !important;
+}
+.bg-info {
+  background-color: #34d3eb !important;
+}
+.bg-warning {
+  background-color: #ffbd4a !important;
+}
+.bg-danger {
+  background-color: #f05050 !important;
+}
+.bg-muted {
+  background-color: #f4f8fb !important;
+}
+.bg-inverse {
+  background-color: #4c5667 !important;
+}
+.bg-purple {
+  background-color: #7266ba !important;
+}
+.bg-pink {
+  background-color: #fb6d9d !important;
+}
+.bg-white {
+  background-color: #ffffff !important;
+}
+.bg-lightdark {
+  background-color: #f4f8fb !important;
+}

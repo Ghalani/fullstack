@@ -8,6 +8,6 @@ class Region < ActiveRecord::Base
   #belongs_to  :organization
 
   validates :name, presence: true, uniqueness: true
-  validates :state, presence: true
-  validates :country_id, presence: true
+  validates :lat, presence: true
+  validates :lon, presence: true
 end

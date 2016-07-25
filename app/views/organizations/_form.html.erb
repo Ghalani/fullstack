@@ -1,12 +1,12 @@
 <%= form_for(@organization) do |f| %>
-  <div>
-    <%= f.text_field :name, placeholder: 'Organization name' %>
+  <div class="form-group">
+    <%= f.text_field :name, class: "form-control", placeholder: 'Organization name' %>
   </div>
   <div class="form-group">
     <%= f.collection_select :country_id, @countries, :id,:name, include_blank: false, class:"form-control" %>
   </div>
   <% if @organization.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="form-group">
       <h2><%= pluralize(@organization.errors.count, "error") %> prohibited this organization from being saved:</h2>
 
       <ul>
@@ -18,6 +18,6 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "CREATE", class: 'btn btn-pink btn-block text-uppercase waves-effect waves-light' %>
   </div>
 <% end %>

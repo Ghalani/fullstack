@@ -1,8 +1,14 @@
-<div class="full-height theme1 ">
-  <div class="hcenter w500 twhite"><h2>Organizations under you</h2></div>
-  <div class="card hcenter w500">
-    <div>
-      <% if @organizations %>
+<div class="account-pages"></div>
+<div class="clearfix"></div>
+<div class="full-height wrapper-page ">
+  <div class="portlet hcenter w500">
+    <div class="portlet-heading bg-inverse">
+        <h3 class="portlet-title">Organizations under you</h3>
+        <div class="portlet-widgets"></div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="pad15">
+      <% if @organizations && @organizations.size > 0 %>
         <% @organizations.each do |o| %>
           <%= link_to o do %>
             <div class="list-item">
@@ -11,10 +17,11 @@
           <% end %>
         <% end %>
       <% else %>
-        <div><h3>You have no Organization under you </h3></div>
-        <div>Create your first organization now </div>
+      <div class="text-center"><%= image_tag 'home.png' %></div>
+        <div class="text-center"><h3>You have no Organization under you </h3></div>
+        <div class="text-center form-group">Create your first organization now </div>
       <% end %>
-      <%= link_to 'Add', new_organization_path, class: 'btn btn-primary' %>
+      <%= link_to 'Add', new_organization_path, class: 'btn btn-pink btn-block text-uppercase waves-effect waves-light' %>
     </div>
   </div>
 </div>

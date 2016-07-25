@@ -1,14 +1,14 @@
-
-
-
-
-
-<div class="full-height theme1 ">
-  <div class="hcenter w500 twhite"><h2>New Organization</h2></div>
+<div class="account-pages"></div>
+<div class="clearfix"></div>
+<div class="full-height wrapper-page ">
+  <div class="hcenter w500 twhite">
+    <h2>
+      <%= link_to organizations_path do %>
+        <i class="fa fa-chevron-left"></i> New Organization
+      <% end %>
+    </h2>
+  </div>
   <div class="card hcenter w500">
-    <%= link_to organizations_path, class:'btn' do %>
-      <i class="fa fa-chevron-left"></i> back
-    <% end %>
     <div>
       <%= render 'form' %>
     </div>

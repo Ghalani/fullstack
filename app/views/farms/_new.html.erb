@@ -1,6 +1,8 @@
-<div class="card w400">
-  <h1>New Farm</h1>
-  <%= form_for @farm, remote: true do |f|%>
+<div class="card w700 hcenter row">
+  <div id="new_fm_map" class="h500 col-md-7"></div>
+  <div class="col-md-5">
+    <h1>New Farm</h1>
+    <%= form_for @farm, remote: true do |f|%>
     <div class="form-group">
       <%= f.text_field :name, size: '80', class:"form-control", placeholder:"Name" %>
     </div>
@@ -11,12 +13,15 @@
       <%= f.collection_select :region_id, @regions, :id,:name, include_blank: false, class:"form-control" %>
     </div>
     <div class="form-group">
-      <%= f.number_field :lon, size: '80', class:"form-control", :step => 'any', placeholder:"latitutde"%>
-      <%= f.number_field :lat, size: '80', class:"form-control", :step => 'any', placeholder:"longitude"%>
+      <%= f.number_field :lon, size: '80', class:"form-control", :step => 'any',id:"new_fm_lat", placeholder:"latitutde"%>
+      <%= f.number_field :lat, size: '80', class:"form-control", :step => 'any',id:"new_fm_lon", placeholder:"longitude"%>
     </div>
 
     <div class="form-group">
       <%= f.submit 'Submit' , class:"btn btn-primary" %>
     </div>
-  <% end %>
+    <h3>Note: Let your farm be close to your region mark</h3>
+    <% end %>
+  </div>
 </div>
+<%= render 'farms/maps/map2' %>

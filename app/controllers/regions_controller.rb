@@ -3,7 +3,9 @@ class RegionsController < ApplicationController
 
   def new
     @region = Region.new
-    @region.organization_id = params[:organization_id]
+    @organization = Organization.find(params[:organization_id])
+    @region.organization_id = @organization.id
+    @region.country_id = @organization.country_id
     respond_to do |format|
       format.js
     end
@@ -11,6 +13,8 @@ class RegionsController < ApplicationController
 
   def show
     @farms = @region.farms
+    @sps = @region.service_providers
+    @manager = Manager.where(user_id: current_user.id, organization_id: @region.organization_id).first
     respond_to do |format|
       format.js
     end
@@ -29,10 +33,10 @@ class RegionsController < ApplicationController
   def create
     @region = Region.new(region_params)
     @region.organization_id = params[:organization_id]
-    if @region.save
-      redirect_to region.organization
-    else
-      respond_to do |format|
+    respond_to do |format|
+      if @region.save
+        format.js
+      else
         format.js{render "new_error"}
       end
     end
@@ -44,6 +48,6 @@ class RegionsController < ApplicationController
     end
 
     def region_params
-      params.require(:region).permit(:name, :lat, :lon)
+      params.require(:region).permit(:name, :lat, :lon, :country_id)
     end
 end

@@ -43,13 +43,14 @@
             </tr>
           </thead>
           <tbody>
-
-            <% @assps.each do |ss| %>
-            <tr>
-              <td><%= ss.fl_name %></td>
-              <td><%= ss.phone %></td>
-              <td><%= ss.gender %></td>
-            </tr>
+            <% if @assps && @assps.size > 0 %>
+              <% @assps.each do |ss| %>
+              <tr>
+                <td><%= ss.fl_name %></td>
+                <td><%= ss.phone %></td>
+                <td><%= ss.gender %></td>
+              </tr>
+              <% end %>
             <% end %>
           </tbody>
         </table>

@@ -29,18 +29,14 @@
     <%= link_to 'Add region', new_organization_region_path(@organization), class:'btn btn-primary', remote: true %>
   </div>
   <div class="col-sm-9">
-    <div id="map" class="h300">
+    <div id="map" class="h300 neg_marg15">
     </div>
     <div id="ext-holder">
       <h3>Please select a region to view the farms under it</h3>
     </div>
   </div>
 </div>
-
-<%= link_to 'Edit', edit_organization_path(@organization) %> |
-<%= link_to 'Back', organizations_path %>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2NxLOf_zTbaq0pyoeRLfBFTX4Q55KWuo&q=ghana&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2NxLOf_zTbaq0pyoeRLfBFTX4Q55KWuo&q=ghana&libraries=places&callback=initMap" async defer></script>
 <script>
   var map;
   var infowindow;
@@ -52,6 +48,30 @@
         center: {lat: 5.5557, lng: -0.1963},
         zoom: 8
       });
+
+      <% @regions.each do |r| %>
+        createMarker("<%= r.name %>", <%= r.lat %>, <%= r.lon %>);
+      <% end %>
     }
+  }
+
+  function createMarker(name, lat, lon) {
+    var point = new google.maps.LatLng(lat, lon);
+    var marker = new google.maps.Marker({
+      map: map,
+      position: point
+    });
+    var content = '<strong>' + name + '</strong><br>' + lat +", "+ lon + '<br>';
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.setContent(content);
+      infowindow.open(map, marker);
+    });
+    markers[lat+lon] = marker;
+  }
+
+  function updateMarker(lat, lon){
+    var point = new google.maps.LatLng(lat, lon);
+    map.setCenter(point);
+    google.maps.event.trigger(markers[lat+lon], 'click');
   }
 </script>

@@ -1,19 +1,51 @@
-<div>
-  <h3>Farms under <%= @region.name %></h3>
-</div>
+<br>
 <div class="row">
-  <div class="col-md-6 row">
-    <% @farms.each do |f| %>
-    <div class="col-md-3 col-sm-4">
-      <%= link_to  organization_farm_path(f.region.organization.id, f) do %>
-      <div class="card">
-        <%= f.name %>
+  <div class="col-md-6">
+    <div class="portlet hcenter w500">
+      <div class="portlet-heading bg-inverse">
+          <h3 class="portlet-title">Farms under <%= @region.name %></h3>
+          <div class="portlet-widgets"></div>
+          <div class="clearfix"></div>
       </div>
-      <% end %>
+      <div class="pad15">
+        <% if @farms && @farms.size > 0 %>
+          <% @farms.each do |f| %>
+            <%= link_to  organization_farm_path(f.region.organization.id, f) do %>
+              <div class="list-item">
+                <%= f.name %>
+              </div>
+            <% end %>
+          <% end %>
+        <% else %>
+          <h3>This region (<%= @region.name %>) has no farms</h3><br>
+        <% end %>
+        <%= link_to 'Add',  new_manager_farm_path(@manager), class:"btn btn-primary", remote: true %>
+      </div>
     </div>
-    <% end %>
   </div>
   <div class="col-md-6">
-    <%= render 'weather_card' %>
+    <div class="portlet">
+      <div class="portlet-heading bg-inverse">
+          <h3 class="portlet-title">Labour in region</h3>
+          <div class="portlet-widgets"></div>
+          <div class="clearfix"></div>
+      </div>
+      <div class="pad15">
+        <% if @sps && @sps.size > 0 %>
+          <% @sps.each do |sp| %>
+            <%= link_to  '#', remote: true do %>
+              <div class="list-item">
+                <%= sp.fl_name %>
+              </div>
+            <% end %>
+          <% end %>
+        <% else %>
+          <h3>This region (<%= @region.name %>) has no Labourer</h3><br>
+        <% end %>
+        <%= link_to 'Add', '#', class:"btn btn-primary" %>
+      </div>
+    </div>
+
+    <% render 'weather_card' %>
   </div>
 </div>

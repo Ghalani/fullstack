@@ -1,5 +1,5 @@
 class FarmsController < ApplicationController
-	before_action :set_organization, only:[:index, :show]
+	before_action :set_organization, only:[:index, :show, :new]
 	before_action :set_manager, except:[:show, :index]
 	layout 'admin'
 	def index
@@ -37,8 +37,15 @@ class FarmsController < ApplicationController
 	end
 
   def new
-  	@farm = Farm.new
+		@farm = Farm.new
 		@regions = Region.all
+		# if @organization && is_admin?
+		# 	@manager = Manager.where(user_id: @organization.user_id, organization_id: @organization.id).first
+		# else
+		# 	set_manager
+		# end
+		@manager = Manager.find(params[:manager_id])
+		@farm.manager = @manager
   	respond_to do |format|
 	    format.js
 	  end
@@ -80,7 +87,7 @@ class FarmsController < ApplicationController
 
   private
   def farm_params
-	  params.require(:farm).permit(:name, :area, :lat, :lon, :region_id, :farmer_id)
+	  params.require(:farm).permit(:name, :area, :lat, :lon, :region_id, :farmer_id, :manager_id)
 	end
 
 	def set_organization

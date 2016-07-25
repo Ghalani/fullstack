@@ -22,6 +22,7 @@
 .h200{	height: 200px; }
 
 .h300{ height: 300px; }
+.h500{ height: 500px; }
 
 .w50{ width: 50px; }
 .w100{ width: 100px; }
@@ -62,13 +63,16 @@
   margin: auto;
 }
 
+a:hover {text-decoration: none;}
 .list-item, .list-item-head{
   font-size: 15px;
   padding: 10px;
   &:hover{
     background: #f5fafe;
     cursor: pointer;
-    border: solid 1px #e7ecf0;
+  }
+  h1,h2,h3,h4{
+    margin: 0px;
   }
 }
 
@@ -76,7 +80,8 @@
   background: #73879C;
   color: #f5f5f5;
 }
-
+.pad15{padding: 15px;}
+.neg_marg15{margin: -15px;}
 .max-800h{ max-width: 800px; }
 .title1{ font-size: 40px; }
 .no-pad{ padding: 0px; }

@@ -1,17 +1,16 @@
 <div id="myRGnew" class="center-float">
   <div class="card">
-    <div id="new_rg_map" class="h200">
-
-    </div>
+    <div id="new_rg_map" class="h500"></div>
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
     <div>
-      <input type="text" name="name" value="" placeholder="Search...">
       <%= form_for [@region.organization, @region], remote: true do |t|%>
+      <%= t.hidden_field :country_id, value: @region.organization.country_id %>
         <div class="form-group">
-          <%= t.text_field :name, size: '80', class:"form-control", placeholder:"Name" %>
+          <%= t.text_field :name, size: '80', class:"form-control", placeholder:"Region name" %>
         </div>
         <div class="form-group">
-          <%= t.text_field :lat, size: '80', placeholder:"Lat", readonly: true %> |
-          <%= t.text_field :lon, size: '80', placeholder:"Lon", readonly: true %>
+          <%= t.text_field :lat, id:"new_reg_lat", size: '80', placeholder:"Lat", readonly: true %> |
+          <%= t.text_field :lon, id:"new_reg_lon", size: '80', placeholder:"Lon", readonly: true %>
         </div>
         <div id="err-msg"></div>
         <div class="form-group">
@@ -21,16 +20,4 @@
     </div>
   </div>
 </div>
-<script>
-  var map;
-  var infowindow;
-  var markers = [];
-  function initMap() {
-    infowindow = new google.maps.InfoWindow();
-    map = new google.maps.Map(document.getElementById('new_rg_map'), {
-      center: {lat: 5.5557, lng: -0.1963},
-      zoom: 8
-    });
-  }
-  initMap();
-</script>
+<%= render 'regions/maps/map2' %>
