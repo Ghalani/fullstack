@@ -68,14 +68,14 @@
 
         <!-- page content -->
         <div id="main-holder" class="right_col" role="main">
-          <div id="myOverlay" class="overlay">
+          <!-- <div id="myOverlay" class="overlay">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
               <i class="fa fa-remove"></i>
             </a>
             <div id="overlay_body">
 
             </div>
-          </div>
+          </div> -->
           <div style="height:90%">
             <%= yield %>
           </div>
@@ -92,16 +92,26 @@
       </footer>
       <!-- /footer content -->
     </div>
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog modal-lg">
+          <div id="overlay_body"></div>
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+            <i class="fa fa-remove"></i>
+          </a>
+      </div>
+    </div>
     <script>
       $("a .closebtn").on('click', function(){
         closeNav();
       });
       function closeNav() {
-        document.getElementById("myOverlay").style.height = "0%";
+        //document.getElementById("myOverlay").style.height = "0%";
+        $('#myModal').modal('hide');
         $("#overlay_body").html("");
       }
       function addNav(html) {
-        document.getElementById("myOverlay").style.height = "100%";
+        //document.getElementById("myOverlay").style.height = "100%";
+        $('#myModal').modal('show');
         $("#overlay_body").html("").append(html);
       }
       // $("#overlay_body > div").on('click',function(e){

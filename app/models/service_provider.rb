@@ -6,7 +6,7 @@ class ServiceProvider < ActiveRecord::Base
 	has_many :team_activity_reports
 
 	def fl_name
-		"#{self.fname} #{self.lname}"
+		"#{self.fname} #{self.lname}".capitalize
 	end
 
 	def generate_access_token

@@ -33,7 +33,7 @@
       <div class="pad15">
         <% if @sps && @sps.size > 0 %>
           <% @sps.each do |sp| %>
-            <%= link_to '#', remote: true do %>
+            <%= link_to  region_service_provider_path(sp.region, sp), remote: true do %>
               <div class="list-item">
                 <%= sp.fl_name %>
               </div>

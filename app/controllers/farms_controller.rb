@@ -5,8 +5,8 @@ class FarmsController < ApplicationController
 	def index
 		if @organization && is_admin?
 			@farms = @organization.farms
-
-      render "organizations/views/farms"
+			@farmers = Farmer.includes(:region).where(:regions => {:organization_id => @organization.id})
+      #render "organizations/views/farms"
     else
       flash[:info] = "You are not authorized to view this Organization"
       redirect_to "/"
@@ -29,10 +29,10 @@ class FarmsController < ApplicationController
 			@is_org = true
 		else
 			set_manager
-			respond_to do |format|
-	  		format.js
-				format.html
-		  end
+		end
+		respond_to do |format|
+			format.html
+			format.js{ render :layout => "fadein" }
 		end
 	end
 

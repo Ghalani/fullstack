@@ -144,3 +144,23 @@ a:visited { color: none; }
 .form-group {
   min-height: 35px;
 }
+
+.closebtn{
+  position: absolute;
+  top: 20px;
+  font-size: 50px;
+  color: white;
+  right: 20px;
+  &:hover, &:visited{
+    background: none;
+  }
+}
+
+.white-icon-holder{
+  width: 30px;
+  text-align: center;  
+  transition: all 0.2s ease;
+  &:hover{
+    background: rgba(0,0,0,0.3);
+  }
+}
