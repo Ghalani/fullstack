@@ -6,6 +6,7 @@ class FarmsController < ApplicationController
 		if @organization && is_admin?
 			@farms = @organization.farms
 			@farmers = Farmer.includes(:region).where(:regions => {:organization_id => @organization.id})
+			@manager = Manager.where(user_id: current_user, organization_id: @organization.id).first
       #render "organizations/views/farms"
     else
       flash[:info] = "You are not authorized to view this Organization"
@@ -44,7 +45,9 @@ class FarmsController < ApplicationController
 		# else
 		# 	set_manager
 		# end
-		@manager = Manager.find(params[:manager_id])
+		if params[:manager_id]
+			@manager = Manager.find(params[:manager_id])
+		end
 		@farm.manager = @manager
   	respond_to do |format|
 	    format.js

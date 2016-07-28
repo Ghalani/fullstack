@@ -1,0 +1,16 @@
+<!-- top tiles -->
+<div class="row tile_count">
+  <div class="col-xs-4 tile_stats_count">
+    <div class="count green"><%= @regions.size if @regions||= 0 %></div>
+    <span class="count_bottom"><i class="fa fa-globe"></i> Region</span>
+  </div>
+  <div class="col-xs-4 tile_stats_count">
+    <div class="count green"><%= @teams ? @teams.size : '0' %></div>
+    <span class="count_bottom"><i class="fa fa-group"></i> Teams</span>
+  </div>
+  <div class="col-xs-4 tile_stats_count">
+    <div class="count green"><%= @sps.size ||= 0 %></div>
+    <span class="count_bottom"><i class="fa fa-user"></i> Labourers</span>
+  </div>
+</div>
+<!-- /top tiles -->

@@ -1,4 +1,6 @@
-Labourers
+<div class="">
+  <%= render 'regions/admin/top_stats' %>
+</div>
 <div class="row">
   <div class="col-md-4">
     <div class="x_panel tile">
@@ -22,11 +24,6 @@ Labourers
     </div>
   </div>
   <div class="col-md-8">
-    <div class="row">
-      <div class="col-sm-4"><%= @regions.size if @regions||= 0 %> region</div>
-      <div class="col-sm-4"><%= @team ? @team.size : '?' %> teams</div>
-      <div class="col-sm-4"><%= @sps.size ||= 0 %> labourers</div>
-    </div>
     <div id="labour-show">
       <%= render partial: 'regions/admin/labour_list' %>
     </div>

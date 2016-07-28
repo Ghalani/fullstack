@@ -1,27 +1,4 @@
-<% @farmer = Farmer.new if @farmer %>
-<div><h2><%= @farm.name %> | Farm Dashboard</h2></div>
-<div class="row">
-  <div class="col-md-3">
-    <div class="card w200">
-      Stat 1
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="card w200">
-      Stat 2
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="card w200">
-      Stat 3
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="card w200">
-      Stat 4
-    </div>
-  </div>
-</div>
+<div><h2>Farm: <%= @farm.name %></div>
 <div class="row">
   <div class="col-md-8">
     <div class="x_panel tile">
@@ -98,6 +75,7 @@
           <h2><%= @farm.farmer.phone %></h2>
           <h2><%= @farm.farmer.gender %></h2>
         <% else %>
+          <div><% image_tag 'farmer.png' %></div>
           <h2>This farm has no farmer</h2>
           <%= link_to 'Add',  farm_assign_farmer_path(@farm), class:'btn btn-primary', remote: true %>
         <% end %>

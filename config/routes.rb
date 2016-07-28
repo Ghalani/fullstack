@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   resources :organizations do
     #scope 'farms' do
       #get 'farms' => 'farms#index'
-      resources :farms, only:[:index, :show]
+      resources :farms, only:[:index,:show]
       get 'users' => 'users#index'
       get 'labourers' => 'service_providers#index'
       #get 'inventory' => 'service_providers#index'

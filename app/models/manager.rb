@@ -8,8 +8,8 @@ class Manager < ActiveRecord::Base
 		tm_sps = self.teams.collect{|t|
 			t.team_assignments.collect{|ta|
 				ta.service_provider
-				}
-			}.flatten.uniq
+			}
+		}.flatten.uniq
 	end
 
 	def sp_num

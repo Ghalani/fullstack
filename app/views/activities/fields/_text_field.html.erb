@@ -1,9 +1,9 @@
 <div class="field">
   <% if defined? f %>
     <%= f.label field.name %><br />
-    <%= f.text_field field.name %>
+    <%= f.text_field field.name, class:"form-control" %>
   <% else %>
     <%= label_tag field.name %><br />
-    <%= text_field_tag field.name, "",readonly: true %>
+    <%= text_field_tag field.name, "", class:"form-control", readonly: true %>
   <% end %>
 </div>

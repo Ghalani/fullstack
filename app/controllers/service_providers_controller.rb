@@ -6,6 +6,7 @@ class ServiceProvidersController < ApplicationController
     if is_admin?
       @sps = @organization.service_providers
       @regions = @organization.regions
+      @teams = @organization.managers.collect{|m| m.teams}.flatten.uniq
       # => @teams = select a region to show a team
       render "organizations/views/labourers"
     elsif (Manager.where(user_id: current_user.id)) #is a manager

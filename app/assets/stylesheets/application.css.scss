@@ -82,11 +82,16 @@ a:hover {text-decoration: none;}
 }
 .pad15{padding: 15px;}
 .neg_marg15{margin: -15px;}
+.marg15{margin: 15px;}
 .max-800h{ max-width: 800px; }
 .title1{ font-size: 40px; }
 .no-pad{ padding: 0px; }
 .no-marg{ margin: 0px; }
 .ferror{ color: #ee1111; }
+
+.text-huge{font-size: 5em;}
+
+
 .alert{
   z-index: 2;
   margin: 0px;
@@ -158,9 +163,16 @@ a:visited { color: none; }
 
 .white-icon-holder{
   width: 30px;
-  text-align: center;  
+  text-align: center;
   transition: all 0.2s ease;
   &:hover{
     background: rgba(0,0,0,0.3);
   }
+}
+
+.micro-img{max-width: 50px;}
+.tilt-45{
+    -ms-transform: rotate(-45deg); /* IE 9 */
+    -webkit-transform: rotate(-45deg); /* Chrome, Safari, Opera */
+    transform: rotate(-45deg);
 }

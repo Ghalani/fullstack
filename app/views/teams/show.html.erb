@@ -81,26 +81,26 @@
           <% end %>
         </div>
       </div>
-      <div class="x_panel tile">
-  			<div class="x_title">
-  				<h2>Remaining farms</h2>
-  				<div class="clearfix"></div>
-  			</div>
-  			<div class="x_content">
-        </div>
-      </div>
     </div>
     <div class="col-md-4">
       <div class="x_panel tile">
   			<div class="x_title">
-  				<h2>Available workers (<%= @team.region.name %>)</h2>
+  				<h3>Available workers (<%= @team.region.name %>) region</h3>
   				<div class="clearfix"></div>
   			</div>
   			<div class="x_content">
   				<div class="row half-div">
-            <% @av_sps.each do |avs| %>
-              <div id="av_sp_item_<%= avs.id %>"class="add-sp-stub col-md-4 col-sm-6" value=<%= avs.id %>>
-                <%= render 'team_member_item', sp: avs %>
+            <% if @av_sps && @av_sps.size > 0 %>
+              <% @av_sps.each do |avs| %>
+                <div id="av_sp_item_<%= avs.id %>"class="add-sp-stub col-md-4 col-sm-6" value=<%= avs.id %>>
+                  <%= render 'team_member_item', sp: avs %>
+                </div>
+              <% end %>
+            <% else %>
+              <div class="marg15">
+                No more labourers available to assign. You can either unassign some labourers from other teams or hire new labour, then add them below.
+                <br><br>
+                <%= link_to "Add", "#", class:"btn btn-primary" %>
               </div>
             <% end %>
           </div>
@@ -108,7 +108,7 @@
       </div>
       <div class="x_panel tile">
   			<div class="x_title">
-  				<h2>Team leader report</h2>
+  				<h3>Team leader report</h3>
   				<div class="clearfix"></div>
   			</div>
   			<div id="rp_cont" class="x_content">
@@ -117,16 +117,20 @@
     </div>
     <div class="col-md-4">
       <div id="new-tac-tile" class="x_panel tile" hidden></div>
-      <div class="x_panel tile">
-  			<div class="x_title">
-  				<h2>Team details</h2>
-          <%= link_to new_region_team_activity_path(@team.region), remote: true do %>
-            <i id="add-tac-but" class="fa fa-plus add-but"></i>
-          <% end %>
-  				<div class="clearfix"></div>
-  			</div>
-  			<div class="x_content half-div">
-  				Information about the team and the duty they are assigned
+      <div class="portlet hcenter">
+        <div class="portlet-heading bg-purple">
+          <h3 class="portlet-title">Team Activity</h3>
+          <div class="portlet-widgets">
+            <%= link_to new_region_team_activity_path(@team.region), remote: true do %>
+              <div class="circle white-icon-holder">
+                <i class="fa fa-plus"></i>
+              </div>
+            <% end %>
+           </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="pad15">
+          Information about the team and the duty they are assigned
           <div>
             <div class="">
               Assign Activity to team and the due date

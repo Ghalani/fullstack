@@ -58,7 +58,7 @@ function initAutocomplete() {
 
       // Create a marker for each place.
       markers.push(new google.maps.Marker({
-        map: map,
+        map: map2,
         icon: icon,
         title: place.name,
         position: place.geometry.location
@@ -72,6 +72,13 @@ function initAutocomplete() {
       }
     });
     map2.fitBounds(bounds);
+    var point = new google.maps.LatLng(5.5557, -0.1963);
+    var marker = new google.maps.Marker({
+      map: map2,
+      position: point
+    });
+    map2.setCenter(marker.position);
+    map2.setZoom(8);
   });
 
   google.maps.event.addListener(map2, "click", function (event) {
@@ -100,7 +107,7 @@ function initAutocomplete() {
     });
     $("#new_rg_rad").val(100);
     google.maps.event.addListener(radius, 'radius_changed', function () {
-      $("#new_rg_rad").val(radius.getRadius());
+      $("#new_rg_rad").val(Math.round(radius.getRadius()));
     });
     // Center of map
     //map2.panTo(new google.maps.LatLng(latitude,longitude));
