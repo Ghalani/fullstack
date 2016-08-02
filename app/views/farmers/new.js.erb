@@ -1,3 +1,2 @@
 //$("#team-list").hide();
-$("#myOverlay #overlay_body").append("<%= escape_javascript(render partial:'new').html_safe %>");
-document.getElementById("myOverlay").style.height = "100%";
+addNav("<%= escape_javascript(render partial:'new').html_safe %>");
