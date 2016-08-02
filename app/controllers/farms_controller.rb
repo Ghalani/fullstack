@@ -17,14 +17,15 @@ class FarmsController < ApplicationController
 	def show
 		@farm = Farm.find_by_id(params[:id])
 		@assps = []
-		@teams = @farm.teams
+		@teams = @farm.region.teams
 		# @assps += ServiceProvider.includes(:team_assignments).where( :team_assignments => { :team_id => t.id })
-		@assps = @teams.collect{|t|
-			t.team_assignments.collect{|ta|
-				ta.service_provider
-			}
-		}.flatten.uniq
+		# @assps = @teams.collect{|t|
+		# 	t.team_assignments.collect{|ta|
+		# 		ta.service_provider
+		# 	}
+		# }.flatten.uniq
 		@sps = ServiceProvider.where(region_id: @farm.region_id)
+		@team_act = TeamActivity.where(farm_id: @farm.id)
 		if @organization && is_admin?
 			@manager = Manager.where(user_id: @organization.user_id, organization_id: @organization.id).first
 			@is_org = true

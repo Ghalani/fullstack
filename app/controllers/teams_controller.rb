@@ -33,6 +33,9 @@ class TeamsController < ApplicationController
     @upc_tact = TeamActivity.where("start_date > ?", Time.now)
     @act_tact = TeamActivity.where("(start_date <= ?) AND (end_date > ?)", Time.now, Time.now)
     @old_tact = TeamActivity.where("end_date < ?", Time.now)
+
+    @team_activity_report = @team.team_activities.collect{|ta| ta.team_activity_reports}.take(10);
+
     # @activities = Activity.all
     respond_to do |format|
       format.js   # => preview

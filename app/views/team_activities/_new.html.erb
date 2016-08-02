@@ -25,7 +25,7 @@
         <hr>
         <div class="form-group">
           <% if @farms && @farms.size > 0 %>
-            <label>Activities</label><br>
+            <label>Farm (where you want to work on): </label><br>
             <%= t.collection_select :farm_id, @farms, :id,:name, include_blank: false, class:"form-control" %>
           <% else %>
             <h3>No activities available</h3><br>

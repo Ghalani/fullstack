@@ -1,0 +1,12 @@
+#tact_cont{
+  #name{
+    font-size: 40px;
+  }
+  #description, #comment{
+    font-size: 30px;
+  }
+  #time{
+    .start{ color: green;}
+    .end{color: red;}
+  }
+}

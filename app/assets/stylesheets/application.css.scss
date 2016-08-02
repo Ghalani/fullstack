@@ -164,6 +164,7 @@ a:visited { color: none; }
 .white-icon-holder{
   width: 30px;
   text-align: center;
+  background: rgba(0,0,0,0.1);
   transition: all 0.2s ease;
   &:hover{
     background: rgba(0,0,0,0.3);

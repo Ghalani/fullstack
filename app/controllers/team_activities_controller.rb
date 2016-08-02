@@ -1,5 +1,9 @@
 class TeamActivitiesController < ApplicationController
-  before_action :set_region
+  before_action :set_region, except: [:show]
+  layout 'admin'
+  def show
+    @ta = TeamActivity.find(params[:id])
+  end
 
   def new
     @team_activity = TeamActivity.new

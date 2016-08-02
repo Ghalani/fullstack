@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'team_activity_reports/show'
+
   # resources :activities do
   #   resources :activity_forms
   # end
@@ -68,6 +70,8 @@ Rails.application.routes.draw do
   resources :regions do
     resources :team_activities
   end
+  resources :team_activities, only: [:show]
+  resources :team_activity_reports, only: [:show]
 
   resources :onboards, only:[:create]
  	namespace :api, defaults: {format: 'json'} do
