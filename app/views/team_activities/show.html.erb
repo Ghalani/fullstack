@@ -1,23 +1,37 @@
 <div id="tact_cont" class="row">
-  <div class="col-md-6 x_panel tile">
-    <div id="name">
-      Activity: <br>
-      <%= @ta.activity.name %>
-    </div>
-    <hr>
-    <div id="description">
-      Description: <br>
-      <%= @ta.activity.description %>
-    </div>
-    <hr>
-    <div id="comment">
-      Comment: <br>
-      <%= @ta.comment %>
-    </div>
-    <hr>
-    <div id="time" class="row">
-      <div class="start col-md-6"><%= @ta.start_date %></div>
-      <div class="end col-md-6"><%= @ta.end_date %></div>
+  <div class="col-md-6">
+    <div class="x_panel tile">
+      <div id="name">
+        Activity:
+        <%= @ta.activity.name %>
+      </div>
+      <hr>
+      <div id="description">
+        Description: <br>
+        <%= @ta.activity.description %>
+      </div>
+      <hr>
+      <div id="comment">
+        Comment: <br>
+        <%= @ta.comment %>
+      </div>
+      <hr>
+      <div id="time" class="row">
+        <div class="col-md-6">
+          Start: <br>
+          <span class="start">
+            <i class="fa fa-calendar-plus-o"></i> <%= @ta.start_date %>
+          </span>
+
+        </div>
+        <div class="col-md-6">
+          End: <br>
+          <span class="end">
+            <i class="fa fa-calendar-check-o"></i> <%= @ta.end_date %>
+          </span>
+
+        </div>
+      </div>
     </div>
   </div>
   <div class="col-md-6">
@@ -28,26 +42,30 @@
       </div>
       <div class="pad15">
         <% if @ta.team_activity_reports && @ta.team_activity_reports.size > 0%>
-          <table>
+          <table class="table">
             <thead>
-              <tr>
-                <% keys = @ta.team_activity_reports[0].keys %>
-                <td><%= keys[0] %></td>
+              <tr class="row">
+                <% keys = @ta.team_activity_reports.first.report.keys %>
+                <td class="col-xs-6"><%= keys[0] %></td>
                 <td><%= keys[1] %></td>
                 <td>Date</td>
+                <td></td>
               </tr>
             </thead>
             <% @ta.team_activity_reports.each do |r|%>
               <tbody>
                 <% data = JSON.parse(r.report.to_json) %>
-                <tr>
-                  <td><%= data[0].key %></td>
-                  <td><%= data[1].key %></td>
+                <tr class="row">
+                  <td class="col-xs-6"><%= data.values[0] %></td>
+                  <td><%= data.values[1] %></td>
                   <td><%= r.created_at %></td>
-                  <%= link_to r, remote:true do %>
-                    <i class="fa fa-eye"></i>
+                  <td>
+                    <%= link_to r, remote:true do %>
+                      <i class="fa fa-eye"></i>
                     <% end %>
+                  </td>
                 </tr>
+                <% end %>
               </tbody>
           </table>
         <% else %>

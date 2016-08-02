@@ -113,8 +113,8 @@
   				<div class="clearfix"></div>
   			</div>
   			<div id="rp_cont" class="x_content">
-          <% if @team_activity_report && @team_activity_report.size > 0 %>
-            <% @team_activity_report.each do |tar| %>
+          <% if @tars && @tars.size > 0 %>
+            <% @tars.each do |tar| %>
               <div class="row">
                 <div class="col-xs-3">
                   <%= image_tag 'user.png', class:'micro-img' %>
@@ -123,8 +123,9 @@
                   <div class="">
                     <%= tar.team_activity.activity.name %>
                   </div>
-                  <div>                    
-                    <%= tar.report %>
+                  <div>
+                    <%= tar.report.keys[0] + " : " + tar.report.values[0] %> <br>
+                    <%= tar.created_at %>
                   </div>
                 </div>
               </div>

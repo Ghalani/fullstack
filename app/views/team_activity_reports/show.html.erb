@@ -1,9 +1,14 @@
-<h1>TeamActivityReports#show</h1>
-<p>Find me in app/views/team_activity_reports/show.html.erb</p>
-<% @ta.team_activity_reports.each do |r|%>
-  <% data = JSON.parse(r.report.to_json) %>
-  <% data.keys.each do |key| %>
-    <%= key %>
-  <% end %><br>
-  <%= link_to r.report, r, remote:true %>
-<% end %>
+
+<div class="x_panel tile w500 center-float">
+  <div class="x_title">
+		<h2>Report</h2>
+	  <div class="clearfix"></div>
+	</div>
+  <div class="x_content">
+    <% data = JSON.parse(@tar.report.to_json) %>
+    <% data.each do |k, v| %>
+      <%= k %> <br>
+      <%= v %> <hr>
+    <% end %>
+  </div>
+</div>
