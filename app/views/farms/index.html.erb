@@ -27,18 +27,20 @@
       <div class="portlet-heading bg-custom">
         <h3 class="portlet-title">Farmers</h3>
         <div class="portlet-widgets">
-          <div class="circle white-icon-holder">
-            <i class="fa fa-plus"></i>
-          </div>
+          <%= link_to new_organization_farmer_path(@organization), remote:true do %>
+            <div class="circle white-icon-holder">
+              <i class="fa fa-plus"></i>
+            </div>
+          <% end %>
         </div>
         <div class="clearfix"></div>
       </div>
       <div class="pad15">
         <% if @farmers && @farmers.size > 0 %>
-          <% @farmers.each do |f| %>
-            <%= link_to  organization_farm_path(@organization.id, f), remote:true do %>
+          <% @farmers.each do |fmr| %>
+            <%= link_to [@organization, fmr], remote:true do %>
               <div class="list-item">
-                <%= f.fl_name %>
+                <%= fmr.fl_name %>
               </div>
               <% end %>
           <% end %>

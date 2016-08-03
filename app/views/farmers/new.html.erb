@@ -1,0 +1,29 @@
+<div>
+  <div class="w500 hcenter card tile">
+      <%= form_for [@organization, @farmer], remote: true do |f|%>
+      <div class="form-group">
+        <%= f.text_field :fname, size: '80', class:"form-control", placeholder:"first name", required: true %>
+      </div>
+      <div class="form-group">
+        <%= f.text_field :lname, size: '80', class:"form-control", placeholder:"last name", required: true %>
+      </div>
+      <div class="form-group">
+        eg. 201234567
+        <%= f.number_field :phone, size: '80', class:"form-control", placeholder:"phone", required: true %>
+      </div>
+      <div class="form-group">
+        Region: <br>
+        <%= f.collection_select :region_id, @regions, :id, :name, include_blank: true, required: true  %>
+      </div>
+      <div class="form-group">
+        Gender: 
+        <%= f.select :gender, options_for_select(["M","F"]), include_blank: false, size:'80', required: true  %>
+      </div>
+      <div id="form-error"></div>
+      <div id="err-msg"></div>
+      <div class="form-group">
+        <%= f.submit 'Submit' , class:"btn btn-primary" %>
+      </div>
+      <% end %>
+    </div>
+</div>

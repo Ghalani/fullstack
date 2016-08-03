@@ -1,7 +1,7 @@
 class ServiceProvider < ActiveRecord::Base
 	belongs_to 	:user
-	has_many 		:activity_report
-	has_many		:team_assignments
+	#has_many 		:activity_report
+	has_many		:team_assignments, dependent: :destroy
 	belongs_to 	:region
 	has_many :team_activity_reports
 

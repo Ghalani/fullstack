@@ -3,10 +3,20 @@ class FarmersController < ApplicationController
   end
 
   def show
+    @farmer = Farmer.find(params[:id])
+    respond_to do |format|
+      format.js{ render layout:"fadein"}
+      format.html
+    end
   end
 
   def new
-
+    set_organization_manager(params[:organization_id])
+    @farmer = Farmer.new
+    @regions = @organization.regions
+    respond_to do |format|
+      format.js{ render layout:"modal"}
+    end
   end
 
   def create
@@ -20,18 +30,8 @@ class FarmersController < ApplicationController
     end
   end
 
-  def assign_farmer
-    @farm = Farm.find(params[:farm_id])
-    @farmers = @farm.region.farmers # => for existing farmers
-    @farmer = Farmer.new
-    @manager = current_user.manager
-    respond_to do |format|
-      format.js
-    end
-  end
-
   private
   def farmer_params
-	  params.require(:farmer).permit(:fname, :lname, :phone, :gender, farm_ids:[])
+	  params.require(:farmer).permit(:fname, :lname, :phone, :gender, :region_id, farm_ids:[])
 	end
 end

@@ -56,5 +56,18 @@ class ApplicationController < ActionController::Base
 			nil
 		end
 	end
+
+  def set_organization_manager(id)
+    @organization = Organization.find(id)
+    begin
+      raise "Organization doesn't exist" unless (@organization)
+      raise "You are not authorized to view this Organization" unless (@manager = current_user.is_manager(id))
+    rescue Exception => e
+      puts e.message
+      flash[:info] = e.message
+      redirect_to "/"
+    end
+  end
+
   helper_method :current_user, :is_admin?
 end

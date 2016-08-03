@@ -1,12 +1,12 @@
 class Organization < ActiveRecord::Base
   after_create :create_root_manager
 
-  has_many    :activities
-  has_many    :managers
-  has_many    :regions
+  has_many    :activities, dependent: :destroy
+  has_many    :managers, dependent: :destroy
+  has_many    :regions, dependent: :destroy
   belongs_to  :user
   belongs_to  :country
-  has_many    :activities
+  has_many    :activities, dependent: :destroy
 
   def farms
     farms = []

@@ -1,5 +1,5 @@
 <div>
-  <%= form_for [@farm, @farmer], remote: true do |f|%>
+  <%= form_for [@organization, @farmer], remote: true do |f|%>
     <div class="form-group">
       <%= f.text_field :fname, size: '80', class:"form-control", placeholder:"first name", required: true %>
     </div>
@@ -10,7 +10,12 @@
       <%= f.text_field :phone, size: '80', class:"form-control", placeholder:"phone", required: true %>
     </div>
     <div class="form-group">
-      <%= f.text_field :gender, size: '80', class:"form-control", placeholder:"gender" %>
+      Region: <br>
+      <%= f.collection_select :region_id, @organization.regions, :id, :name, include_blank: true, required: true  %>
+    </div>
+    <div class="form-group">
+      Gender:
+      <%= f.select :gender, options_for_select(["M","F"]), include_blank: false, size:'80', required: true  %>
     </div>
     <%= f.hidden_field :farm_ids, :multiple => true, value: @farm.id %>
     <%= f.hidden_field :region_id, value: @farm.region.id %>

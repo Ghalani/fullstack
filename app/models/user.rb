@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessor :activation_token
   before_save   :encrypt_password
-  before_save   :downcase_email
+  before_save   :downcase_fields
   before_create :create_activation_digest
   before_save   :reset_activation_digest
   # after_save :clear_password
@@ -16,6 +16,10 @@ class User < ActiveRecord::Base
   validates :password, presence: true
   #validates :username, presence: true, uniqueness: true
   #validates :name, presence: true
+
+  def fl_name
+    "#{self.fname} #{self.lname}"
+  end
 
   # default to the web scope if none is provided
   def find_api_key (targetScope = 'web')
@@ -39,6 +43,11 @@ class User < ActiveRecord::Base
     return false unless organization
     #Organization.find_by_id(organization.id).user_id == self.id
     organization.user_id == self.id
+  end
+
+  def is_manager(organization_id)
+    return false unless organization_id
+    Manager.where(organization_id: organization_id, user_id: self.id).first
   end
 
   # -------------
@@ -65,8 +74,10 @@ class User < ActiveRecord::Base
 
 
   private
-  def downcase_email
-    self.email = email.downcase
+  def downcase_fields
+    self.fname.downcase!
+    self.lname.downcase!
+    self.email.downcase!
   end
 
   def create_activation_digest

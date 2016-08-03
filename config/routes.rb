@@ -23,23 +23,24 @@ Rails.application.routes.draw do
   resources :organizations do
     #scope 'farms' do
       #get 'farms' => 'farms#index'
-      resources :farms, only:[:index,:show]
-      get 'users' => 'users#index'
-      get 'labourers' => 'service_providers#index'
-      #get 'inventory' => 'service_providers#index'
-      #get 'finances' => 'service_providers#index'
-      get 'new_ap' => 'users#new_ap'
-      post "create_ap" => 'users#create_ap'
-      resources :teams, only:[:new]
+    resources :farms, only:[:index,:show]
+    get 'users' => 'users#index'
+    get 'labourers' => 'service_providers#index'
+    #get 'inventory' => 'service_providers#index'
+    #get 'finances' => 'service_providers#index'
+    get 'new_ap' => 'users#new_ap'
+    post "create_ap" => 'users#create_ap'
+    resources :teams, only:[:new]
     #end
     resources :regions
     resources :activities
+    resources :farmers
   end
 
   resources :farms, only:[:index, :show, :new] do
+    #resources :farmers
     resources :teams
-    resources :farmers
-    get "assign_farmer" => "farmers#assign_farmer"
+    get "assign_farmer" => "farms#assign_farmer"
   end
 
   root to: "home#index"

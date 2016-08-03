@@ -89,6 +89,23 @@ class FarmsController < ApplicationController
     end
   end
 
+  def assign_farmer
+    @farm = Farm.find(params[:farm_id])
+		@organization = @farm.region.organization
+    @farmers = @farm.region.farmers # => for existing farmers
+    @farmer = Farmer.new
+    #@manager = current_user.manager
+		respond_to do |format|
+			puts "/-"*100
+			if (@manager = current_user.is_manager(@organization.id)) #sets @manager
+				puts "#"*100 +"\n| "+ @manager.user.fl_name
+				format.js
+			else
+				format.js{ render 'error'}
+			end
+		end
+  end
+
   private
   def farm_params
 	  params.require(:farm).permit(:name, :area, :lat, :lon, :region_id, :farmer_id, :manager_id)
