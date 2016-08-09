@@ -1,5 +1,9 @@
 <div>
   <%= form_for [@organization, @farmer], remote: true do |f|%>
+    <div class="form-group ">
+      <%= f.label :image %>
+      <%= f.file_field :image, accept:"image/*" %>
+    </div>
     <div class="form-group">
       <%= f.text_field :fname, size: '80', class:"form-control", placeholder:"first name", required: true %>
     </div>

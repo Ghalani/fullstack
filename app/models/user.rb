@@ -16,6 +16,9 @@ class User < ActiveRecord::Base
   validates :password, presence: true
   #validates :username, presence: true, uniqueness: true
   #validates :name, presence: true
+  has_attached_file :image, styles: { large: "600X600#", medium: "300x300#", thumb: "100x100#" }, default_url: 'user.png'
+	#default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   def fl_name
     "#{self.fname} #{self.lname}"

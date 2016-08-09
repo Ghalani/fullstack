@@ -8,5 +8,5 @@
 	has_many :team_activities
 
   validates :name, presence: true, uniqueness: true
-  validates :region_id, presence: true, uniqueness: true
+  validates :region_id, presence: true
 end

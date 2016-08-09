@@ -1,6 +1,6 @@
 <div><h2>Farm: <%= @farm.name %> | <%= @farm.area %> acres</div>
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-lg-4 col-md-12">
     <div class="x_panel tile">
       <div class="x_title">
         <h3>Farmer details</h3>
@@ -8,10 +8,18 @@
       </div>
       <div class="x_content half-div">
         <% if @farm.farmer %>
-          <h2><%= @farm.farmer.fname %></h2>
-          <h2><%= @farm.farmer.lname %></h2>
-          <h2><%= @farm.farmer.phone %></h2>
-          <h2><%= @farm.farmer.gender %></h2>
+          <div class="row">
+            <div class="col-md-6 text-center">
+              <% #image_tag @farm.farmer.image.url(:medium), class:'w200 circle' %>
+              <%= image_tag 'user.png', class:'w200 w90p' %>
+            </div>
+            <div class="col-md-6">
+              <h3><%= @farm.farmer.fname %></h3>
+              <h3><%= @farm.farmer.lname %></h3>
+              <h3><%= @farm.farmer.phone %></h3>
+              <h3><%= @farm.farmer.gender %></h3>
+            </div>
+          </div>
         <% else %>
           <div><% image_tag 'farmer.png' %></div>
           <h2>This farm has no farmer</h2>
@@ -25,7 +33,7 @@
         <h2><small>Available teams</small></h2>
         <ul class="nav navbar-right panel_toolbox">
           <li>
-            <%= link_to "#", remote: true do %>
+            <%= link_to new_organization_region_path(@organization), remote: true do %>
               <i class="fa fa-plus"></i>
             <% end %>
           </li>
@@ -35,9 +43,11 @@
       <div class="x_content half-div">
         <% if @teams.size > 0 %>
           <% @teams.each do |t| %>
-            <div class="list-item">
-              <%= t.name %>
-            </div>
+            <%= link_to [@manager, t], remote: true do %>
+              <div class="list-item">
+                <%= t.name %>
+              </div>
+            <% end %>
           <% end %>
         <% else %>
           This farm has no team assigned to it
@@ -46,7 +56,7 @@
     </div>
     <!-- End Avl Teams -->
     <!-- Ass.Teams -->
-    <div class="x_panel tile">
+    <!-- <div class="x_panel tile">
       <div class="x_title">
         <h2><small>Assigned teams</small></h2>
         <ul class="nav navbar-right panel_toolbox">
@@ -69,9 +79,9 @@
           This farm has no team assigned to it
         <% end %>
       </div>
-    </div>
+    </div> -->
   </div>
-  <div class="col-md-8">
+  <div class="col-lg-8 col-md-12">
     <div class="portlet hcenter">
       <div class="portlet-heading bg-purple">
         <h3 class="portlet-title">Activities scheduled</h3>

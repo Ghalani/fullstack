@@ -2,7 +2,11 @@
   <div class="card">
     <div><h2>New Labourer</h2></div>
     <div>
-      <%= form_for [@region, @sp], remote: true do |t|%>
+      <%= form_for [@region, @sp], html: { multipart: true }, remote: true do |t|%>
+        <div class="form-group">
+          <%= t.label :image %>
+          <%= t.file_field :image %>
+        </div>
         <div class="form-group">
           <%= t.text_field :fname, size: '80', class:"form-control", placeholder:"first name" %>
         </div>

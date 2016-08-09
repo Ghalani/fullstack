@@ -116,7 +116,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:fname, :lname, :status, :email, :password, :phone)
+      params.require(:user).permit(:fname, :lname, :status, :email, :password, :phone, :image)
     end
 
     def set_organization

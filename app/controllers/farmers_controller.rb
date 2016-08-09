@@ -32,6 +32,6 @@ class FarmersController < ApplicationController
 
   private
   def farmer_params
-	  params.require(:farmer).permit(:fname, :lname, :phone, :gender, :region_id, farm_ids:[])
+	  params.require(:farmer).permit(:fname, :lname, :phone, :gender, :region_id, :image, farm_ids:[])
 	end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160725135650) do
+ActiveRecord::Schema.define(version: 20160808104658) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,11 +68,15 @@ ActiveRecord::Schema.define(version: 20160725135650) do
     t.string   "phone"
     t.string   "gender"
     t.datetime "dob"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "region_id"
     t.string   "fname"
     t.string   "lname"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "farms", force: :cascade do |t|
@@ -142,11 +146,15 @@ ActiveRecord::Schema.define(version: 20160725135650) do
     t.string   "lname"
     t.string   "phone"
     t.string   "gender"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.string   "salt"
     t.string   "encrypted_pin"
     t.string   "access_token"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "service_providers", ["region_id"], name: "index_service_providers_on_region_id", using: :btree
@@ -209,6 +217,10 @@ ActiveRecord::Schema.define(version: 20160725135650) do
     t.datetime "activated_at"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
 end

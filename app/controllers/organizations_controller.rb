@@ -14,6 +14,14 @@ class OrganizationsController < ApplicationController
   def show
     if is_confirm_owner?
       @regions = @organization.regions
+      @managers_num = @organization.managers.size
+      @tact_num = @organization.activities.collect{|act| act.team_activities}.flatten.uniq.size
+      @farms = @regions.collect{|rg| rg.farms}.flatten
+      @total_acreage = 0
+      @farms.each do |f|
+        @total_acreage += f.area
+      end
+      @labours_num = @regions.collect{|rg| rg.service_providers}.flatten.size
     else
       unauth
     end

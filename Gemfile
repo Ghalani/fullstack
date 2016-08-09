@@ -32,8 +32,8 @@ gem 'slack-notifier'
 # => datetimepicker https://eonasdan.github.io/bootstrap-datetimepicker
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
-
 gem 'twilio-ruby'
+gem "paperclip", "~> 5.0.0"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -41,7 +41,8 @@ group :development, :test do
 end
 
 group :development do
-  gem 'rmagick'
+  # => local file storage (upload)
+  gem 'fog'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 	# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -53,4 +54,5 @@ end
 group :production do
   gem 'rails_12factor'
   gem 'puma'
+  gem 'aws-sdk', '~> 2.3'
 end

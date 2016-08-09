@@ -54,6 +54,6 @@ class ServiceProvidersController < ApplicationController
     end
 
     def service_provider_param
-      params.require(:service_provider).permit(:fname, :lname, :phone, :gender)
+      params.require(:service_provider).permit(:fname, :lname, :phone, :gender, :image)
     end
 end

@@ -1,7 +1,7 @@
 <div id="mySPshow">
   <div class="card">
     <div class="center-text">
-      <%= image_tag 'user.png', class:'w200 circle' %>
+      <%= image_tag @sp.image.url(:medium), class:'w200 circle' %>
     </div>
     <div class="center-text">
       <%= @sp.fl_name %>

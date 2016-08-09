@@ -1,6 +1,10 @@
 <div class="card w500 hcenter">
   New managers for <%= @organization.name %>
   <%= form_for @user, url: organization_create_ap_path, remote: true do |u| %>
+  <div class="form-group ">
+    <%= u.label :image %>
+    <%= u.file_field :image %>
+  </div>
   <div class="form-group">
     <%= u.text_field :fname, id:'fname', placeholder: 'first name' %>
   </div>
