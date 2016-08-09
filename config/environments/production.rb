@@ -100,5 +100,4 @@ Rails.application.configure do
       s3_region: ENV.fetch('AWS_REGION'),
     }
   }
-  Paperclip.options[:command_path] = 'R:\RailsInstaller\ImageMagick'
 end
