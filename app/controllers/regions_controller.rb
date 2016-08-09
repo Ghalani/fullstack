@@ -48,6 +48,6 @@ class RegionsController < ApplicationController
     end
 
     def region_params
-      params.require(:region).permit(:name, :lat, :lon, :country_id)
+      params.require(:region).permit(:name, :lat, :lon, :country_id, :radius)
     end
 end

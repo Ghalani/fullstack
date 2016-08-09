@@ -15,20 +15,25 @@
       </div>
       <div class="pad15">
         <% if @farms && @farms.size > 0 %>
-          <% @farms.each do |f| %>
-            <%= link_to  organization_farm_path(f.region.organization.id, f) do %>
+          <div id="farm-list">
+            <% @farms.each do |f| %>
+              <%= link_to  organization_farm_path(f.region.organization.id, f) do %>
               <div class="list-item row">
                 <div class="col-xs-8"><%= f.name %></div>
                 <div class="col-xs-4"><%= f.area %></div>
               </div>
+              <% end %>
             <% end %>
-          <% end %>
-        <% else %>
-          <div class="text-center">
-            <%= image_tag 'barn.png', height:"200px"%>
           </div>
-          <h3>This region (<%= @region.name %>) has no farm</h3><br>
-          <%= link_to 'Add',  new_manager_farm_path(@manager), class:"btn btn-primary", remote: true %>
+        <% else %>
+          <div id="no-farm-box">
+            <div class="text-center">
+              <%= image_tag 'barn.png', height:"200px"%>
+            </div>
+            <h3>This region (<%= @region.name %>) has no farm</h3><br>
+            <%= link_to 'Add',  new_manager_farm_path(@manager), class:"btn btn-primary", remote: true %>
+          </div>
+          <div id="farm-list"></div>
         <% end %>
       </div>
     </div>
@@ -46,8 +51,9 @@
           </div>
           <div class="clearfix"></div>
       </div>
-      <div id="labourer-list" class="pad15">
+      <div class="pad15">
         <% if @sps && @sps.size > 0 %>
+          <div id="labourer-list">
           <% @sps.each do |sp| %>
             <%= link_to  region_service_provider_path(sp.region, sp), remote: true do %>
               <div class="list-item">
@@ -56,11 +62,14 @@
             <% end %>
           <% end %>
         <% else %>
-          <div class="text-center">
-            <%= image_tag 'farm-tools.png', height:"200px"%>
+          <div id="no-labourer-box">
+            <div class="text-center">
+              <%= image_tag 'farm-tools.png', height:"200px"%>
+            </div>
+            <h3>This region (<%= @region.name %>) has no Labourer</h3><br>
+            <%= link_to 'Add', new_region_service_provider_path(@region), class:"btn btn-primary", remote:true %>
           </div>
-          <h3>This region (<%= @region.name %>) has no Labourer</h3><br>
-          <%= link_to 'Add', new_region_service_provider_path(@region), class:"btn btn-primary", remote:true %>
+          <div id="labourer-list"></div>
         <% end %>
       </div>
 

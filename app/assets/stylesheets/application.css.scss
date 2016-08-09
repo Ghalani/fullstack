@@ -19,7 +19,7 @@
 
 @import "font-awesome";
 
-.h200{	height: 200px; }
+.h200{	height: 200px; max-height: 200px;}
 
 .h300{ height: 300px; }
 .h500{ height: 500px; }
@@ -179,3 +179,17 @@ a:visited { color: none; }
 }
 
 .w90p{ max-width: 90% }
+.w100p{ width: 100% }
+
+.ttitle{
+  font-size: 1.5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tile-menu{
+  position: absolute;
+  top: 5px;
+  right: 20px;
+}

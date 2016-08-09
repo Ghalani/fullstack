@@ -40,7 +40,6 @@ class FarmsController < ApplicationController
 
   def new
 		@farm = Farm.new
-		@regions = Region.all
 		# if @organization && is_admin?
 		# 	@manager = Manager.where(user_id: @organization.user_id, organization_id: @organization.id).first
 		# else
@@ -48,6 +47,7 @@ class FarmsController < ApplicationController
 		# end
 		if params[:manager_id]
 			@manager = Manager.find(params[:manager_id])
+			@regions = @manager.organization.regions
 		end
 		@farm.manager = @manager
   	respond_to do |format|

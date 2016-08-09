@@ -1,20 +1,21 @@
 <script>
-// This example adds a search box to a map, using the Google Place Autocomplete
-// feature. People can enter geographical searches. The search box will return a
-// pick list containing a mix of places and predicted search terms.
-
-// This example requires the Places library. Include the libraries=places
-// parameter when you first load the API. For example:
-// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-
+var map2;
 var markers = [];
 var circles = [];
 function initAutocomplete() {
-  var map2 = new google.maps.Map(document.getElementById('new_rg_map'), {
-    center: {lat: 5.5557, lng: -0.1963},
-    zoom: 8,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  });
+  if (Boolean($("#new_rg_map"))) {
+    map2 = new google.maps.Map(document.getElementById('new_rg_map'), {
+      center: {lat: 5.5557, lng: -0.1963},
+      zoom: 8
+    });
+  }
+  // var point = new google.maps.LatLng(5.5557, -0.1963);
+  // // var marker = new google.maps.Marker({
+  // //   map: map2,
+  // //   position: point
+  // // });
+  // map2.setCenter(point);
+  // map2.setZoom(8);
 
   // Create the search box and link it to the UI element.
   var input = document.getElementById('pac-input');
@@ -72,13 +73,6 @@ function initAutocomplete() {
       }
     });
     map2.fitBounds(bounds);
-    var point = new google.maps.LatLng(5.5557, -0.1963);
-    var marker = new google.maps.Marker({
-      map: map2,
-      position: point
-    });
-    map2.setCenter(marker.position);
-    map2.setZoom(8);
   });
 
   google.maps.event.addListener(map2, "click", function (event) {
@@ -124,6 +118,9 @@ function clearOverlays() {
   markers.length = 0;
   circles.length = 0;
 }
-
 initAutocomplete();
+$("#new_rg_map").one('click', function(){
+  google.maps.event.trigger(map2, 'resize');
+  map2.setCenter(new google.maps.LatLng(5.5557, -0.1963));
+});
 </script>

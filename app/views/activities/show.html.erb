@@ -6,16 +6,21 @@
 				<h2>Activity details</h2>
 				<div class="clearfix"></div>
 			</div>
-			<div class="x_content">
-        <p>
-          <strong>Name:</strong>
-          <%= @activity.name %>
-        </p>
+			<div class="x_content row">
+        <div class="col-md-6">
+          <p>
+            <strong>Name:</strong>
+            <%= @activity.name %>
+          </p>
 
-        <p>
-          <strong>Description:</strong>
-          <%= @activity.description %>
-        </p>
+          <p>
+            <strong>Description:</strong>
+            <%= @activity.description %>
+          </p>
+        </div>
+        <div class="col-md-6">
+          <%= image_tag @activity.image.url(:medium) %>
+        </div>
       </div>
     </div>
   </div>

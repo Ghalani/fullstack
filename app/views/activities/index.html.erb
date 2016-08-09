@@ -1,12 +1,14 @@
 <div class="row">
   <% @activities.each do |activity| %>
-    <div class="col-xs-3">
-      <div class="x_panel tile">
+    <div class="col-lg-4 col-md-6">
+      <div class="x_panel tile h200">
         <div class="x_title">
-          <%= link_to [@organization, activity] do %>
-            <h2><%= activity.name %></h2>
-          <% end %>
-          <ul class="nav navbar-right panel_toolbox">
+          <div class="ttitle" style="margin-right:50px;">
+            <%= link_to [@organization, activity] do %>
+              <%= activity.name %>
+            <% end %>
+          </div>
+          <ul class="nav navbar-right panel_toolbox tile-menu">
             <li>
               <%= link_to edit_organization_activity_path(@organization, activity) do %>
                 <i class="fa fa-pencil"></i>
@@ -20,8 +22,13 @@
           </ul>
           <div class="clearfix"></div>
         </div>
-        <div class="x_content">
-          <%= activity.description %>
+        <div class="x_content row">
+          <div class="col-md-6">
+            <%= image_tag activity.image.url(:thumb), style:"height: 100px" %>
+          </div>
+          <div class="col-md-6">
+            <%= activity.description %>
+          </div>
         </div>
       </div>
     </div>

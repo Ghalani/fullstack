@@ -1,2 +1,3 @@
 closeNav();
 $("#labourer-list").append("<%= escape_javascript(render partial: 'regions/admin/sp_list_item', locals: {sp: @sp}).html_safe %>");
+$("#no-labourer-box").hide('slow');

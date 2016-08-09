@@ -92,4 +92,8 @@ $( "#farm_region_id" ).change(function() {
 });
 
 initAutocomplete();
+$("#new_fm_map").one('click', function(){
+  google.maps.event.trigger(map2, 'resize');
+  map2.setCenter(new google.maps.LatLng(5.5557, -0.1963));
+});
 </script>

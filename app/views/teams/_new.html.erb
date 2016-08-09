@@ -1,15 +1,19 @@
 <div id="new-team">
-  <div><h2>New team</h2></div>
-  <div class="card w400 center-float">
+  <div class="card w500 center-float">
+    <div><h2>New team</h2></div>
     <%= form_for [@manager, @team], remote: true do |t|%>
       <div class="form-group">
         <%= t.text_field :name, size: '80', class:"form-control", placeholder:"Name" %>
       </div>
-      <div class="form-group">
-        <%= t.submit 'Submit' , class:"btn btn-primary" %>
+      <div class="form-group row">
+        <div class="col-xs-6">
+          <%= t.submit 'Submit' , class:"btn btn-primary w100p" %>
+          <%= t.hidden_field :region_id, value: @region.id %>
+        </div>
+        <div class="col-xs-6">
+          <span class="btn btn-danger w100p" onclick="closeNav()">Cancel</span>
+        </div>
       </div>
-      <%= t.hidden_field :region_id, value: @region.id %>
     <% end %>
-    <span class="btn btn-danger" onclick="closeNav()">Cancel</span>
   </div>
 </div>
