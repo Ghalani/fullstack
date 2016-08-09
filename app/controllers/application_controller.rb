@@ -11,15 +11,15 @@ class ApplicationController < ActionController::Base
 	# Returns 401 if the user isn't authorized
 	def ensure_authenticated_user
     #head :unauthorized unless current_user
-    if current_user
-      if !current_user.activated
-        redirect_to '/'
-        flash[:info] = "Check your email and verify your account"
-      end
-    else
-      redirect_to '/'
-      flash[:info] = "Please login again..."
-    end
+    # if current_user
+    #   if !current_user.activated
+    #     redirect_to '/'
+    #     flash[:info] = "Check your email and verify your account"
+    #   end
+    # else
+    #   redirect_to '/'
+    #   flash[:info] = "Please login again..."
+    # end
   end
 
   # Returns 401 if the user isn't an admin
