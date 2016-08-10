@@ -10,7 +10,7 @@ class Organization < ActiveRecord::Base
 
   def farms
     farms = []
-    self.managers.collect{|m| farms += m.farms}
+    self.regions.collect{|m| farms += m.farms}
     return farms
   end
 
