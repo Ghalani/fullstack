@@ -1,7 +1,7 @@
 <div class="row">
   <% @activities.each do |activity| %>
     <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="x_panel tile h200">
+      <div class="x_panel tile">
         <div class="x_title">
           <div class="ttitle" style="margin-right:50px;">
             <%= link_to [@organization, activity] do %>
@@ -22,12 +22,14 @@
           </ul>
           <div class="clearfix"></div>
         </div>
-        <div class="x_content row">
-          <div class="col-sm-6">
-            <%= image_tag activity.image.url(:thumb), style:"height: 100px" %>
-          </div>
-          <div class="col-sm-6">
-            <%= activity.description %>
+        <div class="x_content">
+          <div class="row h200">
+            <div class="col-sm-6">
+              <%= image_tag activity.image.url(:thumb), style:"height: 100px" %>
+            </div>
+            <div class="col-sm-6">
+              <%= activity.description %>
+            </div>
           </div>
         </div>
       </div>
