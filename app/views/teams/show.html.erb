@@ -16,7 +16,8 @@
               <div class="row">
                 <div class="col-sm-4">
                   <div class="center-text">
-                    <%= image_tag 'user.png', class:'small-img circle' %>
+                    <%= image_tag @leader.image.url(:thumb), class:'small-img circle' %>
+                    <!-- <%= image_tag 'user.png', class:'small-img circle' %> -->
                   </div>
                 </div>
                 <div class="col-sm-8">
@@ -117,7 +118,8 @@
             <% @tars.each do |tar| %>
               <div class="row">
                 <div class="col-xs-3">
-                  <%= image_tag 'user.png', class:'micro-img' %>
+                  <%= image_tag tar.service_provider.image.url(:thumb), class:'small-img circle' %>
+                  <!-- <%= image_tag 'user.png', class:'micro-img' %> -->
                 </div>
                 <div class="col-xs-9">
                   <div class="">
