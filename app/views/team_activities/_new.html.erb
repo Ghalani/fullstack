@@ -29,7 +29,7 @@
             <%= t.collection_select :farm_id, @farms, :id,:name, include_blank: false, class:"form-control" %>
           <% else %>
             <h3>No activities available</h3><br>
-            <%= link_to new_organization_activity_path(@region.organizations) %>
+            <%= link_to new_organization_activity_path(@region.organization) %>
           <% end %>
         </div>
         <div class="form-group">
