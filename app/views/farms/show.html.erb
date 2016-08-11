@@ -10,8 +10,11 @@
         <% if @farm.farmer %>
           <div class="row">
             <div class="col-md-6 text-center">
-              <% #image_tag @farm.farmer.image.url(:medium), class:'w200 circle' %>
-              <%= image_tag 'user.png', class:'w200 w90p' %>
+              <% if @farm.farmer %>
+                <%= image_tag @farm.farmer.image.url(:medium), class:'w200 w90p circle' %>
+              <% else %>
+                <%= image_tag 'user.png', class:'w200 w90p' %>
+              <% end %>
             </div>
             <div class="col-md-6">
               <h3><%= @farm.farmer.fname %></h3>
