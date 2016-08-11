@@ -19,7 +19,8 @@
 
 @import "font-awesome";
 
-.h200{	height: 200px; max-height: 200px;}
+.h200{	height: 200px}
+.h150{	height: 150px}
 
 .h300{ height: 300px; }
 .h500{ height: 500px; }
@@ -31,6 +32,9 @@
 .w300{ width: 300px; }
 .w500{ width: 500px; }
 .w700{ width: 700px; }
+.w90p{ max-width: 90% }
+.w100p{ width: 100% }
+.max-h150{ max-height: 150px }
 
 .full-height{ height: 100% }
 
@@ -177,9 +181,6 @@ a:visited { color: none; }
     -webkit-transform: rotate(-45deg); /* Chrome, Safari, Opera */
     transform: rotate(-45deg);
 }
-
-.w90p{ max-width: 90% }
-.w100p{ width: 100% }
 
 .ttitle{
   font-size: 1.5em;
