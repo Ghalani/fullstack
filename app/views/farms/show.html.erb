@@ -11,7 +11,7 @@
           <div class="row">
             <div class="col-md-6 text-center">
               <% if @farm.farmer %>
-                <%= image_tag @farm.farmer.image.url(:medium), class:'w200 w90p circle' %>
+                <%= image_tag @farm.farmer.image.url(:thumb), class:'w200 w90p circle' %>
               <% else %>
                 <%= image_tag 'user.png', class:'w200 w90p' %>
               <% end %>
