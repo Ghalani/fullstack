@@ -8,7 +8,9 @@
       <div class="form-group row">
         <div class="col-xs-6">
           <%= t.submit 'Submit' , class:"btn btn-primary w100p" %>
-          <%= t.hidden_field :region_id, value: @region.id %>
+          <% if @region %>
+            <%= t.hidden_field :region_id, value: @region.id %>
+          <% end %>
         </div>
         <div class="col-xs-6">
           <span class="btn btn-danger w100p" onclick="closeNav()">Cancel</span>

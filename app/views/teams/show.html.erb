@@ -85,62 +85,7 @@
       </div>
 
     </div>
-    <div class="col-md-4">
-      <div class="x_panel tile">
-  			<div class="x_title">
-  				<h2>Assigned farms</h2>
-          <%= link_to  manager_team_assign_farms_path(@manager, @team), remote: true do %>
-            <i class="fa fa-plus add-but"></i>
-          <% end %>
-  				<div class="clearfix"></div>
-  			</div>
-  			<div class="x_content">
-          <% if @farms.size < 1 %>
-            <div id="no-sp" class="center-text">
-              <h3>No farms assigned</h3>
-            </div>
-          <% else %>
-              <% @farms.each do |fm|%>
-                  <div class="list-item">
-                    <%= fm.name %>
-                  </div>
-              <% end %>
-          <% end %>
-        </div>
-      </div>
-      <div class="x_panel tile">
-  			<div class="x_title">
-  				<h3>Team leader report</h3>
-  				<div class="clearfix"></div>
-  			</div>
-  			<div id="rp_cont" class="x_content">
-          <% if @tars && @tars.size > 0 %>
-            <% @tars.each do |tar| %>
-              <div class="row">
-                <div class="col-xs-3">
-                  <%= image_tag tar.service_provider.image.url(:thumb), class:'small-img circle' %>
-                  <!-- <%= image_tag 'user.png', class:'micro-img' %> -->
-                </div>
-                <div class="col-xs-9">
-                  <div class="">
-                    <%= tar.team_activity.activity.name %>
-                  </div>
-                  <div>
-                    <%= tar.report.keys[0] + " : " + tar.report.values[0] %> <br>
-                    <%= tar.created_at %>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          <% else %>
-            <div id="no-report">
-              No report has been sent by the team leader so far.
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
+    <div class="col-md-8">
       <div id="new-tac-tile" class="x_panel tile" hidden></div>
       <div class="portlet hcenter">
         <div class="portlet-heading bg-purple">
@@ -200,6 +145,61 @@
               </div>
 
             </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="x_panel tile">
+    			<div class="x_title">
+    				<h2>Assigned farms</h2>
+            <%= link_to  manager_team_assign_farms_path(@manager, @team), remote: true do %>
+              <i class="fa fa-plus add-but"></i>
+            <% end %>
+    				<div class="clearfix"></div>
+    			</div>
+    			<div class="x_content">
+            <% if @farms.size < 1 %>
+              <div id="no-sp" class="center-text">
+                <h3>No farms assigned</h3>
+              </div>
+            <% else %>
+                <% @farms.each do |fm|%>
+                    <div class="list-item">
+                      <%= fm.name %>
+                    </div>
+                <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="x_panel tile">
+    			<div class="x_title">
+    				<h3>Team leader report</h3>
+    				<div class="clearfix"></div>
+    			</div>
+    			<div id="rp_cont" class="x_content">
+            <% if @tars && @tars.size > 0 %>
+              <% @tars.each do |tar| %>
+                <div class="row">
+                  <div class="col-xs-3">
+                    <%= image_tag tar.service_provider.image.url(:thumb), class:'small-img circle' %>
+                    <!-- <%= image_tag 'user.png', class:'micro-img' %> -->
+                  </div>
+                  <div class="col-xs-9">
+                    <div class="">
+                      <%= tar.team_activity.activity.name %>
+                    </div>
+                    <div>
+                      <%= tar.report.keys[0] + " : " + tar.report.values[0] %> <br>
+                      <%= tar.created_at %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            <% else %>
+              <div id="no-report">
+                No report has been sent by the team leader so far.
+              </div>
+            <% end %>
           </div>
         </div>
       </div>

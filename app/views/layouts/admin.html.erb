@@ -101,23 +101,25 @@
       </div>
     </div>
     <script>
+      var tabs = [];
       $("a .closebtn").on('click', function(){
         closeNav();
       });
       function closeNav() {
-        //document.getElementById("myOverlay").style.height = "0%";
-        $('#myModal').modal('hide');
         $("#overlay_body").html("");
+        if (tabs.length < 1){
+          $('#myModal').modal('hide');
+        }else {
+          $("#overlay_body").html("").append(tabs[tabs.length - 1]);
+          tabs.pop();
+        }
       }
       function addNav(html) {
-        //document.getElementById("myOverlay").style.height = "100%";
-        $('#myModal').modal('show');
+        if ($("#overlay_body").html().length > 1)
+          tabs.push($("#overlay_body").html());
         $("#overlay_body").html("").append(html);
+        $('#myModal').modal('show');
       }
-      // $("#overlay_body > div").on('click',function(e){
-      //   console.log('dfjdfhjdfhjdf');e.stopPropagation();
-      // });
-      //$("#myOverlay").on('click',function(){console.log('CLICKED')});
 
       function displayError(msg){
         $('#err-msg').html("").append(msg);

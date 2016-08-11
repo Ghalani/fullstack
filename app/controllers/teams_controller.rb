@@ -11,10 +11,9 @@ class TeamsController < ApplicationController
     else
       @manager = Manager.find(params[:manager_id])
     end
-    @region = Region.find(params[:region])
-    # @farms = @region.farms
-    # @sps = @region.service_providers
-    @team.region = @region
+    if (@region = Region.find_by_id(params[:region]))
+      @team.region = @region
+    end
     @team.manager = @manager if @manager
   	respond_to do |format|
 	    format.js
