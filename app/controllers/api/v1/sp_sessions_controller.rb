@@ -25,7 +25,7 @@ module Api
           # => receive code and generate access_token
           @sp.generate_access_token
           @sp.save
-          render json: { profile: {id: @sp.id, phone: @sp.phone, access_token: @sp.access_token}, message: "success"}, status: :created
+          render json: { profile: {id: @sp.id, name: @sp.fl_name, phone: @sp.phone, access_token: @sp.access_token}, message: "success"}, status: :created
         else
           render json: { error: "Could not authenticate properly." }
         end

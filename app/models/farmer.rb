@@ -15,6 +15,22 @@ class Farmer < ActiveRecord::Base
     "#{self.fname} (#{self.lname})"
   end
 
+  def formated_numb
+		"+#{self.region.country.phonecode}#{self.phone}"
+	end
+
+  def age
+
+  end
+
+  def image_url
+    url = Hash.new
+    url[:thumb] = image.url(:thumb)
+    url[:medium] = image.url(:medium)
+    url[:large] = image.url(:large)
+    url
+  end
+
   private
     def downcase_fields
       self.fname.downcase!

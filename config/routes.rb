@@ -87,6 +87,7 @@ Rails.application.routes.draw do
       resources :sp_sessions
       resources :service_providers do
         get "team_act" => "service_providers#get_team_activities"
+        get "get_farmers" => "service_providers#get_farmers"
       end
       resources :teams
       resources :team_activity_reports

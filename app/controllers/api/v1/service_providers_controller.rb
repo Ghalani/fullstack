@@ -1,8 +1,7 @@
 module Api
   module V1
-    class ServiceProvidersController < ApplicationController
+    class ServiceProvidersController < ApiApplicationController
       before_action :set_service_provider, only: [:show, :update, :destroy]
-      skip_before_filter :ensure_authenticated_user, only:[:get_team_activities, :show]
 
       # GET /service_providers
       # GET /service_providers.json
@@ -79,6 +78,12 @@ module Api
       #     render json: {error: "Please login again"}
       #   end
       # end
+
+      def get_farmers
+        @farmers = ServiceProvider.find(params[:service_provider_id]).region.farmers
+        #render json: {farmers: @farmers}
+        render json: @farmers
+      end
 
       private
 

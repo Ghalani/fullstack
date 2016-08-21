@@ -1,8 +1,58 @@
-<h1>Farmers#show</h1>
-<p>Find me in app/views/farmers/show.html.erb</p>
-<%= @farmer.fl_name %>
-<% if @farmer.farms && @farmer.farms.size > 0 %>
-  <% @farmer.farms.each do |f| %>
-    <%= f.name %>
-  <% end %>
-<% end %>
+<div class="row">
+  <div class="col-md-6 row">
+    <div class="x_panel tile">
+      <div class="x_title">
+        <h3>Farmer details</h3>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content half-div">
+        <div class="row">
+          <div class="col-md-6 text-center">
+            <%= image_tag @farmer.image.url(:thumb), class:'w200 w90p circle' %>
+            <hr>
+            <div class="btn btn-primary" onclick="$('#qrcode').toggle('slow')"> <i class="fa fa-eye"></i> QRcode </div>
+          </div>
+          <div class="col-md-6">
+            <h4><%= @farmer.fname.capitalize %></h4>
+            <h4><%= @farmer.lname.capitalize %></h4>
+            <h4><i class="fa fa-phone"></i> <%= @farmer.formated_numb %></h4>
+            <h4><%= @farmer.gender %></h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div id="qrcode"></div>
+  </div>
+</div>
+<div>
+  <div class="portlet hcenter">
+    <div class="portlet-heading bg-purple">
+      <h3 class="portlet-title">Farms</h3>
+      <div class="portlet-widgets">
+        <a data-remote="true" href="/managers/6/farms/new">
+          <div class="circle white-icon-holder">
+            <i class="fa fa-plus"></i>
+          </div>
+        </a>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="pad15">
+      <% if @farmer.farms && @farmer.farms.size > 0 %>
+        <% @farmer.farms.each do |f| %>
+          <%= f.name %>
+        <% end %>
+      <% else %>
+        This farmer has no farm under <%= @farmer.gender.downcase[0] == 'm' ? 'him' : 'her' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<script>
+  var qr_obj = $("#qrcode");
+  var qrcode = new QRCode("qrcode");
+  qrcode.makeCode("<%= @farmer.phone %>");
+  //qr_obj.hide("slow");
+</script>
