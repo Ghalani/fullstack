@@ -1,8 +1,8 @@
 <div id="landing-page">
   <section id="home" class="row parent">
-    <div class="container guide">
+    <div class="container">
       <nav id="nav1" class="navbar navbar-default">
-        <div class="container-fluid guide">
+        <div class="container-fluid">
           <div>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
               <span class="sr-only">Toggle Navigation</span>
@@ -16,35 +16,32 @@
             <ul class="nav navbar-nav fright">
               <li><a href="#about">About</a></li>
               <li><a href="#services">Services</a></li>
-              <li><a href="#benefits">Benefits</a></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
           </div>
         </div>
       </nav>
-    </div>
-    <div class="w576 child-center">
-      <div id="home-text1" class="marg-bottom">
-        Ghalani Farm Management System
+      <div class="float-center child-center guide tcenter">
+        <div id="home-text1" class="marg-bottom">
+          Use Software to Increase Farm Yield
+        </div>
+        <div id="home-text2" class="marg-bottom rbt">
+          Manage multiple farms, contracts, inventory, finances, <br>and labourers with ease and reduce risks
+        </div>
       </div>
-      <div id="home-text2" class="marg-bottom rbt">
-        Use Software to Increase Farm Yield
-      </div>
-      <div data-role="main" class="ui-content rbt">
-        <a class="modalButton btn btn-primary btn-lg rounded" data-toggle="modal" data-target="#myModal">Request a Demo</a>
-      </div
     </div>
   </section>
 
   <section id="about" id="About">
     <div class="container">
-    <div class="row">
-      <div class="text-center aboutSection" >
-        <h1 class="main-title">About</h1>
-        <p class="text rbt">
+      <div class="row card1">
+        <div class="col-md-4">
+          <%= image_tag "logo_green.png" %>
+        </div>
+        <div class="col-md-8">
           Ghalani is a mobile and web-based farm management system designed to aid large scale farmers and aggregators to increase production. <br>
           Our farm management software helps you to organize, manage and monitor crops, farmers,  inventory and finances.<br>
-          We focus on coordinating all activities that improve farming methods and creates high yields.</p>
+          We focus on coordinating all activities that improve farming methods and creates high yields.
         </div>
       </div>
     </div>
@@ -55,9 +52,8 @@
     <div class="container">
        <div class="row">
        <div class="col-lg-12" id="details">
-        <h1 class="main-title">Services</h1><br>
-        <div class="col-md-4 col-xs-12 row">
-        <div class="icon text-center"><i class="fa fa-users fa-4x"></i></div>
+        <div class="col-md-4 pop-right sm-card card2">
+          <div class="icon text-center"><i class="fa fa-users fa-4x"></i></div>
           <h2 class="text-center">Crop & Farmer Management</h2>
           <p class="content text-center rbt">Access to Farmer and Crop Profiles<br>
                                     Profile Farm Acreage and Location <br>
@@ -66,8 +62,8 @@
           </p>
 
         </div>
-        <div class="col-md-4 col-xs-12 row ">
-        <div class="icon text-center"><i class="fa fa-truck fa-4x"></i></div>
+        <div class="col-md-4 col-xs-12 nm-card card2 z2">
+          <div class="icon text-center"><i class="fa fa-truck fa-4x"></i></div>
           <h2 class="text-center">Inventory Management</h2>
           <p class="content text-center rbt">Keep Track of Inputs and Produce<br>
                                     Track Movement of Inventory<br>
@@ -75,8 +71,8 @@
         </p>
         </div>
 
-        <div class="col-md-4 col-xs-12 row">
-        <div class="icon text-center"><i class="fa fa-credit-card fa-4x"></i></div>
+        <div class="col-md-4 pop-left sm-card card2">
+          <div class="icon text-center"><i class="fa fa-credit-card fa-4x"></i></div>
           <h2 class="text-center">Financial Management</h2>
           <p class="content text-center rbt">Make financial projections based on data<br>
                                     Know Financial Records<br>
@@ -142,24 +138,6 @@
   </section><!-- /.content-section -->
 
   <section id="contact" class="row">
-    <div id="subscribe-cont" class="tuck-up pad-tb">
-      <div class="container guide">
-        <div class="w576 hcenter">
-          <div class="big-text marg-bottom">Subscribe to our newsletter!</div>
-          <div class="w800 rbt">
-              <div class="row form-group">
-                <div class="col-sm-8 ">
-                  <input id="sub_text1" class="rounded" type="email" placeholder="Enter your email address"/>
-                </div>
-                <div class="col-sm-4">
-                  <button id="sub_but1" class="rounded" data-toggle="modal" data-target="#myModal">SUBSCRIBE NOW</button>
-                </div>
-              </div>
-              <span class="help-block"></span>
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="pad-tb">
       <div class="big-text tcenter marg-bottom">
         Contact Us
@@ -184,35 +162,6 @@
 
     </div>
   </section>
-
-
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document" id="modalForm">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title" id="myModalLabel">Request A Demo</h4>
-        </div>
-        <div class="modal-body rbt">
-          <%= form_for @onboard do |f| %>
-            <div >
-              <%= f.text_field :name, class:"form-control", required: true, placeholder:"Enter your name" %>
-              <br>
-            </div>
-            <div>
-              <%= f.email_field :email, id:"sub_email", class:"form-control", required: true, placeholder:"Enter your email" %>
-              <br>
-            </div>
-            <div>
-              <%= f.submit "submit", class:"modalButton btn btn-primary rounded" %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 <script>
   $("#sub_but1").on('click', function(){
