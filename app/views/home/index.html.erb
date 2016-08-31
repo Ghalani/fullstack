@@ -1,32 +1,34 @@
-<div id="landing-page">
+<div id="landing-page" class="container-fluid">
   <section id="home" class="row parent">
+    <nav id="nav1" class="navbar navbar-default ease">
+      <div class="container">
+        <div>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle Navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><%= image_tag "logo.png" %></a>
+        </div>
+        <div class="collapse navbar-collapse rbt ease">
+          <ul class="nav navbar-nav fright">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
     <div class="container">
-      <nav id="nav1" class="navbar navbar-default">
-        <div class="container-fluid">
-          <div>
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="sr-only">Toggle Navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/"><%= image_tag "logo.png" %></a>
+      <div class="v-center abs-center guide tcenter">
+        <div class="abs-child">
+          <div id="home-text1" class="marg-bottom">
+            Use Software to Increase Farm Yield
           </div>
-          <div class="collapse navbar-collapse rbt">
-            <ul class="nav navbar-nav fright">
-              <li><a href="#about">About</a></li>
-              <li><a href="#services">Services</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
+          <div id="home-text2" class="marg-bottom rbt">
+            Manage multiple farms, contracts, inventory, finances, <br>and labourers with ease and reduce risks
           </div>
-        </div>
-      </nav>
-      <div class="float-center child-center guide tcenter">
-        <div id="home-text1" class="marg-bottom">
-          Use Software to Increase Farm Yield
-        </div>
-        <div id="home-text2" class="marg-bottom rbt">
-          Manage multiple farms, contracts, inventory, finances, <br>and labourers with ease and reduce risks
         </div>
       </div>
     </div>
@@ -35,11 +37,11 @@
   <section id="about" id="About">
     <div class="container">
       <div class="row card1">
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-12 col-xs-12 text-center">
           <%= image_tag "logo_green.png" %>
         </div>
-        <div class="col-md-8">
-          Ghalani is a mobile and web-based farm management system designed to aid large scale farmers and aggregators to increase production. <br>
+        <div class="col-md-8 col-sm-12 col-xs-12 mgt20">
+          <span>Ghalani</span> is a mobile and web-based farm management system designed to aid large scale farmers and aggregators to increase production. <br>
           Our farm management software helps you to organize, manage and monitor crops, farmers,  inventory and finances.<br>
           We focus on coordinating all activities that improve farming methods and creates high yields.
         </div>
@@ -50,106 +52,107 @@
 
   <section class="services" id="services">
     <div class="container">
-       <div class="row">
-       <div class="col-lg-12" id="details">
-        <div class="col-md-4 pop-right sm-card card2">
-          <div class="icon text-center"><i class="fa fa-users fa-4x"></i></div>
-          <h2 class="text-center">Crop & Farmer Management</h2>
-          <p class="content text-center rbt">Access to Farmer and Crop Profiles<br>
-                                    Profile Farm Acreage and Location <br>
-                                    Monitor Daily Farm Activities<br>
-                                    Assign Farm Work Efficiently<br>
-          </p>
+       <div id="sv-web" class="row">
+         <div class="col-lg-12" id="details">
+          <div class="col-sm-4 pop-right sm-card card2">
+            <div class="v-center">
+              <div class="icon text-center"><%= image_tag 'farmer_h.png' %></div>
+              <h2 class="text-center main-text">Crop & Farmer Management</h2>
+              <p class="content text-center rbt">Access to Farmer and Crop Profiles<br>
+                Profile Farm Acreage and Location <br>
+                Monitor Daily Farm Activities<br>
+                Assign Farm Work Efficiently<br>
+              </p>
+              <div id="hbar"></div>
+            </div>
 
-        </div>
-        <div class="col-md-4 col-xs-12 nm-card card2 z2">
-          <div class="icon text-center"><i class="fa fa-truck fa-4x"></i></div>
-          <h2 class="text-center">Inventory Management</h2>
-          <p class="content text-center rbt">Keep Track of Inputs and Produce<br>
-                                    Track Movement of Inventory<br>
-                                    Access Detailed Records of Assets Usage
-        </p>
-        </div>
+          </div>
+          <div class="col-sm-4 col-xs-12 nm-card card2 z2">
+            <div class="v-center">
+              <div class="icon text-center"><%= image_tag 'inventory.png' %></div>
+              <br>
+              <h2 class="text-center main-text">Inventory Management</h2>
+              <p class="content text-center rbt">Keep Track of Inputs and Produce<br>
+                Track Movement of Inventory<br>
+                Access Detailed Records of Assets Usage
+              </p>
+              <br>
+              <div id="hbar"></div>
+            </div>
+          </div>
 
-        <div class="col-md-4 pop-left sm-card card2">
-          <div class="icon text-center"><i class="fa fa-credit-card fa-4x"></i></div>
-          <h2 class="text-center">Financial Management</h2>
-          <p class="content text-center rbt">Make financial projections based on data<br>
-                                    Know Financial Records<br>
-                                    Plan Strategically<br>
-                                    Monitor Cash Inflows and Outflows<br></p>
+          <div class="col-sm-4 pop-left sm-card card2">
+            <div class="v-center">
+              <div class="icon text-center"><%= image_tag 'finance.png' %></div>
+              <h2 class="text-center main-text">Financial Management</h2>
+              <p class="content text-center rbt">Make financial projections based on data<br>
+                Know Financial Records<br>
+                Plan Strategically<br>
+                Monitor Cash Inflows and Outflows<br>
+              </p>
+              <div id="hbar"></div>
+            </div>
+          </div>
         </div>
       </div>
+      <div id="sv-phone" class="row" >
+         <div class="sm-card card2 w500">
+           <div class="v-center">
+             <div class="icon text-center"><%= image_tag 'farmer_h.png' %></div>
+             <h2 class="text-center main-text">Crop & Farmer Management</h2>
+             <p class="content text-center rbt">Access to Farmer and Crop Profiles<br>
+               Profile Farm Acreage and Location <br>
+               Monitor Daily Farm Activities<br>
+               Assign Farm Work Efficiently<br>
+             </p>
+             <div id="hbar"></div>
+           </div>
 
+         </div>
+         <div class="sm-card card2 w500">
+           <div class="v-center">
+             <div class="icon text-center"><%= image_tag 'inventory.png' %></div>
+             <br>
+             <h2 class="text-center main-text">Inventory Management</h2>
+             <p class="content text-center rbt">Keep Track of Inputs and Produce<br>
+               Track Movement of Inventory<br>
+               Access Detailed Records of Assets Usage
+             </p>
+             <br>
+             <div id="hbar"></div>
+           </div>
+         </div>
+
+         <div class="sm-card card2 w500">
+           <div class="v-center">
+             <div class="icon text-center"><%= image_tag 'finance.png' %></div>
+             <h2 class="text-center main-text">Financial Management</h2>
+             <p class="content text-center rbt">Make financial projections based on data<br>
+               Know Financial Records<br>
+               Plan Strategically<br>
+               Monitor Cash Inflows and Outflows<br>
+             </p>
+             <div id="hbar"></div>
+           </div>
+         </div>
+
+     </div>
     </div>
   </section>
-
-  <section id="benefits" class="benefits">
-    <div class="container">
-      <h1 class="main-title" id="perks">Benefits</h1>
-      <p class="text text-center rbt">
-        Use Ghalani and be exposed to these gains
-      </p>
-      <div class="row">
-        <!-- <hr> -->
-        <br>
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box info-box6">
-            <div class="icon text-center" id="iconStyle"><i class="fa fa-area-chart fa-4x"></i></div>
-            <div class="info">
-              <h2 class="text-center">Project</h2>
-              <p class="content text-center rbt">Detailed farm records for yield projections and strategies</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box info-box6">
-            <div class="icon text-center" id="iconStyle"><i class="fa fa-compass fa-4x"></i></div>
-            <div class="info">
-              <h2 class="text-center">Track</h2>
-              <p class="content text-center rbt">Efficient tracking of assets and inventory on the go.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box info-box6">
-           <div class="icon text-center" id="iconStyle"><i class="fa fa-envira fa-4x"></i></div>
-            <div class="info">
-              <h2 class="text-center">Yield</h2>
-              <p class="content text-center rbt">Increase farm yield via accurate farm data and reports</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box info-box6">
-            <div class="icon text-center" id="iconStyle"><i class="fa fa-male fa-4x"></i></div>
-            <div class="info">
-              <h2 class="text-center">Profile</h2>
-              <p class="content text-center rbt">Access to farmer profiles, field profiles and labourer daily activities</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div><!-- /.container -->
-  </section><!-- /.content-section -->
-
   <section id="contact" class="row">
-    <div class="pad-tb">
-      <div class="big-text tcenter marg-bottom">
+    <div class="pad-tb card3 w500 child-center">
+      <div class="main-text">
         Contact Us
       </div>
-      <div class="w576 hcenter marg-bottom rbt">
-        We would like to hear from you. Send us an email on
-      </div>
-      <div class="tcenter big-text accent">
+      <div class="tcenter big-text slim-text1">
         info@ghalani.com
       </div>
+      <div class="tcenter">
+        We would like to hear from you. Send us an email on
+      </div>
     </div>
-    <!-- <hr> -->
+  </section>
+  <section id="footer">
     <div class="blue-bg">
       <div id="social-icons">
         <a href="https://www.facebook.com/company/ghalani-inc." onclick="linkedin" target="_blank"><i class="fa fa-facebook" alt="facebook"></i></a>
@@ -164,8 +167,27 @@
   </section>
 </div>
 <script>
-  $("#sub_but1").on('click', function(){
-    console.log($("#sub_text1").val());
-    $("#sub_email").val($("#sub_text1").val());
-  })
+  $(document).ready(function () {
+    var menu = $('#nav1');
+    var origOffsetY = 0;
+
+    function scroll() {
+      console.log($(window).scrollTop() +" : "+ origOffsetY);
+      if (($(window).scrollTop() > origOffsetY)) {
+        if (!menu.hasClass('navbar-fixed-top')){
+          console.log("hasnt");
+          menu.addClass('navbar-fixed-top');
+        }
+      } else if(menu.hasClass('navbar-fixed-top')) {
+        console.log("has");
+          menu.removeClass('navbar-fixed-top');
+      }
+    }
+    document.onscroll = scroll;
+  });
+
+  // $("#sub_but1").on('click', function(){
+  //   console.log($("#sub_text1").val());
+  //   $("#sub_email").val($("#sub_text1").val());
+  // })
 </script>
