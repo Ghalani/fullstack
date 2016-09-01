@@ -148,6 +148,7 @@ html,body{
     border-radius: 2px;
     padding: 30px 16px;
     box-shadow: 0px 17px 53px 0px rgba(63, 131, 45, 0.37);
+    max-width: 95%;
   }
 
   .card3{
@@ -155,6 +156,7 @@ html,body{
     border-radius: 10px;
     padding: 30px 16px;
     box-shadow: 0px 17px 67px -17px rgba(63, 131, 45, 0.37);
+    max-width: 95%;
   }
 
   .z2{ z-index: 2;}
@@ -164,23 +166,28 @@ html,body{
   .sm-card{
     height: 70vh;
     margin: 50px auto;
+    max-width: 95%;
   }
 
   .main-text{color: $primary-bg-color}
-
+  .pad100tb{padding: 100px 0;}
+  .top35{top: 35% !important;}
   #home{
     background: $primary-bg-color;
     background-size:     cover;
     background-position: center center;
     height: 90vh;
     font-size: 2em;
+    text-align: center !important;
     #home-text1{
       color: #e5e5e5;
       margin-top: -120px;
       font-weight: bold;
+      margin: auto;
     }
     #home-text2{
       color: #e5e5e5;
+      margin: auto;
     }
 
     .navbar-fixed-top{
