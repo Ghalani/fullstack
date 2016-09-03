@@ -170,22 +170,14 @@
     var origOffsetY = 0;
 
     function scroll() {
-      console.log($(window).scrollTop() +" : "+ origOffsetY);
       if (($(window).scrollTop() > origOffsetY)) {
         if (!menu.hasClass('navbar-fixed-top')){
-          console.log("hasnt");
           menu.addClass('navbar-fixed-top');
         }
       } else if(menu.hasClass('navbar-fixed-top')) {
-        console.log("has");
           menu.removeClass('navbar-fixed-top');
       }
     }
     document.onscroll = scroll;
   });
-
-  // $("#sub_but1").on('click', function(){
-  //   console.log($("#sub_text1").val());
-  //   $("#sub_email").val($("#sub_text1").val());
-  // })
 </script>
