@@ -55,6 +55,6 @@ end
 group :production do
   gem 'rails_12factor'
   gem 'puma'
-  gem 'aws-sdk', '~> 2.3'
+  #gem 'aws-sdk', '~> 2.3'
   gem 'rmagick'
 end
