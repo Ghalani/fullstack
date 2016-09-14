@@ -1,0 +1,39 @@
+<div id="demo-subscription">
+	<div id="sform1" class="card w500">
+		<form v-on:submit="submit">
+			<div class="form-group">
+				<input class="form-control" type="text" v-model="subscription.name" placeholder="Name" required="required" name="name" />	
+			</div>	
+			<div class="form-group">
+				<input class="form-control" type="email" v-model="subscription.email" placeholder="you@example.com" required="required" name="email" />	
+			</div>			
+			<div class="form-group">
+				<div class="btn btn-primary" type="submit">Submit</div>	
+			</div>		
+		</form>
+	</div>
+	<div id="sform2" class="card w500" hidden>
+		Thanks {{ subscription.name }} you are now subscribed with email {{ subscription.email }}.
+	</div>	
+</div>
+<script type="text/javascript">
+	new Vue({
+  el: '#demo-subscription',
+  data: {
+    subcription:{
+    	name: "",
+    	email: ""
+    }
+  },
+  methods:{
+  	submit: function(e){
+  		e.preventDefault();
+  		// send and clear
+  		// show thank you
+  		$('#sform1').hide('slow', function(){
+  			$('#sform2').show('fast'); 
+  		}); 		
+  	}
+  }
+})
+</script>

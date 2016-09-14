@@ -148,6 +148,9 @@
       <div class="tcenter">
         We would like to hear from you. Send us an email on
       </div>
+      <div class="btn btn-primary" onclick="openModal();">
+        Subscribe
+      </div>
     </div>
   </section>
   <section id="footer">
@@ -180,4 +183,8 @@
     }
     document.onscroll = scroll;
   });
+  
+  function openModal(){
+    addNav('<%= escape_javascript(render "subscribe_modal") %>');
+  }
 </script>

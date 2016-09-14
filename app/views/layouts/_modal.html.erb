@@ -1,0 +1,29 @@
+ <div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog modal-lg">
+      <div id="overlay_body"></div>
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+        <i class="fa fa-remove"></i>
+      </a>
+  </div>
+</div>
+<script type="text/javascript">
+  function closeNav() {
+      $("#overlay_body").html("");
+      if (tabs.length < 1){
+        $('#myModal').modal('hide');
+      }else {
+        $("#overlay_body").html("").append(tabs[tabs.length - 1]);
+        tabs.pop();
+      }
+    }
+    function addNav(html) {
+      if ($("#overlay_body").html().length > 1)
+        tabs.push($("#overlay_body").html());
+      $("#overlay_body").html("").append(html);
+      $('#myModal').modal('show');
+    }
+    var tabs = [];
+    $("a .closebtn").on('click', function(){
+      closeNav();
+    });
+</script>

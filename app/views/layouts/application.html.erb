@@ -31,6 +31,7 @@
       <% end %>
     <% end %>
     <%= yield %>
+    <%= render "layouts/modal" %>
   </body>
 </html>
 <% if Rails.env.production?  %>
