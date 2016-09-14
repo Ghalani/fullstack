@@ -78,8 +78,8 @@ class User < ActiveRecord::Base
 
   private
   def downcase_fields
-    self.fname.downcase!
-    self.lname.downcase!
+    #self.fname.downcase!
+    #self.lname.downcase!
     self.email.downcase!
   end
 
