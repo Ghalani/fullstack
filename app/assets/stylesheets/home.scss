@@ -199,7 +199,7 @@ html,body{
     background-size:     cover;
     background-position: center center;
     height: 90vh;
-    font-size: 2em;
+    font-size: 1.8em;
     text-align: center !important;
     #home-text1{
       color: #e5e5e5;
@@ -270,10 +270,10 @@ html,body{
 
     @media only screen and (max-width: 780px) {
       .item{
-        text-align: justify;
-        -moz-text-align-last: center;
-        text-align-last: center;
         font-size: 0.7em !important;
+      }
+      #home{
+        font-size: 1em;
       }
       #sv-web{
         display: none;
