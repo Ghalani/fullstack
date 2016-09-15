@@ -228,6 +228,7 @@ html,body{
       opacity: 0;
       display: none;
       font-size: 1.5em;
+      margin-bottom: 50px;
     }
     .item.is-visible{
       display: block;
@@ -272,6 +273,7 @@ html,body{
         text-align: justify;
         -moz-text-align-last: center;
         text-align-last: center;
+        font-size: 0.7em !important;
       }
       #sv-web{
         display: none;
@@ -377,4 +379,10 @@ html,body{
   }100%{
     opacity: 1;
   }
+}
+
+.pos-bottom{
+  bottom: 0px;
+  position: absolute;
+  width: 95%;
 }
