@@ -195,7 +195,7 @@ html,body{
   .pad100tb{padding: 100px 0;}
   .top35{top: 35% !important;}
   #home{
-    background: $primary-bg-color url('truck_overlay.png');
+    background: $primary-bg-color image-url('truck_overlay.png');
     background-size:     cover;
     background-position: center center;
     height: 90vh;
