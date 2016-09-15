@@ -1,38 +1,56 @@
 <div id="demo-subscription">
-	<div id="sform1" class="card w500">
-		<form v-on:submit="submit">
-			<div class="form-group">
-				<input class="form-control" type="text" v-model="subscription.name" placeholder="Name" required="required" name="name" />	
-			</div>	
-			<div class="form-group">
-				<input class="form-control" type="email" v-model="subscription.email" placeholder="you@example.com" required="required" name="email" />	
-			</div>			
-			<div class="form-group">
-				<div class="btn btn-primary" type="submit">Submit</div>	
-			</div>		
-		</form>
+	<div id="sform1" class="card w500 hcenter max-w95">
+		<div class="tcenter"	>
+		<%= image_tag "rocket.png", class:"vcenter" %> <br>
+		Be the first to know when we launch</div>
+		<br>
+		<!-- <div class="slant"></div> -->
+		<div class="form-group">
+			<input class="form-control" type="text" v-model="subscription.name" placeholder="Name" required name="name" />	
+		</div>	
+		<div class="form-group">
+			<input class="form-control" type="email" v-model="subscription.email" placeholder="you@example.com" required name="email" @keyup.enter="submit"/>	
+		</div>		
+		<div class="form-group">
+			<div class="btn btn-primary" type="submit" v-on:click="submit">Submit</div>	
+		</div>	
 	</div>
-	<div id="sform2" class="card w500" hidden>
-		Thanks {{ subscription.name }} you are now subscribed with email {{ subscription.email }}.
+	<div id="sform2" class="card w500 hcenter max-w95" hidden>
+		<div class="tcenter"	>
+			<%= image_tag "rocket.png", class:"vcenter" %> <br><br>
+			Thanks <strong>{{ subscription.name }}</strong>. <br>
+			You are now subscribed with <strong>{{ subscription.email }}</strong>.
+		</div>
 	</div>	
 </div>
 <script type="text/javascript">
 	new Vue({
   el: '#demo-subscription',
   data: {
-    subcription:{
+    subscription:{
     	name: "",
-    	email: ""
+    	email: "",
+    	reason: "demo"
     }
   },
   methods:{
   	submit: function(e){
-  		e.preventDefault();
   		// send and clear
   		// show thank you
-  		$('#sform1').hide('slow', function(){
-  			$('#sform2').show('fast'); 
-  		}); 		
+  		if (Boolean(this.subscription.name) && Boolean(this.subscription.email)) {
+  			$.post( "/ghalani_contacts", { ghalani_contact: this.subscription })
+			  .done(function( data ) {
+			    $('#sform1').hide('200', function(){
+		  			$('#sform2').addClass('animate-in'); 
+		  		}); 
+			  })
+			  .fail(function(data){
+			  	alert(JSON.stringify(data.errors));
+			  });
+  		}else{
+  			alert("Your Name and Email are required")
+  		}
+  		
   	}
   }
 })

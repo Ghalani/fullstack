@@ -1,29 +1,33 @@
  <div class="modal fade" id="myModal" role="dialog">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog" style="margin-top:35vh;">
       <div id="overlay_body"></div>
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+      <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
         <i class="fa fa-remove"></i>
-      </a>
+      </a> -->
   </div>
 </div>
 <script type="text/javascript">
   function closeNav() {
       $("#overlay_body").html("");
-      if (tabs.length < 1){
+      //if (tabs.length < 1){
         $('#myModal').modal('hide');
-      }else {
+      /*}else {
         $("#overlay_body").html("").append(tabs[tabs.length - 1]);
         tabs.pop();
-      }
+      }*/
     }
     function addNav(html) {
-      if ($("#overlay_body").html().length > 1)
-        tabs.push($("#overlay_body").html());
+      /*if ($("#overlay_body").html().length > 1)
+        tabs.push($("#overlay_body").html());*/
       $("#overlay_body").html("").append(html);
       $('#myModal').modal('show');
     }
     var tabs = [];
     $("a .closebtn").on('click', function(){
       closeNav();
+    });
+
+    $(document).keyup(function(e) {
+      if (e.keyCode === 27) closeNav();   // esc
     });
 </script>

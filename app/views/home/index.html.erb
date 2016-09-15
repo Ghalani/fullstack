@@ -24,10 +24,10 @@
       <div class="v-center pad100tb top35 tcenter" style="margin: 100px 0;">
         <div class="abs-child">
           <div id="home-text1" class="marg-bottom">
-            Use Software to Increase Farm Yield
+            Farm management made seamless
           </div>
           <div id="home-text2" class="marg-bottom rbt">
-            Manage multiple farms, contracts, inventory, finances, <br>and labourers with ease and reduce risks
+            Manage multiple farms, contracts, inventory, finances, <br>and tasks with ease from one platform
           </div>
         </div>
       </div>
@@ -40,10 +40,16 @@
         <div class="col-md-4 col-sm-12 col-xs-12 text-center">
           <%= image_tag "logo_green.png" %>
         </div>
-        <div class="col-md-8 col-sm-12 col-xs-12 mgt20">
-          <span>Ghalani</span> is a mobile and web-based farm management system designed to aid large scale farmers and aggregators to increase production. <br>
-          Our farm management software helps you to organize, manage and monitor crops, farmers,  inventory and finances.<br>
-          We focus on coordinating all activities that improve farming methods and creates high yields.
+        <div id="desc-items" class="col-md-8 col-sm-12 col-xs-12 mgt20">
+          <div class="item">
+            <span>Ghalani</span> is a mobile and web-based farm management system designed to aid large scale farmers and aggregators to increase production.
+          </div>
+          <div class="item">
+            Our farm management software helps you to organize, manage and monitor crops, farmers,  inventory and finances.
+          </div>
+          <div class="item">
+            We focus on coordinating all activities that improve farming methods and creates high yields.
+          </div>
         </div>
       </div>
     </div>
@@ -138,6 +144,13 @@
     </div>
   </section>
   <section id="contact" class="row">
+    <div class="tcenter mgb60 font2">
+      Request a demo, before we launch   
+      <br>
+      <div class="btn btn-primary font1" onclick="openModal();">
+        Subscribe
+      </div><br>  
+    </div>
     <div class="pad-tb card3 w500 child-center">
       <div class="main-text">
         Contact Us
@@ -146,10 +159,7 @@
         info@ghalani.com
       </div>
       <div class="tcenter">
-        We would like to hear from you. Send us an email on
-      </div>
-      <div class="btn btn-primary" onclick="openModal();">
-        Subscribe
+        We would like to hear from you. Send us an email
       </div>
     </div>
   </section>
@@ -168,17 +178,44 @@
   </section>
 </div>
 <script>
+  var descShowing = false;
   $(document).ready(function () {
     var menu = $('#nav1');
     var origOffsetY = 0;
 
     function scroll() {
+      var screenBottom = ($(window).scrollTop() + $(window).height());
+      var screenTop = $(window).scrollTop();
+
       if (($(window).scrollTop() > origOffsetY)) {
         if (!menu.hasClass('navbar-fixed-top')){
           menu.addClass('navbar-fixed-top');
         }
       } else if(menu.hasClass('navbar-fixed-top')) {
           menu.removeClass('navbar-fixed-top');
+      }
+
+
+      var items = $("#desc-items").children(); 
+        //console.log("scroll");
+      if(!descShowing && (screenBottom > ($("#about").position().top))){
+        descShowing = true;
+        //console.log("init");
+        changeItem(0);
+
+        // show desc
+        // start carosel
+        function changeItem(pos) {
+          $(items.get((pos - 1) >= 0 ? (pos - 1) : 2)).removeClass('is-visible');
+          $(items.get(pos)).addClass('is-visible');
+          pos++;
+          if (pos == items.length) {pos = 0}
+          setTimeout(
+            function() {
+              changeItem(pos);
+          }, 5000);
+        };          
+        //}
       }
     }
     document.onscroll = scroll;

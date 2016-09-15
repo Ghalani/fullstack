@@ -93,12 +93,6 @@ Rails.application.routes.draw do
       resources :team_activity_reports
     end
   end
-  # namespace :api, defaults: {format: 'json'} do
-  #    scope module: :v1, constraints: ApiConstraints.new(version: 1) do
-  #      resources :products
-  #    end
-  #    scope module: :v2, constraints: ApiConstraints.new(version: 2, default: true) do
-  #      resources :products
-  #    end
-  #  end
+  
+  resources :ghalani_contacts, only:[:index, :create]
 end

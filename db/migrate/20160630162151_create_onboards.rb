@@ -3,6 +3,7 @@ class CreateOnboards < ActiveRecord::Migration
     create_table :onboards do |t|
       t.string  :name
       t.string  :email
+     
       t.timestamps null: false
     end
   end
