@@ -54,11 +54,11 @@
           </div>
           <div class="hcenter pos-bottom">
             <hr>
-            <a href="/doc/gmk.zip">
-              <div class="btn btn-primary font1">
+            <!-- <a href="/doc/gmk.zip"> -->
+              <div class="btn btn-primary font1" onclick="downloadMK();">
                 <i class="fa fa-cloud-download"></i> Media kit
               </div>
-            </a>
+            <!-- </a> -->
             
           </div>
         </div>
@@ -233,6 +233,10 @@
   });
   
   function openModal(){
-    addNav('<%= escape_javascript(render "subscribe_modal") %>');
+    addNav('<%= escape_javascript(render "subscribe_modal", locals: {reason:"demo"}) %>');
+  }
+  
+  function downloadMK(){
+    addNav('<%= escape_javascript(render "subscribe_modal", locals: {reason:"media-kit"}) %>');
   }
 </script>
